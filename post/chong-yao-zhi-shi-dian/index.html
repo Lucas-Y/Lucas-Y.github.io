@@ -1,13 +1,20 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>重要知识点 | Gridea</title>
-<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1607420020738">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+    <meta charset="utf-8" >
+
+<title>重要知识点 | 前端小白</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1607420362022">
 <link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="重要知识点 | Gridea - Atom Feed" href="https://lucas-y.github.io//atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
@@ -31,149 +38,148 @@ vue
 
 ..." />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://lucas-y.github.io/">
-  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1607420020738" alt="">
-  </a>
-  <h1 class="site-title">
-    Gridea
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://lucas-y.github.io/">
+        <img src="https://lucas-y.github.io//images/avatar.png?v=1607420362022" class="site-logo">
+        <h1 class="site-title">前端小白</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      知行合一
+    </div>
+    <div class="site-footer">
+      中庸之道 | <a class="rss" href="https://lucas-y.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              重要知识点
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-12-08
-              </span>
-              <span>
-                8 min read
-              </span>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">重要知识点</h2>
+            <div class="post-date">2020-12-08</div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h1 id="重要知识点">重要知识点</h1>
+            <div class="post-content" v-pre>
+              <h1 id="重要知识点">重要知识点</h1>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7451865"><label class="task-list-item-label" for="task-item-7451865"> 面试题</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3133543"><label class="task-list-item-label" for="task-item-3133543"> 浏览器优化</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1108375"><label class="task-list-item-label" for="task-item-1108375"> 工作中遇到的难点</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5004366"><label class="task-list-item-label" for="task-item-5004366"> seo（花钱，html后缀，外链，标签语义化）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-745398"><label class="task-list-item-label" for="task-item-745398"> 前端开发优化问题</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8404374"><label class="task-list-item-label" for="task-item-8404374"> 浏览器兼容</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1583945"><label class="task-list-item-label" for="task-item-1583945"> css</label>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-431911"><label class="task-list-item-label" for="task-item-431911"> 面试题</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1273738"><label class="task-list-item-label" for="task-item-1273738"> 浏览器优化</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5525080"><label class="task-list-item-label" for="task-item-5525080"> 工作中遇到的难点</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2394517"><label class="task-list-item-label" for="task-item-2394517"> seo（花钱，html后缀，外链，标签语义化）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7016856"><label class="task-list-item-label" for="task-item-7016856"> 前端开发优化问题</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-248718"><label class="task-list-item-label" for="task-item-248718"> 浏览器兼容</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1768586"><label class="task-list-item-label" for="task-item-1768586"> css</label>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6976431"><label class="task-list-item-label" for="task-item-6976431"> 双微元素清除</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-471510"><label class="task-list-item-label" for="task-item-471510"> 浮动</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6352617"><label class="task-list-item-label" for="task-item-6352617"> 双微元素清除</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2779959"><label class="task-list-item-label" for="task-item-2779959"> 浮动</label></li>
 </ul>
 </li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5470036"><label class="task-list-item-label" for="task-item-5470036"> HTML5（语义化，seo，移动端，游戏）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2433749"><label class="task-list-item-label" for="task-item-2433749"> HTML5（语义化，seo，移动端，游戏）</label></li>
 </ul>
 <h2 id="vue">vue</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3566945"><label class="task-list-item-label" for="task-item-3566945"> 父子组件生命周期触发时机</label>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2854765"><label class="task-list-item-label" for="task-item-2854765"> 父子组件生命周期触发时机</label>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9583200"><label class="task-list-item-label" for="task-item-9583200"> createdF ===> createdS</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6985187"><label class="task-list-item-label" for="task-item-6985187"> mountedS ===> mountedF</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2230002"><label class="task-list-item-label" for="task-item-2230002"> updatedS ===> updatedF</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7317624"><label class="task-list-item-label" for="task-item-7317624"> destroyedS ===> destroyedF</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1994782"><label class="task-list-item-label" for="task-item-1994782"> createdF ===> createdS</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2245810"><label class="task-list-item-label" for="task-item-2245810"> mountedS ===> mountedF</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4163022"><label class="task-list-item-label" for="task-item-4163022"> updatedS ===> updatedF</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9099069"><label class="task-list-item-label" for="task-item-9099069"> destroyedS ===> destroyedF</label></li>
 </ul>
 </li>
 </ul>
 <h2 id="react">react</h2>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1411391"><label class="task-list-item-label" for="task-item-1411391"> setState</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3264286"><label class="task-list-item-label" for="task-item-3264286"> setState</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3749508"><label class="task-list-item-label" for="task-item-3749508"> 组件的更新机制依靠事务进行批量更新</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-311807"><label class="task-list-item-label" for="task-item-311807"> 将state的更新延缓到最后批量合并再去渲染对于应用的性能优化是有极大好处的，如果每次的状态改变都去重新渲染真实dom，那么它将带来巨大的性能消耗。</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8188206"><label class="task-list-item-label" for="task-item-8188206"> 保证内部的一致性：即使state是同步更新，props也不是。（你只有在父组件重新渲染时才能知道props）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7041866"><label class="task-list-item-label" for="task-item-7041866"> setState 只在合成事件和钩子函数中是“异步”的，在原生事件和 setTimeout 中都是同步的。生命周期函数和合成函数中调用setState表现异步更新，是因为组件初始化和调用合成函数时都会触发ReactDefaultBatchingStrategy事务的batchUpdates方法，将批量更新标记设置为true，所以后面的setState都会存储到dirtyComponents中，执行批量更新之后再将标志设置为false</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9370091"><label class="task-list-item-label" for="task-item-9370091"> setState的“异步”并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值，形式了所谓的“异步”，当然可以通过第二个参数 setState(partialState, callback) 中的callback拿到更新后的结果</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1750828"><label class="task-list-item-label" for="task-item-1750828"> 组件的更新机制依靠事务进行批量更新</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1953113"><label class="task-list-item-label" for="task-item-1953113"> 将state的更新延缓到最后批量合并再去渲染对于应用的性能优化是有极大好处的，如果每次的状态改变都去重新渲染真实dom，那么它将带来巨大的性能消耗。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7877708"><label class="task-list-item-label" for="task-item-7877708"> 保证内部的一致性：即使state是同步更新，props也不是。（你只有在父组件重新渲染时才能知道props）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-804036"><label class="task-list-item-label" for="task-item-804036"> setState 只在合成事件和钩子函数中是“异步”的，在原生事件和 setTimeout 中都是同步的。生命周期函数和合成函数中调用setState表现异步更新，是因为组件初始化和调用合成函数时都会触发ReactDefaultBatchingStrategy事务的batchUpdates方法，将批量更新标记设置为true，所以后面的setState都会存储到dirtyComponents中，执行批量更新之后再将标志设置为false</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6232899"><label class="task-list-item-label" for="task-item-6232899"> setState的“异步”并不是说内部由异步代码实现，其实本身执行的过程和代码都是同步的，只是合成事件和钩子函数的调用顺序在更新之前，导致在合成事件和钩子函数中没法立马拿到更新后的值，形式了所谓的“异步”，当然可以通过第二个参数 setState(partialState, callback) 中的callback拿到更新后的结果</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6266689"><label class="task-list-item-label" for="task-item-6266689"> 生命周期</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6567183"><label class="task-list-item-label" for="task-item-6567183"> 生命周期</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5212645"><label class="task-list-item-label" for="task-item-5212645"> constructor->componentWillMount->render->componentDidMount</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-206687"><label class="task-list-item-label" for="task-item-206687"> componentWillReceiveProps->shouldComponentUpdate->componentWillUpdate->render->componentDidUpdate</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9918227"><label class="task-list-item-label" for="task-item-9918227"> componentWillUnmount</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4387924"><label class="task-list-item-label" for="task-item-4387924"> componentDidCatch getDerivedStateFromError</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2137064"><label class="task-list-item-label" for="task-item-2137064"> constructor->componentWillMount->render->componentDidMount</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1883470"><label class="task-list-item-label" for="task-item-1883470"> componentWillReceiveProps->shouldComponentUpdate->componentWillUpdate->render->componentDidUpdate</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-165157"><label class="task-list-item-label" for="task-item-165157"> componentWillUnmount</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7045950"><label class="task-list-item-label" for="task-item-7045950"> componentDidCatch getDerivedStateFromError</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-214617"><label class="task-list-item-label" for="task-item-214617"> react项目打包优化</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3347616"><label class="task-list-item-label" for="task-item-3347616"> react项目打包优化</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-625373"><label class="task-list-item-label" for="task-item-625373"> antd-mobile组件库按需加载（react-app-rewired，customize-cra，babel-plugin-import，config-overrides.js）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4855822"><label class="task-list-item-label" for="task-item-4855822">  基于路由的代码分割实现组件的按需加载，提高首屏加载速度（React.lazy，import，Suspense，fallback）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2510731"><label class="task-list-item-label" for="task-item-2510731">  creat-react-app脚手架内部有大量优化</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2350760"><label class="task-list-item-label" for="task-item-2350760"> antd-mobile组件库按需加载（react-app-rewired，customize-cra，babel-plugin-import，config-overrides.js）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8732855"><label class="task-list-item-label" for="task-item-8732855">  基于路由的代码分割实现组件的按需加载，提高首屏加载速度（React.lazy，import，Suspense，fallback）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8295477"><label class="task-list-item-label" for="task-item-8295477">  creat-react-app脚手架内部有大量优化</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3572768"><label class="task-list-item-label" for="task-item-3572768"> 组件性能优化</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2812749"><label class="task-list-item-label" for="task-item-2812749"> 组件性能优化</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6382114"><label class="task-list-item-label" for="task-item-6382114"> 减轻state（无关数据或者ref，定时器绑this）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1382956"><label class="task-list-item-label" for="task-item-1382956"> shouldComponentUpdate</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3622430"><label class="task-list-item-label" for="task-item-3622430"> 纯组件</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8141821"> 列表map <strong>key</strong><label class="task-list-item-label" for="task-item-8141821"> 列表map **key**</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5446939"><label class="task-list-item-label" for="task-item-5446939"> 不可变性 创建新对象 而不是在原有引用上修改</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6551049"><label class="task-list-item-label" for="task-item-6551049"> 减轻state（无关数据或者ref，定时器绑this）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5751995"><label class="task-list-item-label" for="task-item-5751995"> shouldComponentUpdate</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7949367"><label class="task-list-item-label" for="task-item-7949367"> 纯组件</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4229324"> 列表map <strong>key</strong><label class="task-list-item-label" for="task-item-4229324"> 列表map **key**</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2568925"><label class="task-list-item-label" for="task-item-2568925"> 不可变性 创建新对象 而不是在原有引用上修改</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5139487"> <a href="https://juejin.cn/post/6844903813070094350">react副作用<label class="task-list-item-label" for="task-item-5139487"> [react副作用](https://juejin.cn/post/6844903813070094350)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4505678"> <a href="https://juejin.cn/post/6844903813070094350">react副作用<label class="task-list-item-label" for="task-item-4505678"> [react副作用](https://juejin.cn/post/6844903813070094350)</label></p>
 </li>
 </ul>
 <h2 id="css">css</h2>
@@ -216,42 +222,42 @@ vue
 <h2 id="js">js</h2>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2409259"> <a href="https://juejin.im/post/5b8f76675188255c7c653811">eventloop<label class="task-list-item-label" for="task-item-2409259"> [eventloop](https://juejin.im/post/5b8f76675188255c7c653811)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6092073"> <a href="https://juejin.im/post/5b8f76675188255c7c653811">eventloop<label class="task-list-item-label" for="task-item-6092073"> [eventloop](https://juejin.im/post/5b8f76675188255c7c653811)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4683795"> <a href="https://juejin.im/post/5c41297cf265da613356d4ec">promise<label class="task-list-item-label" for="task-item-4683795"> [promise](https://juejin.im/post/5c41297cf265da613356d4ec)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9292215"> <a href="https://juejin.im/post/5c41297cf265da613356d4ec">promise<label class="task-list-item-label" for="task-item-9292215"> [promise](https://juejin.im/post/5c41297cf265da613356d4ec)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3606029"> <a href="https://www.bilibili.com/video/BV1MJ41197Eu?p=40">手写promise<label class="task-list-item-label" for="task-item-3606029"> [手写promise](https://www.bilibili.com/video/BV1MJ41197Eu?p=40)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3019403"> <a href="https://www.bilibili.com/video/BV1MJ41197Eu?p=40">手写promise<label class="task-list-item-label" for="task-item-3019403"> [手写promise](https://www.bilibili.com/video/BV1MJ41197Eu?p=40)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1766258"><label class="task-list-item-label" for="task-item-1766258"> 原型链</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1118952"><label class="task-list-item-label" for="task-item-1118952"> 原型链</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9621238"><label class="task-list-item-label" for="task-item-9621238"> 任何一个对象，都有原型对象，原型对象本身又是一个对象，所以原型对象也有自己的原型对象，这样一环扣一环就形成了一个链式结构，我们把这个链式结构称为：原型链。</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8412051"><label class="task-list-item-label" for="task-item-8412051"> 任何一个对象，都有原型对象，原型对象本身又是一个对象，所以原型对象也有自己的原型对象，这样一环扣一环就形成了一个链式结构，我们把这个链式结构称为：原型链。</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6038053"> <a href="https://www.cnblogs.com/sarahwang/p/6870072.html">继承<label class="task-list-item-label" for="task-item-6038053"> [继承](https://www.cnblogs.com/sarahwang/p/6870072.html)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7858611"> <a href="https://www.cnblogs.com/sarahwang/p/6870072.html">继承<label class="task-list-item-label" for="task-item-7858611"> [继承](https://www.cnblogs.com/sarahwang/p/6870072.html)</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4623775"><label class="task-list-item-label" for="task-item-4623775"> 原型链继承</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-374736"><label class="task-list-item-label" for="task-item-374736"> 借用构造函数</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6446996"><label class="task-list-item-label" for="task-item-6446996"> 组合继承</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7398036"><label class="task-list-item-label" for="task-item-7398036"> 原型链继承</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7988352"><label class="task-list-item-label" for="task-item-7988352"> 借用构造函数</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7765651"><label class="task-list-item-label" for="task-item-7765651"> 组合继承</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6015318"><label class="task-list-item-label" for="task-item-6015318"> 深拷贝 （封装递归函数，JSON.parse（JSON.stringify））</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5580176"><label class="task-list-item-label" for="task-item-5580176"> 深拷贝 （封装递归函数，JSON.parse（JSON.stringify））</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8727602"><label class="task-list-item-label" for="task-item-8727602"> 浅拷贝 （Object.assign，...展开）</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7407145"><label class="task-list-item-label" for="task-item-7407145"> 浅拷贝 （Object.assign，...展开）</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2332333"><label class="task-list-item-label" for="task-item-2332333"> 闭包</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6836757"><label class="task-list-item-label" for="task-item-6836757"> 闭包</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1373815"><label class="task-list-item-label" for="task-item-1373815"> 内函数访问外函数的局部变量，形成闭包（优：沙箱，插件；劣：内存泄漏）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3368392"><label class="task-list-item-label" for="task-item-3368392"> 内函数访问外函数的局部变量，形成闭包（优：沙箱，插件；劣：内存泄漏）</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3029184"><label class="task-list-item-label" for="task-item-3029184"> call（性能比apply好）,apply,bind</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6896198"><label class="task-list-item-label" for="task-item-6896198"> call（性能比apply好）,apply,bind</label></p>
 <pre><code class="language-js">Function.prototype.myCall = function (_this = window, ...rest) {
   _this._this = this;
   const result = _this._this(...rest);
@@ -261,98 +267,98 @@ vue
 </code></pre>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8148908"><label class="task-list-item-label" for="task-item-8148908"> 前端模块化</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3506592"><label class="task-list-item-label" for="task-item-3506592"> 前端模块化</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5525149"><label class="task-list-item-label" for="task-item-5525149"> 自执行函数</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3595415"><label class="task-list-item-label" for="task-item-3595415"> commonJS规范 node</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5306876"><label class="task-list-item-label" for="task-item-5306876"> esmodule ES6</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3186722"><label class="task-list-item-label" for="task-item-3186722"> AMD require.js 依赖前置</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4415534"><label class="task-list-item-label" for="task-item-4415534"> CMD sea.js 依赖就近</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8431402"><label class="task-list-item-label" for="task-item-8431402"> 自执行函数</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9511426"><label class="task-list-item-label" for="task-item-9511426"> commonJS规范 node</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4273521"><label class="task-list-item-label" for="task-item-4273521"> esmodule ES6</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3047562"><label class="task-list-item-label" for="task-item-3047562"> AMD require.js 依赖前置</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5101674"><label class="task-list-item-label" for="task-item-5101674"> CMD sea.js 依赖就近</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5680064"><label class="task-list-item-label" for="task-item-5680064"> ==</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7984828"><label class="task-list-item-label" for="task-item-7984828"> ==</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7825144"><label class="task-list-item-label" for="task-item-7825144"> NaN不等于任何值</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8851560"><label class="task-list-item-label" for="task-item-8851560"> null，undefined只等于null，undefined</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1457673"><label class="task-list-item-label" for="task-item-1457673"> 两边有数字或者布尔，转数字比较</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4839169"><label class="task-list-item-label" for="task-item-4839169"> 两边有字符串，转字符串比较</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2034240"><label class="task-list-item-label" for="task-item-2034240"> 复杂类型比地址( []转"", {}转"[object Object]" )</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9683024"><label class="task-list-item-label" for="task-item-9683024"> NaN不等于任何值</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3456981"><label class="task-list-item-label" for="task-item-3456981"> null，undefined只等于null，undefined</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-239895"><label class="task-list-item-label" for="task-item-239895"> 两边有数字或者布尔，转数字比较</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2766653"><label class="task-list-item-label" for="task-item-2766653"> 两边有字符串，转字符串比较</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-574461"><label class="task-list-item-label" for="task-item-574461"> 复杂类型比地址( []转"", {}转"[object Object]" )</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5034191"><label class="task-list-item-label" for="task-item-5034191"> this</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1895559"><label class="task-list-item-label" for="task-item-1895559"> this</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9716435"><label class="task-list-item-label" for="task-item-9716435"> 事件处理程序里this指向事件源(注册事件的那个dom)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-226828"><label class="task-list-item-label" for="task-item-226828"> 构造函数（配合new）里的this指向刚刚创建的对象</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5051040"><label class="task-list-item-label" for="task-item-5051040"> setTimeout setInterval this指向window</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5984900"><label class="task-list-item-label" for="task-item-5984900"> 普通函数fn调用模式  fn() this===>>>window</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3849560"><label class="task-list-item-label" for="task-item-3849560"> 对象调用模式 obj.fn()  this===>>>obj(调用者)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-461031"><label class="task-list-item-label" for="task-item-461031"> call,apply,bind this===>>>第一个参数(没传参就是window)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4885224"><label class="task-list-item-label" for="task-item-4885224"> 箭头函数没有this，所以如果箭头函数有this（this指向包裹它的局部作用域）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7391886"><label class="task-list-item-label" for="task-item-7391886"> 事件处理程序里this指向事件源(注册事件的那个dom)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8418178"><label class="task-list-item-label" for="task-item-8418178"> 构造函数（配合new）里的this指向刚刚创建的对象</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5249014"><label class="task-list-item-label" for="task-item-5249014"> setTimeout setInterval this指向window</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6088993"><label class="task-list-item-label" for="task-item-6088993"> 普通函数fn调用模式  fn() this===>>>window</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3735180"><label class="task-list-item-label" for="task-item-3735180"> 对象调用模式 obj.fn()  this===>>>obj(调用者)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2974743"><label class="task-list-item-label" for="task-item-2974743"> call,apply,bind this===>>>第一个参数(没传参就是window)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4648601"><label class="task-list-item-label" for="task-item-4648601"> 箭头函数没有this，所以如果箭头函数有this（this指向包裹它的局部作用域）</label></li>
 <li>[ ]</li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5426562"><label class="task-list-item-label" for="task-item-5426562"> es6</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5174418"><label class="task-list-item-label" for="task-item-5174418"> es6</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5537318"><label class="task-list-item-label" for="task-item-5537318"> let (有块级作用域，不能重复定义，不会预解析，先声明再使用，不挂到window)</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6045634"><label class="task-list-item-label" for="task-item-6045634"> const（有块级作用域，不能重复定义，不会预解析，先声明再使用,常量，定义就赋值，不挂到window）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-87539"><label class="task-list-item-label" for="task-item-87539"> forEach,map,filter,some,every,find,findIndex，reduce</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9965079"><label class="task-list-item-label" for="task-item-9965079"> 解构赋值</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2034257"><label class="task-list-item-label" for="task-item-2034257"> 模版字符串</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1597537"><label class="task-list-item-label" for="task-item-1597537"> 字符串新增startsWith，endsWith，includes</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2572495"><label class="task-list-item-label" for="task-item-2572495"> 箭头函数</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3511313"><label class="task-list-item-label" for="task-item-3511313"> 函数默认值，剩余参数</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3641337"><label class="task-list-item-label" for="task-item-3641337"> 对象属性简写，方法简写</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8602356"><label class="task-list-item-label" for="task-item-8602356"> ...展开运算符</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3333656"><label class="task-list-item-label" for="task-item-3333656"> set，map</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5682770"><label class="task-list-item-label" for="task-item-5682770"> let (有块级作用域，不能重复定义，不会预解析，先声明再使用，不挂到window)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-227479"><label class="task-list-item-label" for="task-item-227479"> const（有块级作用域，不能重复定义，不会预解析，先声明再使用,常量，定义就赋值，不挂到window）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9997871"><label class="task-list-item-label" for="task-item-9997871"> forEach,map,filter,some,every,find,findIndex，reduce</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1916359"><label class="task-list-item-label" for="task-item-1916359"> 解构赋值</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-990223"><label class="task-list-item-label" for="task-item-990223"> 模版字符串</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2557828"><label class="task-list-item-label" for="task-item-2557828"> 字符串新增startsWith，endsWith，includes</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4519704"><label class="task-list-item-label" for="task-item-4519704"> 箭头函数</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6017418"><label class="task-list-item-label" for="task-item-6017418"> 函数默认值，剩余参数</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5323520"><label class="task-list-item-label" for="task-item-5323520"> 对象属性简写，方法简写</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1014033"><label class="task-list-item-label" for="task-item-1014033"> ...展开运算符</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8665622"><label class="task-list-item-label" for="task-item-8665622"> set，map</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1214124"><label class="task-list-item-label" for="task-item-1214124"> 浏览器存储</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7175348"><label class="task-list-item-label" for="task-item-7175348"> 浏览器存储</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6586860"><label class="task-list-item-label" for="task-item-6586860"> cookie 小 每次请求自动携带 有销毁时间</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4231393"><label class="task-list-item-label" for="task-item-4231393"> localStorage 大 手动清理</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-148000"><label class="task-list-item-label" for="task-item-148000"> sessionStorage 大 页面关闭就清理</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-551478"><label class="task-list-item-label" for="task-item-551478"> indexDB 用不完 手动清理</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8072434"><label class="task-list-item-label" for="task-item-8072434"> cookie 小 每次请求自动携带 有销毁时间</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2255027"><label class="task-list-item-label" for="task-item-2255027"> localStorage 大 手动清理</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6530384"><label class="task-list-item-label" for="task-item-6530384"> sessionStorage 大 页面关闭就清理</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8763634"><label class="task-list-item-label" for="task-item-8763634"> indexDB 用不完 手动清理</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4594396"><label class="task-list-item-label" for="task-item-4594396"> async （Promise的语法糖）es7</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4237129"><label class="task-list-item-label" for="task-item-4237129"> async （Promise的语法糖）es7</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2595995"><label class="task-list-item-label" for="task-item-2595995"> addEventLisntener(第三个参数如果true，表示该事件在捕获阶段执行，  如果false，表示事件在冒泡阶段执行。默认在冒泡阶段执行)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8580599"><label class="task-list-item-label" for="task-item-8580599"> addEventLisntener(第三个参数如果true，表示该事件在捕获阶段执行，  如果false，表示事件在冒泡阶段执行。默认在冒泡阶段执行)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7745022"><label class="task-list-item-label" for="task-item-7745022"> new做了什么？</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1303654"><label class="task-list-item-label" for="task-item-1303654"> new做了什么？</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7095079"><label class="task-list-item-label" for="task-item-7095079"> 创建对象 this指向该对象</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8860015"><label class="task-list-item-label" for="task-item-8860015"> 继承函数原型</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2622959"><label class="task-list-item-label" for="task-item-2622959"> 实例化</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8040243"><label class="task-list-item-label" for="task-item-8040243"> 隐式返回该对象</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4688393"><label class="task-list-item-label" for="task-item-4688393"> 创建对象 this指向该对象</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-727195"><label class="task-list-item-label" for="task-item-727195"> 继承函数原型</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5998809"><label class="task-list-item-label" for="task-item-5998809"> 实例化</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-194101"><label class="task-list-item-label" for="task-item-194101"> 隐式返回该对象</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6715581"><label class="task-list-item-label" for="task-item-6715581"> webpack</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3179765"><label class="task-list-item-label" for="task-item-3179765"> webpack</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7535609"><label class="task-list-item-label" for="task-item-7535609"> entry</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8200679"><label class="task-list-item-label" for="task-item-8200679"> output</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5082430"><label class="task-list-item-label" for="task-item-5082430"> module（loader）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7337853"><label class="task-list-item-label" for="task-item-7337853"> plugins</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3806660"><label class="task-list-item-label" for="task-item-3806660"> devServer</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8952179"><label class="task-list-item-label" for="task-item-8952179"> mode</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9420625"><label class="task-list-item-label" for="task-item-9420625"> entry</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8177993"><label class="task-list-item-label" for="task-item-8177993"> output</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-165234"><label class="task-list-item-label" for="task-item-165234"> module（loader）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6552367"><label class="task-list-item-label" for="task-item-6552367"> plugins</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-495731"><label class="task-list-item-label" for="task-item-495731"> devServer</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1244915"><label class="task-list-item-label" for="task-item-1244915"> mode</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-177922"> <a href="https://segmentfault.com/a/1190000015597029">跨域<label class="task-list-item-label" for="task-item-177922"> [跨域](https://segmentfault.com/a/1190000015597029)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7562972"> <a href="https://segmentfault.com/a/1190000015597029">跨域<label class="task-list-item-label" for="task-item-7562972"> [跨域](https://segmentfault.com/a/1190000015597029)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1409417"><label class="task-list-item-label" for="task-item-1409417"> node（运行环境，允许js运行在服务端）</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7012473"><label class="task-list-item-label" for="task-item-7012473"> node（运行环境，允许js运行在服务端）</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8925935"><label class="task-list-item-label" for="task-item-8925935"> global顶级变量</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2058087"><label class="task-list-item-label" for="task-item-2058087"> fs模块 path模块</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9136165"><label class="task-list-item-label" for="task-item-9136165"> http模块</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9534296"><label class="task-list-item-label" for="task-item-9534296"> global顶级变量</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-153445"><label class="task-list-item-label" for="task-item-153445"> fs模块 path模块</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9440799"><label class="task-list-item-label" for="task-item-9440799"> http模块</label></li>
 </ul>
 <pre><code class="language-js">  const http = require('http')
   const server = http.createServer()
@@ -366,146 +372,103 @@ vue
 </code></pre>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4629194"><label class="task-list-item-label" for="task-item-4629194"> 浏览器垃圾回收机制</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1835040"><label class="task-list-item-label" for="task-item-1835040"> 浏览器垃圾回收机制</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1318883"><label class="task-list-item-label" for="task-item-1318883"> 引用计数（循环引用无法解决）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7382018"><label class="task-list-item-label" for="task-item-7382018"> 标记清除</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8394389"><label class="task-list-item-label" for="task-item-8394389"> 引用计数（循环引用无法解决）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3534415"><label class="task-list-item-label" for="task-item-3534415"> 标记清除</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1153720"> 节流（指定时间间隔只触发一次）<a href="https://segmentfault.com/a/1190000018428170">link<label class="task-list-item-label" for="task-item-1153720"> 节流（指定时间间隔只触发一次）[link](https://segmentfault.com/a/1190000018428170)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5361051"> 节流（指定时间间隔只触发一次）<a href="https://segmentfault.com/a/1190000018428170">link<label class="task-list-item-label" for="task-item-5361051"> 节流（指定时间间隔只触发一次）[link](https://segmentfault.com/a/1190000018428170)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8909005"><label class="task-list-item-label" for="task-item-8909005"> 防抖（动作触发后指定时间间隔内不再触发，执行某个函数）</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4437247"><label class="task-list-item-label" for="task-item-4437247"> 防抖（动作触发后指定时间间隔内不再触发，执行某个函数）</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1945529"> <a href="https://juejin.im/post/59aa71d56fb9a0248d24fae3">箭头函数 this</a> <strong>定义函数时所在上下文中的 this</strong><label class="task-list-item-label" for="task-item-1945529"> [箭头函数 this](https://juejin.im/post/59aa71d56fb9a0248d24fae3) **定义函数时所在上下文中的 this**</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-725002"> <a href="https://juejin.im/post/59aa71d56fb9a0248d24fae3">箭头函数 this</a> <strong>定义函数时所在上下文中的 this</strong><label class="task-list-item-label" for="task-item-725002"> [箭头函数 this](https://juejin.im/post/59aa71d56fb9a0248d24fae3) **定义函数时所在上下文中的 this**</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4646436"><label class="task-list-item-label" for="task-item-4646436"> 异步</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9254344"><label class="task-list-item-label" for="task-item-9254344"> 异步</label></p>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5057458"><label class="task-list-item-label" for="task-item-5057458"> 回调（解决同步，回调地狱）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8561307"><label class="task-list-item-label" for="task-item-8561307"> promise（解决回调地狱，无法取消promise）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5012376"><label class="task-list-item-label" for="task-item-5012376"> generator（可以控制函数执行，dva）</label></li>
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8127253"><label class="task-list-item-label" for="task-item-8127253"> async await（代码清晰，性能低）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8207302"><label class="task-list-item-label" for="task-item-8207302"> 回调（解决同步，回调地狱）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6262508"><label class="task-list-item-label" for="task-item-6262508"> promise（解决回调地狱，无法取消promise）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3890727"><label class="task-list-item-label" for="task-item-3890727"> generator（可以控制函数执行，dva）</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4256159"><label class="task-list-item-label" for="task-item-4256159"> async await（代码清晰，性能低）</label></li>
 </ul>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8798260"> <a href="https://juejin.im/post/5a276865f265da432c23b8d2">http常见状态码<label class="task-list-item-label" for="task-item-8798260"> [http常见状态码](https://juejin.im/post/5a276865f265da432c23b8d2)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5122543"> <a href="https://juejin.im/post/5a276865f265da432c23b8d2">http常见状态码<label class="task-list-item-label" for="task-item-5122543"> [http常见状态码](https://juejin.im/post/5a276865f265da432c23b8d2)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7701257"><label class="task-list-item-label" for="task-item-7701257"> git cherry-pick 8d03e78 用来复制某个分支上的某次提交</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6300187"><label class="task-list-item-label" for="task-item-6300187"> git cherry-pick 8d03e78 用来复制某个分支上的某次提交</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5705524"><label class="task-list-item-label" for="task-item-5705524"> 两个已经提交的分支的相同文件相同位置的的不同操作进行了合并.就是冲突</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6004192"><label class="task-list-item-label" for="task-item-6004192"> 两个已经提交的分支的相同文件相同位置的的不同操作进行了合并.就是冲突</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-2751985"> <a href="https://blog.csdn.net/jdsjlzx/article/details/98654951">git tag 使用<label class="task-list-item-label" for="task-item-2751985"> [git tag 使用](https://blog.csdn.net/jdsjlzx/article/details/98654951)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7334648"> <a href="https://blog.csdn.net/jdsjlzx/article/details/98654951">git tag 使用<label class="task-list-item-label" for="task-item-7334648"> [git tag 使用](https://blog.csdn.net/jdsjlzx/article/details/98654951)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4894841"><label class="task-list-item-label" for="task-item-4894841"> git stash -u  /  git stash pop</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7386068"><label class="task-list-item-label" for="task-item-7386068"> git stash -u  /  git stash pop</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9846332"> <a href="https://www.cnblogs.com/dyh-air/p/9257237.html">git push -u origin master<label class="task-list-item-label" for="task-item-9846332"> [git push -u origin master](https://www.cnblogs.com/dyh-air/p/9257237.html)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-774489"> <a href="https://www.cnblogs.com/dyh-air/p/9257237.html">git push -u origin master<label class="task-list-item-label" for="task-item-774489"> [git push -u origin master](https://www.cnblogs.com/dyh-air/p/9257237.html)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8560734"> <a href="https://blog.csdn.net/weixin_44761910/article/details/105029748">Git本地与远程分支间建立追踪关系<label class="task-list-item-label" for="task-item-8560734"> [Git本地与远程分支间建立追踪关系](https://blog.csdn.net/weixin_44761910/article/details/105029748)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-9221014"> <a href="https://blog.csdn.net/weixin_44761910/article/details/105029748">Git本地与远程分支间建立追踪关系<label class="task-list-item-label" for="task-item-9221014"> [Git本地与远程分支间建立追踪关系](https://blog.csdn.net/weixin_44761910/article/details/105029748)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-4856808"> <a href="https://blog.csdn.net/L_serein/article/details/8550976?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control">navigator.userAgent<label class="task-list-item-label" for="task-item-4856808"> [navigator.userAgent](https://blog.csdn.net/L_serein/article/details/8550976?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8572267"> <a href="https://blog.csdn.net/L_serein/article/details/8550976?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control">navigator.userAgent<label class="task-list-item-label" for="task-item-8572267"> [navigator.userAgent](https://blog.csdn.net/L_serein/article/details/8550976?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control)</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-5747769"> <a href="https://blog.csdn.net/huang100qi/article/details/80237555">hash/histroy<label class="task-list-item-label" for="task-item-5747769"> [hash/histroy](https://blog.csdn.net/huang100qi/article/details/80237555)</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8541306"> <a href="https://blog.csdn.net/huang100qi/article/details/80237555">hash/histroy<label class="task-list-item-label" for="task-item-8541306"> [hash/histroy](https://blog.csdn.net/huang100qi/article/details/80237555)</label></p>
 </li>
 </ul>
 <h2 id="hook">hook</h2>
 <ul class="contains-task-list">
-<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-6135644"> <a href="https://juejin.cn/post/6844903813070094350">react副作用<label class="task-list-item-label" for="task-item-6135644"> [react副作用](https://juejin.cn/post/6844903813070094350)</label></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-806009"> <a href="https://juejin.cn/post/6844903813070094350">react副作用<label class="task-list-item-label" for="task-item-806009"> [react副作用](https://juejin.cn/post/6844903813070094350)</label></li>
 </ul>
 <h2 id="typescript">typescript</h2>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li><a href="#%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AF%86%E7%82%B9">重要知识点</a>
-<ul>
-<li><a href="#vue">vue</a></li>
-<li><a href="#react">react</a></li>
-<li><a href="#css">css</a></li>
-<li><a href="#js">js</a></li>
-<li><a href="#hook">hook</a></li>
-<li><a href="#typescript">typescript</a></li>
-</ul>
-</li>
-</ul>
-
-              </div>
             </div>
-          </article>
-        </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://lucas-y.github.io/post/hello-gridea/">
+                  <h3 class="post-title">
+                    Hello Gridea
+                  </h3>
+                </a>
+              </div>
+            
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://lucas-y.github.io/post/hello-gridea/">
-              <h3 class="post-title">
-                Hello Gridea
-              </h3>
-            </a>
+            
+
           </div>
-        
 
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://lucas-y.github.io//atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+        </div>
       </div>
     </div>
 
-    <script>
-      hljs.initHighlightingOnLoad()
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+AOS.init();
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
+</script>
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+
+
+
+
   </body>
 </html>
