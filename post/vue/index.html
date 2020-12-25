@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>vue | 前端小白</title>
-<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1608864906000">
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1608865809898">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="vue | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
@@ -31,7 +31,7 @@ v-text 和 v-html
       <div class="main-content">
         <div class="site-header">
   <a href="https://lucas-y.github.io/">
-  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1608864906000" alt="">
+  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1608865809898" alt="">
   </a>
   <h1 class="site-title">
     前端小白
@@ -73,7 +73,7 @@ v-text 和 v-html
                 2020-12-25
               </span>
               <span>
-                2 min read
+                4 min read
               </span>
               
             </div>
@@ -110,6 +110,69 @@ v-if, 频繁切换会大量的创建和删除元素, 消耗性能</li>
 <li>如果是不用频繁切换, 要么显示, 要么隐藏的情况, 适合于用 v-if<br>
 v-if 是<code>惰性</code>的, 如果初始值为 false, 那么这些元素就直接不创建了, 节省一些初始渲染开销</li>
 </ul>
+<h3 id="v-if-v-else-if-v-else">v-if v-else-if v-else</h3>
+<pre><code class="language-html">&lt;div id=&quot;app&quot;&gt;
+  &lt;h1 v-if=&quot;isLogin&quot;&gt;尊敬的超级vip, 你好&lt;/h1&gt;
+  &lt;h1 v-else&gt;你谁呀, 赶紧登陆~&lt;/h1&gt;
+  &lt;hr&gt;
+  &lt;h1 v-if=&quot;age &gt;= 60&quot;&gt;60岁以上, 广场舞&lt;/h1&gt;
+  &lt;h1 v-else-if=&quot;age &gt;= 30&quot;&gt;30岁以上, 搓麻将&lt;/h1&gt;
+  &lt;h1 v-else-if=&quot;age &gt;= 20&quot;&gt;20岁以上, 蹦迪&lt;/h1&gt;
+  &lt;h1 v-else&gt;20岁以下, 唱跳rap篮球&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;./vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello vue',
+      isLogin: true,
+      age: 18
+    }
+  })
+&lt;/script&gt;
+</code></pre>
+<h3 id="v-on指令">v-on指令</h3>
+<ol>
+<li>用于注册事件</li>
+</ol>
+<ul>
+<li>写内联语句, 将要执行的代码直接写在 &quot;&quot; 内部, 适合写少量代码<br>
+v-on:事件名=&quot;要执行的代码&quot;</li>
+<li>指向methods中的定义的函数<br>
+v-on:事件名=&quot;methods中的函数&quot;</li>
+<li>指向methods中的定义的函数，并传入参数<br>
+v-on:事件名=&quot;methods中的函数(实参)&quot;<br>
+<code>简写: @事件名</code></li>
+</ul>
+<ol start="2">
+<li>vue中获取事件对象</li>
+</ol>
+<blockquote>
+<p>需求: 默认a标签点击会跳走,  希望阻止默认的跳转, 阻止默认行为  e.preventDefault()</p>
+</blockquote>
+<ul>
+<li>没有传参, 通过形参接收 e</li>
+<li>传参了, 通过$event指代事件对象 e</li>
+</ul>
+<ol start="3">
+<li>事件修饰符</li>
+</ol>
+<ul>
+<li><code>.prevent</code> 阻止默认行为</li>
+<li><code>.stop</code> 阻止冒泡</li>
+</ul>
+<ol start="4">
+<li>案件修饰符</li>
+</ol>
+<blockquote>
+<p>在监听键盘事件时，我们经常需要判断详细的按键。此时，可以为键盘相关的事件添加按键修饰符</p>
+</blockquote>
+<ul>
+<li><code>@keyup.enter</code>  回车触发</li>
+<li><code>@keyup.esc</code>  返回触发</li>
+</ul>
 
               </div>
               <div class="toc-container">
@@ -121,6 +184,8 @@ v-if 是<code>惰性</code>的, 如果初始值为 false, 那么这些元素就�
 <ul>
 <li><a href="#v-text-%E5%92%8C-v-html">v-text 和 v-html</a></li>
 <li><a href="#v-if-%E5%92%8C-v-show">v-if 和 v-show</a></li>
+<li><a href="#v-if-v-else-if-v-else">v-if v-else-if v-else</a></li>
+<li><a href="#v-on%E6%8C%87%E4%BB%A4">v-on指令</a></li>
 </ul>
 </li>
 </ul>
