@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>vue | 前端小白</title>
-<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1608866159237">
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1608867191338">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="vue | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
@@ -11,17 +11,15 @@
 
 
 
-    <meta name="description" content="MVVM设计模式
+    <meta name="description" content="vue 的基本概念
+vue官网
+vue是一个渐进式的 javascript 框架
 
-M Model 数据模型 可以是自己准备回来的数据 也可以是请求回来的数据
-V View 视图相关的
-VM ViewModel 视图模型 既可以操作数据 又可以操作视图
+渐进式  =&gt;  逐渐增强, 学一点用一点, 利于上手
+框架:  一套完整的解决方案
 
 
-vue指令
-v-text 和 v-html
-
-..." />
+特点: 需要按照框架的规则编写代码   好处: 大大的提升了..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -31,7 +29,7 @@ v-text 和 v-html
       <div class="main-content">
         <div class="site-header">
   <a href="https://lucas-y.github.io/">
-  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1608866159237" alt="">
+  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1608867191338" alt="">
   </a>
   <h1 class="site-title">
     前端小白
@@ -73,21 +71,112 @@ v-text 和 v-html
                 2020-12-25
               </span>
               <span>
-                4 min read
+                7 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <h2 id="mvvm设计模式">MVVM设计模式</h2>
+                <h2 id="vue-的基本概念">vue 的基本概念</h2>
+<p><a href="https://cn.vuejs.org/">vue官网</a><br>
+<code>vue是一个渐进式的 javascript 框架</code></p>
+<ul>
+<li>渐进式  =&gt;  逐渐增强, 学一点用一点, 利于上手</li>
+<li>框架:  一套完整的解决方案</li>
+</ul>
+<blockquote>
+<p><strong>特点</strong>: 需要按照框架的规则编写代码   <strong>好处</strong>: 大大的提升了开发效率</p>
+</blockquote>
+<h2 id="vue3-和-vue2的区别">vue3 和 vue2的区别</h2>
+<h3 id="版本说明">版本说明</h3>
+<p>当前，vue 共有 3 个大版本，其中：</p>
+<ul>
+<li><strong><code>2.x 版本</code>的 vue 是目前企业级项目开发中的主流版本</strong></li>
+<li><code>3.x 版本</code>的 vue 于 2020-09-19 正式发布，生态还不完善，尚未在企业级项目开发中普及和推广</li>
+<li><code>1.x 版本</code>的 vue 几乎被淘汰，不再建议学习与使用<br>
+总结:</li>
+</ul>
+<ol>
+<li>目前进公司,  公司一定选稳定的开发模式!  主流版本一定是 vue2 (<strong>必须重点掌握</strong>)</li>
+<li>vue3 虽然生态尚不完善, 没有那么普及, 但是我们可以 <strong>前瞻变化</strong> , 这是将来的趋势</li>
+</ol>
+<h3 id="vue3-和-vue2-的对比">vue3 和 vue2 的对比</h3>
+<p>vue2.x 中绝大多数的 API 与特性，在 vue3.x 中同样支持。 (<strong>向前兼容</strong>)<br>
+同时，vue3.x 中还新增了 3.x 所特有的功能, 废弃了一些旧功能</p>
+<ol>
+<li>新增例如：<strong><code>组合式 API (函数式编程)</code></strong>、多根节点组件、更好的 TypeScript 支持等  (ts 在原生基础上, 增加了类型检测)</li>
+<li>废弃例如：<strong><code>过滤器</code></strong> 等<br>
+如果是2.x的版本, 可以放心的使用过滤器<br>
+如果项目已经升级到了3.x 版本的 vue，官方建议使用计算属性或方法代替被剔除的过滤器功能<br>
+官方迁移指南: https://v3.vuejs.org/guide/migration/introduction.html</li>
+</ol>
+<h2 id="mvvm设计模式">MVVM设计模式</h2>
+<p>MVVM是一种设计模式, 从后端的 MVC模式 演化而来</p>
 <ul>
 <li>M Model 数据模型 可以是自己准备回来的数据 也可以是请求回来的数据</li>
 <li>V View 视图相关的</li>
 <li>VM ViewModel 视图模型 既可以操作数据 又可以操作视图<br>
 <img src="https://lucas-y.github.io//post-images/1608864082496.png" alt="" loading="lazy"></li>
 </ul>
+<h2 id="vue初体验">vue初体验</h2>
+<ol>
+<li>安装下载 vue</li>
+</ol>
+<pre><code class="language-txt">npm i vue
+</code></pre>
+<ol start="2">
+<li>引入一个 vue</li>
+<li>使用 vue - 初始化 vue 实例  <strong>指定视图 和 数据</strong></li>
+</ol>
+<pre><code class="language-html">&lt;div id=&quot;app&quot;&gt;
+  &lt;h1&gt;{{ msg }}&lt;/h1&gt;
+  &lt;h1&gt;{{ msg }}&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;./vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  // 只要引入 vue.js, 那么全局就有了一个Vue 构造函数
+  // 创建vue实例
+  const vm = new Vue({
+    // 指定视图 + 数据
+    // 1. el element, 用于指定vue所管理的视图范围, 值是一个选择器
+    el: '#app',
+    // 2. data, 用于指定vue中可以使用的数据
+    data: {
+      msg: '你好, vue'
+    }
+  })
+&lt;/script&gt;
+</code></pre>
+<h2 id="vue使用的注意点">vue使用的注意点</h2>
+<ol>
+<li>new Vue() 构造函数Vue, 首字母大写</li>
+<li>el 不能指定为 html 和 body, 但是可以是一个大的div</li>
+<li>到了vue, 不要老想着操作dom了, <code>要更新视图, 操作数据即可</code></li>
+</ol>
+<h2 id="vue的插值表达式">vue的插值表达式</h2>
+<p>插值表达式, 小胡子语法<code>{{ }}</code></p>
+<ol>
+<li>作用:  使用 data 中的数据渲染视图</li>
+<li>基本语法, 支持三元运算符<pre><code class="language-jsx">{{ msg }}
+{{ obj.name }}
+{{ msg.toUpperCase() }}
+{{ obj.age &gt; 18 ? '成年' : '未成年' }}
+</code></pre>
+</li>
+<li>vue中插值表达式的注意点<br>
+(1)  使用的数据在 data 中要存在<pre><code class="language-jsx">&lt;h1&gt;{{ gaga }}&lt;/h1&gt;
+</code></pre>
+(2)  能使用表达式, 但是不能使用 if  for<pre><code class="language-jsx">&lt;h1&gt;{{ if (obj.age &gt; 18 ) { }   }}&lt;/h1&gt;
+</code></pre>
+(3)  不能在标签属性中使用<pre><code class="language-jsx">&lt;h1 id=&quot;box&quot; class=&quot;box&quot; title=&quot;{{ msg }}&quot;&gt;&lt;/h1&gt;
+</code></pre>
+</li>
+</ol>
 <h2 id="vue指令">vue指令</h2>
+<p><strong>vue指令, 实质上就是特殊的 html 标签属性, 特点:  v- 开头</strong><br>
+每个 v- 开头的指令, 都有着自己独立的功能, 将来vue解析时, 会根据不同的指令提供不同的功能</p>
 <h3 id="v-text-和-v-html">v-text 和 v-html</h3>
 <ul>
 <li>v-text 设置元素的 innerText, 不识别标签, 基本可以被 插值表达式 替代, 不太常用</li>
@@ -182,7 +271,17 @@ v-on:事件名=&quot;methods中的函数(实参)&quot;<br>
                 <ul class="markdownIt-TOC">
 <li>
 <ul>
+<li><a href="#vue-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">vue 的基本概念</a></li>
+<li><a href="#vue3-%E5%92%8C-vue2%E7%9A%84%E5%8C%BA%E5%88%AB">vue3 和 vue2的区别</a>
+<ul>
+<li><a href="#%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E">版本说明</a></li>
+<li><a href="#vue3-%E5%92%8C-vue2-%E7%9A%84%E5%AF%B9%E6%AF%94">vue3 和 vue2 的对比</a></li>
+</ul>
+</li>
 <li><a href="#mvvm%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">MVVM设计模式</a></li>
+<li><a href="#vue%E5%88%9D%E4%BD%93%E9%AA%8C">vue初体验</a></li>
+<li><a href="#vue%E4%BD%BF%E7%94%A8%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9">vue使用的注意点</a></li>
+<li><a href="#vue%E7%9A%84%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F">vue的插值表达式</a></li>
 <li><a href="#vue%E6%8C%87%E4%BB%A4">vue指令</a>
 <ul>
 <li><a href="#v-text-%E5%92%8C-v-html">v-text 和 v-html</a></li>
