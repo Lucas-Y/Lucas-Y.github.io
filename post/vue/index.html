@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>vue | 前端小白</title>
-<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1608948633275">
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1608949484678">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="vue | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
@@ -29,7 +29,7 @@ vue是一个渐进式的 javascript 框架
       <div class="main-content">
         <div class="site-header">
   <a href="https://lucas-y.github.io/">
-  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1608948633275" alt="">
+  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1608949484678" alt="">
   </a>
   <h1 class="site-title">
     前端小白
@@ -77,7 +77,7 @@ vue是一个渐进式的 javascript 框架
                 2020-12-25
               </span>
               <span>
-                11 min read
+                14 min read
               </span>
               
             </div>
@@ -271,9 +271,10 @@ v-on:事件名=&quot;methods中的函数(实参)&quot;<br>
 <h3 id="v-bind指令">v-bind指令</h3>
 <p><strong>作用: 访问data中的数据,  动态的设置html的标签属性</strong><br>
 语法: <code>v-bind:属性名=&quot;值&quot;</code> ,  简写 <code>:属性名=&quot;值&quot;</code></p>
-<blockquote>
-<p>v-bind 对于类名操作的增强, 注意点, :class 不会影响到原来的 class 属性 :class=&quot;对象/数组&quot;</p>
-</blockquote>
+<ul>
+<li>v-bind 对于类名操作的增强, 注意点, :class 不会影响到原来的 class 属性<br>
+:class=&quot;对象/数组&quot;</li>
+</ul>
 <pre><code class="language-js">(1) :class=&quot;对象&quot; 
 	{ 类名: 布尔值, 类名: 布尔值 } 
 	如果是true, 加上这个类, 如果是false, 移除这个类
@@ -283,6 +284,11 @@ v-on:事件名=&quot;methods中的函数(实参)&quot;<br>
 	只要有这个类, 就加上
 
 (3) :class=&quot;对象/数组&quot; 直接内联在结构中编写 (重点)
+</code></pre>
+<ul>
+<li>v-bind对于style 的增强</li>
+</ul>
+<pre><code>:style=&quot;对象&quot;  =&gt; :style=&quot;obj&quot;  =&gt;  :style=&quot;{ width: '200px' }&quot;
 </code></pre>
 <h3 id="v-for">v-for</h3>
 <p>遍历对象和数组</p>
@@ -398,6 +404,96 @@ vue3: proxy</p>
 </code></pre>
 </li>
 </ul>
+<h2 id="过滤器">过滤器</h2>
+<h3 id="过滤器的兼容性">过滤器的兼容性</h3>
+<blockquote>
+<p>vue2.0 中推荐使用过滤器, 处理格式<br>
+vue3.0 移除了过滤器, vue3.0 内部进行性能优化, 可以直接调用方法,  就可以解决之前过滤器的需求, 所以废弃了</p>
+</blockquote>
+<h3 id="过滤器的基本使用">过滤器的基本使用</h3>
+<p>过滤器的作用: 转换格式<br>
+过滤器本质上就是一个函数</p>
+<pre><code>格式x --- 过滤器 -----&gt; 格式y
+</code></pre>
+<p>将来开发过程中, 肯定会有对于字符串进行处理转换的需求, vue中提供了一个专门的语法: 过滤器</p>
+<ol>
+<li>定义过滤器<br>
+Vue.filter(过滤器名字, 处理字符串的函数)<br>
+(1) 函数的返回值, 就是处理字符串的结果<br>
+(2) 函数的形参, 可以拿到处理的字符串</li>
+<li>使用过滤器 <code>{{ msg | 过滤器名字 }}</code></li>
+</ol>
+<h3 id="利用过滤器处理日期">利用过滤器处理日期</h3>
+<p>moment官网文档: http://momentjs.cn/docs/#/displaying/<br>
+<img src="https://lucas-y.github.io//post-images/1608949217588.png" alt="" loading="lazy"><br>
+<img src="https://lucas-y.github.io//post-images/1608949250606.png" alt="" loading="lazy"><br>
+<img src="https://lucas-y.github.io//post-images/1608949256751.png" alt="" loading="lazy"></p>
+<h3 id="过滤器的参数">过滤器的参数</h3>
+<p>使用过滤器支持传参</p>
+<pre><code>{{ msg | 过滤器名字(参数1, 参数2) }}
+</code></pre>
+<pre><code class="language-html">&lt;div id=&quot;app&quot;&gt;
+  &lt;h1&gt;{{ date1 | time(&quot;YYYY-MM-DD&quot;) }}&lt;/h1&gt;
+  &lt;h2&gt;{{ date2 | time }}&lt;/h2&gt;
+  &lt;h2&gt;{{ date2 | time }}&lt;/h2&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;./vue.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;./node_modules/moment/moment.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  Vue.filter('time', function(value, str='YYYY年MM月DD日 HH:mm:ss') {
+    return moment(value).format(str)
+  })
+
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      date1: 1601305782038,
+      date2: 1201305782038
+    }
+  })
+&lt;/script&gt;
+</code></pre>
+<h3 id="全局过滤器-和-局部过滤器">全局过滤器 和 局部过滤器</h3>
+<p>全局过滤器: 在所有的vue实例中, 都可以使用<br>
+局部过滤器: 只能在当前的vue实例中, 使用</p>
+<pre><code class="language-html">&lt;div id=&quot;app&quot;&gt;
+  &lt;h1&gt;{{ msg | global | demo }}&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;app2&quot;&gt;
+  &lt;h1&gt;{{ msg | global | demo }}&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;./vue.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  // 全局过滤器: 在所有的vue实例中, 都可以使用 
+  // 局部过滤器: 只能在当前的vue实例中, 使用
+  Vue.filter('global', function(value) {
+    return value + '_global'
+  })
+
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      msg: 'hello vue'
+    },
+    filters: {
+      // 过滤器名字: 处理函数
+      demo: function(value) {
+        return value + '_demo'
+      }
+    }
+  })
+
+  const vm2 = new Vue({
+    el: '#app2',
+    data: {
+      msg: 'hello vue2'
+    }
+  })
+&lt;/script&gt;
+</code></pre>
 
               </div>
               <div class="toc-container">
@@ -424,6 +520,15 @@ vue3: proxy</p>
 <li><a href="#v-bind%E6%8C%87%E4%BB%A4">v-bind指令</a></li>
 <li><a href="#v-for">v-for</a></li>
 <li><a href="#v-model">v-model</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%87%E6%BB%A4%E5%99%A8">过滤器</a>
+<ul>
+<li><a href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7">过滤器的兼容性</a></li>
+<li><a href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">过滤器的基本使用</a></li>
+<li><a href="#%E5%88%A9%E7%94%A8%E8%BF%87%E6%BB%A4%E5%99%A8%E5%A4%84%E7%90%86%E6%97%A5%E6%9C%9F">利用过滤器处理日期</a></li>
+<li><a href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%8F%82%E6%95%B0">过滤器的参数</a></li>
+<li><a href="#%E5%85%A8%E5%B1%80%E8%BF%87%E6%BB%A4%E5%99%A8-%E5%92%8C-%E5%B1%80%E9%83%A8%E8%BF%87%E6%BB%A4%E5%99%A8">全局过滤器 和 局部过滤器</a></li>
 </ul>
 </li>
 </ul>
