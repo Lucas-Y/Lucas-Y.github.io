@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>vue | 前端小白</title>
-<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1608949484678">
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1608952286214">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="vue | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
@@ -29,7 +29,7 @@ vue是一个渐进式的 javascript 框架
       <div class="main-content">
         <div class="site-header">
   <a href="https://lucas-y.github.io/">
-  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1608949484678" alt="">
+  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1608952286214" alt="">
   </a>
   <h1 class="site-title">
     前端小白
@@ -404,6 +404,23 @@ vue3: proxy</p>
 </code></pre>
 </li>
 </ul>
+<ol start="5">
+<li>如何实现v-model<br>
+v-model 其实是 vue 给你提供的一种简化表单元素操作的语法糖<br>
+**本质上做了两件事 **</li>
+</ol>
+<ul>
+<li>动态设置表单元素的值</li>
+</ul>
+<pre><code class="language-jsx">&lt;input type=&quot;checkbox&quot; class=&quot;custom-control-input&quot; :id=&quot;'switch' + item.id&quot; :checked=&quot;item.state&quot; @change=&quot;changeState(item, $event)&quot;&gt;
+</code></pre>
+<ul>
+<li>监听对应的事件, 表单元素值变化时, 更新到绑定的变量中</li>
+</ul>
+<pre><code class="language-jsx">changeState (item, e) {
+  item.state = e.target.checked
+}
+</code></pre>
 <h2 id="过滤器">过滤器</h2>
 <h3 id="过滤器的兼容性">过滤器的兼容性</h3>
 <blockquote>
