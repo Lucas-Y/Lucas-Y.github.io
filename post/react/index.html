@@ -1,0 +1,1780 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>react | 前端小白</title>
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1609115837538">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="react | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="react 是什么
+
+React是一个JS库，用来构建用户界面（写HTML，构建web应用）
+从 MVC 的角度来看，相当于 视图层 V（View） 的内容。
+
+react 的特点
+
+1 声明式： 我们只需要描述页面长什么样子就可以了，Re..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://lucas-y.github.io/">
+  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1609115837538" alt="">
+  </a>
+  <h1 class="site-title">
+    前端小白
+  </h1>
+  <p class="site-description">
+    知行合一
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://lucas-y.github.io/" class="menu">
+          前端
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              react
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-12-28
+              </span>
+              <span>
+                36 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="react-是什么">react 是什么</h2>
+<ul>
+<li>React是一个JS库，用来构建用户界面（写HTML，构建web应用）</li>
+<li>从 MVC 的角度来看，相当于 视图层 V（View） 的内容。</li>
+</ul>
+<h2 id="react-的特点">react 的特点</h2>
+<ul>
+<li>1 声明式： 我们只需要描述页面长什么样子就可以了，React负责更新页面</li>
+<li>2 基于组件（组件化）</li>
+<li>3 学习一次，随处使用（Web 、 安卓/ios、vr ...）</li>
+</ul>
+<h2 id="react-的基本使用">React 的基本使用</h2>
+<ul>
+<li>1 安装：npm i react react-dom</li>
+<li>2 引入 react 和 react-dom 两个js文件（注意：引入顺序，react在前，react-dom 在后）</li>
+<li>3 创建 React 元素
+<ul>
+<li><code>const h1 = React.createElement('h1', null, '子节点')</code></li>
+</ul>
+</li>
+<li>4 渲染创建好的 React 元素，到页面中
+<ul>
+<li><code>ReactDOM.render(h1, document.getElementById('root'))</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="reactcreateelement-方法的说明">React.createElement() 方法的说明</h2>
+<ul>
+<li>作用：创建react元素的</li>
+</ul>
+<pre><code class="language-js">// 创建React元素
+// 第一个参数：表示要创建什么元素，就是 HTML 标签名称
+// 第二个参数：表示元素自身属性，如果没有就传 null
+//  如果要指定元素自身的属性，就传递一个对象（{}）
+//  1 class ==&gt; className
+//  2 for ==&gt; htmlFor
+// 第三个及其以后的参数：表示元素的子节点（文本、元素节点）
+//  如果是文本节点，就直接传递 字符串。
+//  如果是元素节点，就继续调用 React.createElement() 方法，创建新的React元素节点
+//
+// const h1 = React.createElement('div', null, 'Hello React')
+const h1 = React.createElement(
+  'h1',
+  {
+    id: 'title',
+    className: 'cls',
+    htmlFor: 'd'
+  },
+  'Hello React',
+  'test 文本节点',
+  React.createElement('span', null, '这是一个span')
+)
+</code></pre>
+<h2 id="react-脚手架初始化项目的步骤">React 脚手架初始化项目的步骤</h2>
+<ul>
+<li>命令：<code>npx create-react-app 项目名称</code>
+<ul>
+<li>比如：<code>npx create-react-app my-app</code></li>
+</ul>
+</li>
+<li>npx 命令：简化使用脚手架初始化项目的流程
+<ul>
+<li>不使用npx：1 先全局安装脚手架的包 2 使用脚手架包提供的命令来初始化项目</li>
+<li>使用 npx：不需要再全局安装脚手架的包，直接就可以初始化项目</li>
+</ul>
+</li>
+<li>如何启动项目？进入项目根目录然后，执行以下命令
+<ul>
+<li>yarn start</li>
+<li>npm start</li>
+</ul>
+</li>
+</ul>
+<h2 id="在脚手架中使用react">在脚手架中使用react</h2>
+<ul>
+<li>1 导入
+<ul>
+<li><code>import React from 'react'</code></li>
+<li><code>import ReactDOM from 'react-dom'</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="jsx">JSX</h2>
+<ul>
+<li>
+<p>为什么要学习 JSX ？</p>
+<ul>
+<li>因为 createElement 形式，太繁琐，不直观，书写效率不高，所以，我们不想用这种方式。</li>
+<li>JSX 特点：不反锁，直观，书写效率高</li>
+</ul>
+</li>
+<li>
+<p>JSX 是什么？ JavaScript XML（HTML），也就是在 JS 中书写 HTMl 格式的代码</p>
+</li>
+</ul>
+<h2 id="jsx-的基本使用">JSX 的基本使用</h2>
+<ul>
+<li>1 导入 react 和 react-dom</li>
+<li>2 使用 JSX 语法创建 React 元素
+<ul>
+<li>JSX 就跟写 HTML 一样</li>
+</ul>
+</li>
+<li>3 渲染创建好的 React 元素</li>
+</ul>
+<h2 id="jsx-语法的注意点">JSX 语法的注意点</h2>
+<ul>
+<li>1 JSX元素的属性名推荐使用：驼峰命名法</li>
+<li>2 class ===&gt; className</li>
+<li>3 如果元素没有子节点，可以使用 单标签 方式来结束
+<ul>
+<li>比如：<code>&lt;div /&gt;</code></li>
+</ul>
+</li>
+<li>4 推荐使用 () 来包裹JSX，从而避免JS中自动插入分号机制</li>
+</ul>
+<h2 id="在-jsx-中使用-js-表达式数据">在 JSX 中使用 JS 表达式（数据）</h2>
+<ul>
+<li>语法：使用 {} ，就可以在 JSX 中使用 JS 中的数据了
+<ul>
+<li><code>&lt;div&gt;Hello {name + '666'}&lt;/div&gt;</code></li>
+</ul>
+</li>
+<li>原则：可以在 {} 中使用任何的 JS 表达式。</li>
+<li>注意：不能在 {} 中，使用 语句！
+<ul>
+<li>比如： if/for/switch ...</li>
+</ul>
+</li>
+<li>注意：不能在 {} 中使用对象，除了 style 属性以外！！！</li>
+<li>JSX 自身也是一个JS表达式，所以，可以在 {} 中继续使用 JSX ！！！</li>
+</ul>
+<h2 id="react-的条件渲染">React 的条件渲染</h2>
+<ul>
+<li>1 使用if/esle来实现</li>
+</ul>
+<pre><code class="language-js">const loadData = () =&gt; {
+  if (isLoading) {
+    return &lt;div&gt;loading...&lt;/div&gt;
+  }
+
+  return &lt;div&gt;加载完成后的列表结构&lt;/div&gt;
+}
+
+const h1 = &lt;div&gt;{loadData()}&lt;/div&gt;
+</code></pre>
+<ul>
+<li>2 使用三元表达式</li>
+</ul>
+<pre><code class="language-js">const loadData = () =&gt; {
+  return isLoading ? &lt;div&gt;loading...&lt;/div&gt; : &lt;div&gt;加载完成后的列表结构&lt;/div&gt;
+}
+</code></pre>
+<ul>
+<li>3 逻辑运算符 &amp;&amp;</li>
+</ul>
+<pre><code class="language-js">const loadData = () =&gt; {
+  return isLoading &amp;&amp; &lt;div&gt;loading...&lt;/div&gt;
+}
+</code></pre>
+<h2 id="react-中的列表渲染">React 中的列表渲染</h2>
+<ul>
+<li>使用数组的 map 方法来进行列表渲染</li>
+<li>需要给被遍历生成的元素添加 key 属性，key 应该是唯一的。尽量避免使用 index 作为索引号。</li>
+<li>剩下的就是 JS 中 map 方法的使用了。</li>
+</ul>
+<pre><code class="language-js">&lt;ul&gt;
+  {songs.map(item =&gt; (
+    &lt;li key={item.id}&gt;{item.name}&lt;/li&gt;
+  ))}
+&lt;/ul&gt;
+</code></pre>
+<h2 id="react-中给-jsx-添加样式">React 中给 JSX 添加样式</h2>
+<ul>
+<li>1 行内样式（style） 不推荐</li>
+</ul>
+<pre><code class="language-js">const h1 = (
+  &lt;h1 style={{ color: 'red', fontSize: 30, backgroundColor: 'hotpink' }}&gt;
+    我变大了
+  &lt;/h1&gt;
+)
+</code></pre>
+<ul>
+<li>2 className 类名 --- 推荐！！！</li>
+</ul>
+<pre><code class="language-js">const h1 = &lt;h1 className=&quot;pink&quot;&gt;我变大了&lt;/h1&gt;
+</code></pre>
+<h2 id="案例">案例</h2>
+<pre><code class="language-js">[
+  { user: '张三', content: '哈哈，沙发' },
+  { user: '张三2', content: '哈哈，板凳' },
+  { user: '张三3', content: '哈哈，凉席' },
+  { user: '张三4', content: '哈哈，砖头' },
+  { user: '张三5', content: '哈哈，楼下山炮' }
+]
+</code></pre>
+<h2 id="函数组件">函数组件</h2>
+<ul>
+<li>就是使用 JS 中的函数创建的组件，叫做函数组件。</li>
+</ul>
+<pre><code class="language-js">const Hello = () =&gt; &lt;div&gt;这是通过箭头函数创建的组件&lt;/div&gt;
+</code></pre>
+<ul>
+<li>
+<p>约定1：必须有返回值</p>
+<ul>
+<li>返回值可以为null，表示不渲染任何内容</li>
+<li>如果想要渲染内容，一般就是返回 JSX</li>
+</ul>
+</li>
+<li>
+<p>约定2：组件名称必须以大写字母开头</p>
+<ul>
+<li>用来区分普通的 react元素 和 react组件</li>
+</ul>
+</li>
+<li>
+<p>约定3：使用函数名称作为组件的标签名称来渲染</p>
+<ul>
+<li><code>ReactDOM.render(&lt;Hello /&gt;, root)</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="es6中的class">ES6中的class</h2>
+<ul>
+<li>语法：</li>
+</ul>
+<pre><code class="language-js">class Person {
+  // 添加属性：
+  constructor(age) {
+    this.name = 'jack'
+
+    this.age = age
+  }
+
+  // 添加实例方法
+  say() {}
+}
+
+const p = new Person(30)
+</code></pre>
+<ul>
+<li>继承：</li>
+</ul>
+<pre><code class="language-js">// 父类
+class Person {
+  constructor() {
+    this.name = 'zhangsan'
+  }
+}
+
+// 子类
+class Chinese extends Person {
+  constructor() {
+    // 注意：手动调用super()
+    // super 即 父类中的构造函数（constructor）
+    super()
+
+    // this. ....
+  }
+}
+
+// 创建子类的实例对象，此时，c 就可以直接使用父类中的属性或方法了
+const c = new Chinese()
+// c =&gt; { name: 'zhangsan' }
+</code></pre>
+<h2 id="类组件">类组件</h2>
+<ul>
+<li>类组件：通过 ES6 中的class创建的组件，叫做 类组件</li>
+<li>函数组件中的约定都适用于类组件</li>
+<li>约定：类组件必须得继承自 React.Component 父类</li>
+<li>约定：类组件中必须提供一个 render 方法，通过 render 方法的返回值来指定要渲染的内容</li>
+</ul>
+<pre><code class="language-js">// 类组件
+class Hello extends React.Component {
+  // render 方法是 React 中固定的一个方法名称
+  render() {
+    // return null
+    return &lt;h1&gt;这是我的第一个 class 组件&lt;/h1&gt;
+  }
+}
+</code></pre>
+<h2 id="将组件抽离到独立的js文件中">将组件抽离到独立的JS文件中</h2>
+<pre><code class="language-js">// 注意：不管是函数组件还是类组件，或者使用 JSX ，都需要导入 React！！！
+import React from 'react'
+
+// 创建 class 组件
+// class Hello1 extends React.Component {
+//   render() {
+//     return &lt;div&gt;这是一个独立的组件&lt;/div&gt;
+//   }
+// }
+
+// JSX -&gt; React.createElement()
+const Hello1 = () =&gt; &lt;div&gt;这是一个独立的组件&lt;/div&gt;
+
+// 导出组件
+export default Hello1
+</code></pre>
+<h2 id="绑定事件">绑定事件</h2>
+<ul>
+<li>1 给 JSX 添加 onClick</li>
+<li>2 在 {} 中，指定事件处理程序的名称（也就是一个函数名称）
+<ul>
+<li>注意：千万不要调用</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">const handleClick = () =&gt; {}
+
+&lt;button onClick={handleClick}&gt;&lt;/button&gt;
+</code></pre>
+<pre><code class="language-js">// 在类组件中绑定事件
+class Hello extends React.Component {
+  // 事件处理程序
+  handleClick() {
+    console.log('你点我！')
+  }
+
+  render() {
+    return &lt;button onClick={this.handleClick}&gt;点我 - class&lt;/button&gt;
+  }
+}
+</code></pre>
+<h2 id="事件对象">事件对象</h2>
+<ul>
+<li>如何获取到事件对象？通过事件处理程序的参数 e 来获取到</li>
+<li>React 中的事件对象是一个 合成事件。</li>
+<li>使用方式，与原生DOM中的使用方式相同。</li>
+</ul>
+<h2 id="有状态组件和无状态组件">有状态组件和无状态组件</h2>
+<ul>
+<li>有状态组件：class（类）组件
+<ul>
+<li>职责（什么时候使用）：负责更新UI（页面），也就是如果页面中的内容，需要变化</li>
+<li>动</li>
+</ul>
+</li>
+<li>无状态组件：函数组件
+<ul>
+<li>职责：负责展示内容</li>
+<li>静</li>
+</ul>
+</li>
+</ul>
+<h2 id="class组件中的状态">class组件中的状态</h2>
+<ul>
+<li>状态（state）即数据</li>
+<li>如何初始化状态？</li>
+</ul>
+<pre><code class="language-js">class Hello extends React.Component {
+  constructor() {
+    super()
+
+    // 状态初始化
+    this.state = {
+      count: 0
+    }
+  }
+
+  // 简化语法：
+  // state = {
+  //   count: 66
+  // }
+
+  // 在 JSX 中使用状态
+  render() {
+    return &lt;div&gt;计数器：{ this.state.count }&lt;/div&gt;
+  }
+}
+</code></pre>
+<h2 id="setstate">setState</h2>
+<ul>
+<li>作用：1 修改state 2 更新UI（页面）</li>
+<li>语法：</li>
+</ul>
+<pre><code class="language-js">this.setState({
+  count: this.state.count + 1
+})
+</code></pre>
+<ul>
+<li>注意：不要直接修改 state ！！！
+<ul>
+<li>错误演示：<code>this.state.count += 1</code>！！！</li>
+</ul>
+</li>
+</ul>
+<h2 id="事件处理程序中this指向问题">事件处理程序中this指向问题</h2>
+<ul>
+<li>1 箭头函数：</li>
+</ul>
+<pre><code class="language-js">// 事件处理程序中，我们要的 this 是当前组件的实例对象（它是React在渲染组件时创建）
+class Hello extends React.Component {
+  // 简化语法：
+  state = {
+    count: 0
+  }
+
+  handleClick() {
+    this.setState({ ... })
+  }
+
+  render() {
+    console.log('render：', this)
+    return (
+      &lt;div&gt;
+        计数器：{this.state.count}{' '}
+        &lt;button onClick={() =&gt; this.handleClick()}&gt;+1&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+</code></pre>
+<ul>
+<li>2 使用 bind 方法解决：</li>
+</ul>
+<pre><code class="language-js">constructor() {
+  this.handleClick = this.handleClick.bind(this)
+}
+
+render() {
+  // 此处的 handleClick 就是绑定 this 后的事件处理程序了
+  return (
+    &lt;button onClick={this.handleClick}&gt;&lt;/button&gt;
+  )
+}
+</code></pre>
+<ul>
+<li>3 利用 class 实例方法的箭头函数形式：（推荐）</li>
+</ul>
+<pre><code class="language-js">class Hello extends React.Component {
+  handleClick = () =&gt; {
+    this.setState({ ... })
+  }
+
+  render() {
+    return (
+      &lt;button onClick={this.handleClick}&gt;&lt;/button&gt;
+    )
+  }
+}
+</code></pre>
+<h2 id="受控组件">受控组件</h2>
+<ul>
+<li>受控组件：其值收到 react 控制的表单元素，叫做受控组件</li>
+</ul>
+<pre><code class="language-js">state = {
+  txt: ''
+}
+
+changeTxt = e =&gt; {
+  this.setState({
+    txt: e.target.value
+  })
+}
+
+render () {
+  return &lt;input type=&quot;text&quot; value={this.state.txt} onChange={this.changeTxt} /&gt;
+}
+</code></pre>
+<h2 id="非受控组件">非受控组件</h2>
+<ul>
+<li>借助于 ref 就可以通过 非受控组件 的方式，来获取到的表单元素的值。</li>
+<li>ref 的作用：获取DOM对象或组件。</li>
+</ul>
+<pre><code class="language-js">this.ref = React.createRef()
+
+&lt;input ref={this.ref} /&gt;
+
+文本框的值：
+this.ref.current.value
+</code></pre>
+<h2 id="props的使用">props的使用</h2>
+<ul>
+<li>作用：接收到传递给组件中的属性</li>
+<li>在函数组件中如何获取到 props？ 通过函数的参数</li>
+<li>在 类组件 中如何获取到 props？ 通过 this.props 来获取</li>
+<li>props 是一个对象！！！</li>
+<li>特点：只读！！！（ 只能读取 props 对象中的属性，而不能修改 props 对象中的属性 ）</li>
+<li>可以给组件传递任何类型的数据。</li>
+<li>注意：如果在 class 组件中，手动添加了 constructor ，那么，就应该通过参数获取到 props， 然后传递给 super，这样，才能够在 constructor 中，获取到 props！！！</li>
+</ul>
+<pre><code class="language-js">const Hello = props =&gt; {
+  // props 就表示传递给组件的属性
+}
+
+&lt;Hello name=&quot;jack&quot; age={19} colors={['red']} /&gt;
+
+
+// 类组件：
+class Hello extends React.Component {
+  constructor(props) {
+    super(props)
+
+    // console.log('在构造函数中，获取到 props ', this.props)
+    console.log('在构造函数中，获取到 props ', props)
+  }
+
+  render() {
+    console.log('class组件中获取到props：', this.props)
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;props：{this.props.age}&lt;/h1&gt;
+        {this.props.colors.map((item, index) =&gt; (
+          &lt;p key={index}&gt;{item}&lt;/p&gt;
+        ))}
+      &lt;/div&gt;
+    )
+  }
+}
+</code></pre>
+<h2 id="组件通讯">组件通讯</h2>
+<h3 id="父到子">父到子</h3>
+<ul>
+<li>1 父组件中提供状态</li>
+<li>2 在子组件标签上添加属性，值为 父组件中的状态</li>
+<li>3 子组件中通过 props 来接收父组件中传递过来的数据</li>
+</ul>
+<pre><code class="language-js">
+// 父组件：
+class Parent extends React.Component {
+  // 提供数据
+  state = {
+    lastName: '王'
+  }
+
+  render() {
+    return (
+      &lt;div className=&quot;parent&quot;&gt;
+        &lt;h1&gt;父组件：&lt;/h1&gt;
+        {/* 1 通过属性给子组件传递数据 */}
+        &lt;Child name={this.state.lastName} /&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+// 子组件：
+// 2 子组件中通过 props 接收数据
+const Child = props =&gt; {
+  return &lt;p className=&quot;child&quot;&gt;这是子组件：{props.name}&lt;/p&gt;
+}
+</code></pre>
+<h3 id="子到父">子到父</h3>
+<ul>
+<li>
+<p>思路：父组件提供一个事件（函数），让子组件调用；子组件调用的时候，将数据作为参数的传递，父组件中通过事件（函数）的参数，就拿到子组件中的数据了。</p>
+</li>
+<li>
+<p>1 父组件提供事件</p>
+</li>
+<li>
+<p>2 将事件通过props传递给子组件</p>
+</li>
+<li>
+<p>3 子组件中通过props接收到父组件中传递过来的事件</p>
+</li>
+<li>
+<p>4 子组件调用该事件，将数据作为参数传递</p>
+</li>
+<li>
+<p>注意点：父组件提供的方法中 this 执行问题。</p>
+<ul>
+<li>为什么会有这个问题？因为这个方法不是父组件自己调用的，是由其他组件调用的，所以，需要处理this指向。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">// 1 提供事件（回调函数，）
+//  事件是子组件调用的，因此，先要通过 props 传递给子组件
+// 2 将事件传递给子组件
+class Parent extends React.Component {
+  state = {
+    msg: ''
+  }
+
+  getChildMsg = data =&gt; {
+    console.log('父组件中的方法调用了', data)
+    this.setState({
+      msg: data
+    })
+  }
+
+  // 注意：this指向问题，因为这个方法是由子组件调用的，所以，应该提前处理好 this 指向！
+  /* getChildMsg(data) {
+    console.log('父组件中的方法调用了', data, this)
+    this.setState({
+      msg: data
+    })
+  } */
+
+  render() {
+    return (
+      &lt;div className=&quot;parent&quot;&gt;
+        &lt;h1&gt;父组件：{this.state.msg}&lt;/h1&gt;
+        &lt;Child fn={this.getChildMsg} /&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+// 子组件：
+// 3 子组件中通过 props 接收到父组件中传递过来的事件
+// 4 子组件中调用传递过来的事件， 将数据作为事件的参数传递
+const Child = props =&gt; {
+  // console.log(props)
+  const handleClick = () =&gt; {
+    // 调用
+    props.fn('撩汉子')
+  }
+
+  return (
+    &lt;p className=&quot;child&quot;&gt;
+      这是子组件：
+      &lt;button onClick={handleClick}&gt;发送数据给父组件&lt;/button&gt;
+    &lt;/p&gt;
+  )
+}
+</code></pre>
+<h3 id="兄弟组件">兄弟组件</h3>
+<ul>
+<li>思路：<strong>状态提升</strong>，也就是：将两个兄弟组件之间的共享数据，放在父组件中。</li>
+<li>父组件的职责：1 提供共享数据（state） 2 提供修改状态的方法</li>
+<li>例子：如果 子组件2 要传递数据给 子组件1</li>
+<li>子组件1：只要通过 props 接收到父组件中传递过来的数据（父 -&gt; 子）</li>
+<li>子组件2：调用父组件中修改状态的方法（子 -&gt; 父）
+<ul>
+<li>但是，需要先通过 props 获取到父组件中传递过来的方法</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">// 父组件
+// 1 提供状态
+// 2 提供操作状态的方法
+class Parent extends React.Component {
+  state = {
+    msg: '默认值'
+  }
+
+  updateMsg = data =&gt; {
+    this.setState({
+      msg: data
+    })
+  }
+
+  render() {
+    return (
+      &lt;div className=&quot;parent&quot;&gt;
+        这是父组件：
+        &lt;Child1 msg={this.state.msg} /&gt;
+        &lt;Child2 updateMsg={this.updateMsg} /&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+// 子组件1
+// 3 接收数据（数据由父组件提供）
+class Child1 extends React.Component {
+  render() {
+    return &lt;div className=&quot;child&quot;&gt;这是子组件1：{this.props.msg}&lt;/div&gt;
+  }
+}
+
+// 子组件2：
+// 4 在父组件中传递事件给子组件
+// 5 给按钮绑定单击事件
+// 6 调用父组件中的事件来更新数据
+class Child2 extends React.Component {
+  // 单击事件
+  handleClick = () =&gt; {
+    // 调用父组件的事件
+    this.props.updateMsg('子组件2222222222222222222222')
+  }
+
+  render() {
+    return (
+      &lt;div className=&quot;child2&quot;&gt;
+        这是子组件2：
+        &lt;button onClick={this.handleClick}&gt;传递数据给 Child1&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+</code></pre>
+<h2 id="评论列表案例">评论列表案例</h2>
+<ul>
+<li>
+<p>分析：因为 CommentList 和 CommentForm 这两个子组件中，都要用到 评论列表 数据，所以，就利用 状态提升 的思想，将评论列表数据放在了 父组件Comment 中。</p>
+<ul>
+<li>父组件的两个职责：1 提供评论列表数据状态（list） 2 提供修改状态的方法（updateComment）</li>
+</ul>
+</li>
+<li>
+<p>功能1：渲染评论列表</p>
+<ul>
+<li>利用 父-&gt;子 的通讯，将父组件中的 list 传递给 子组件；子组件中通过 props 接收</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">// 父组件中渲染子组件：
+&lt;CommentList list={this.state.list} /&gt;
+
+// 子组件中：
+&lt;ul&gt;
+  {props.list.map(item =&gt; (
+    &lt;li key={item.id}&gt;
+      &lt;h3&gt;评论人：{item.name}&lt;/h3&gt;
+      &lt;p&gt;评论内容：{item.content}&lt;/p&gt;
+    &lt;/li&gt;
+  ))}
+&lt;/ul&gt;
+</code></pre>
+<ul>
+<li>功能2：添加评论
+<ul>
+<li>a. 通过受控组件的方式，来获取到评论人和评论内容</li>
+<li>b. 将用户输入的内容，添加到 list 中
+<ul>
+<li>因为 list 是由父组件提供的，所以，由父组件提供修改状态的方法（updateComment）；通过 props 传递给子组件后，由子组件调用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">// 父组件中渲染子组件：
+&lt;CommentForm updateComment={this.updateComment} /&gt;
+
+// 子组件中：
+// 发表评论
+addComment = () =&gt; {
+  const { name, content } = this.state
+  // ...
+
+  this.props.updateComment(name, content)
+
+  // ...
+}
+</code></pre>
+<h2 id="context">Context</h2>
+<ul>
+<li>使用场景：跨组件传递数据</li>
+</ul>
+<ol>
+<li>如果两个组件是远方亲戚（比如，嵌套多层）可以使用Context实现组件通讯</li>
+<li>Context提供了两个组件：Provider 和 Consumer</li>
+<li>Provider组件：用来提供数据</li>
+<li>Consumer组件：用来消费数据</li>
+</ol>
+<pre><code class="language-js">const { Provider, Consumer } = React.createContext()
+
+&lt;Provider value={this.state.msg}&gt;
+  &lt;div className=&quot;parent&quot;&gt;
+    这是父组件：
+    &lt;Child1 /&gt;
+  &lt;/div&gt;
+&lt;/Provider&gt;
+
+// Child1 -&gt; Child2 -&gt; Child3
+
+// Child3
+// data 就是 Provider 中提供的 value
+&lt;Consumer&gt;{data =&gt; &lt;p&gt;接收到的数据为：{data}&lt;/p&gt;}&lt;/Consumer&gt;
+</code></pre>
+<h2 id="组件的-children-属性">组件的 children 属性</h2>
+<ul>
+<li>作用：获取组件标签的子节点</li>
+<li>获取方式： props.children</li>
+<li>children 与普通的 props 属性相同，可以是任意值。</li>
+</ul>
+<pre><code class="language-js">&lt;Hello&gt;
+  我是子节点 -&gt; 这就是 children 属性的内容。
+&lt;/Hello&gt;
+</code></pre>
+<h2 id="props-校验">props 校验</h2>
+<ul>
+<li>
+<p>场景：给组件添加 props 校验，来增强组件的健壮性。</p>
+<ul>
+<li>约定：封装公共组件的时候，都添加 props 校验</li>
+</ul>
+</li>
+<li>
+<p>1 安装：<code>yarn add prop-types</code></p>
+</li>
+<li>
+<p>2 导入 <code>import PropTypes from 'prop-types'</code></p>
+</li>
+<li>
+<p>3 给组件名称添加 <code>propTypes</code> 属性，值是一个对象</p>
+</li>
+<li>
+<p>4 对象的键就是要校验的 props 名称，值是 <code>PropTypes.array</code> 等，从PropTypes中获取到的校验规则</p>
+</li>
+</ul>
+<pre><code class="language-js">const Parent = () =&gt; { ... }
+
+// 2 给组件添加 props 校验
+Parent.propTypes = {
+  // 规定 colors 属性的类型为：数组（array），如果将来使用组件的时候，传入的 colors 属性类型不是 array ，就会通过警告来告诉使用者。
+  colors: PropTypes.array,
+
+  gender: PropTypes.oneOf(['male', 'female']).isRequired
+}
+</code></pre>
+<h2 id="props-默认值">props 默认值</h2>
+<ul>
+<li>可以通过 组件名.defaultProps = {} 来给组件添加 props 的默认值。</li>
+</ul>
+<pre><code class="language-js">const Parent = () =&gt; { ... }
+
+// 添加 props 的默认值：
+Parent.defaultProps = {
+  gender: 'male'
+}
+</code></pre>
+<h2 id="class组件生命周期">class组件生命周期</h2>
+<ul>
+<li>注意：只有 class 组件才会有生命周期</li>
+<li><a href="http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">生命周期文档</a></li>
+</ul>
+<h3 id="1-挂载阶段">1 挂载阶段</h3>
+<ul>
+<li>1 constructor</li>
+<li>2 render</li>
+<li>3 <strong>componentDidMount</strong>
+<ul>
+<li>3.1 发送ajax请求</li>
+<li>3.2 操作DOM</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">class Hello extends React.Component {
+  // 最早执行：
+  // 1 初始化state
+  // 2 给事件处理程序绑定 this
+  constructor(props) {
+    super(props)
+
+    console.warn('1 组件生命周期钩子函数： constructor')
+  }
+
+  // 作用1：可以用来在进入页面时（该组件渲染时），发送ajax请求
+  // 作用2：可以操作DOM（因为 render 已经将 JSX 渲染到页面中了）
+  componentDidMount() {
+    console.warn(
+      '3 组件生命周期钩子函数： componentDidMount',
+      (document.getElementsByTagName('h1')[0].style.color = 'red')
+    )
+  }
+
+  // 作用：渲染 UI，负责将 JSX 渲染到页面中
+  // 注意：不要在 render 方法中调用 setState() 方法，否则，会造成死循环！
+  render() {
+    // this.setState({})
+    console.warn('2 组件生命周期钩子函数： render')
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;class 组件&lt;/h1&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+</code></pre>
+<h3 id="2-更新阶段">2 更新阶段</h3>
+<ul>
+<li>
+<p>1 render（ 同挂载阶段的render ）</p>
+</li>
+<li>
+<p>2 componentDidUpdate（ 知道 ）</p>
+</li>
+<li>
+<p>导致组件更新的三种情况：</p>
+<ul>
+<li>1 setState()</li>
+<li>2 组件接收到新的props</li>
+<li>3 forceUpdate()</li>
+</ul>
+</li>
+<li>
+<p>注意：不管是 函数组件 还是 类组件，只要接收到新的 props ，那么，组件都会重新渲染</p>
+</li>
+</ul>
+<pre><code class="language-js">class Hello extends React.Component {
+  state = {
+    count: 0
+  }
+
+  // 第一个参数：表示上一次的 props
+  // 第二个参数：表示上一次的 state
+  // 说明：可以在该钩子函数中调用 setState()，但是，一定要把 setState() 放在一个条件判断中
+  //      比如：可以对比更新前后的 props 是否相同，或者 对比更新前后的 状态是否相同
+  // 注意：不要直接调用 setState() 否则，会造成死循环
+  componentDidUpdate(prevProps, prevState) {
+    console.warn(
+      '2 组件生命周期钩子函数： componentDidUpdate',
+      document.getElementsByTagName('h1')[0].innerText,
+      prevProps,
+      prevState
+    )
+
+    // 如何获取最新的props 和 最新的state？
+    console.log(this.props, this.state)
+  }
+
+  handleClick = () =&gt; {
+    this.setState({
+      count: this.state.count + 1
+    })
+
+    // 强制组件更新（知道即可）：
+    // forceUpdate()
+    // this.forceUpdate()
+  }
+
+  render() {
+    console.warn('1 组件生命周期钩子函数： render')
+    return (
+      &lt;div&gt;
+        &lt;Child count={this.state.count} /&gt;
+        &lt;button onClick={this.handleClick}&gt;更新组件&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+// 当组件接收到新的 props 值时，也会触发组件更新
+class Child extends React.Component {
+  componentDidUpdate() {
+    console.warn('子组件 -&gt; 的生命周期钩子函数： componentDidUpdate')
+  }
+
+  render() {
+    console.warn('子组件 -&gt; 的生命周期钩子函数： render')
+    return &lt;h1&gt;计数器：{this.props.count}&lt;/h1&gt;
+  }
+}
+</code></pre>
+<h3 id="3-卸载阶段">3 卸载阶段</h3>
+<ul>
+<li>触发时机：组件卸载，也就是从页面中消失的时候</li>
+<li>componentWillUnmount
+<ul>
+<li>作用：执行清理工作，比如：清理定时器、给window绑定的事件等，我们手动开启的操作</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">// 当组件从页面中消失，此时，就会触发组件的卸载阶段
+class Child extends React.Component {
+  componentDidMount() {
+    // 开启定时器
+    // this.timerId = setInterval(() =&gt; {
+    //   console.log('定时器触发了')
+    // }, 1000)
+
+    window.addEventListener('resize', this.handleResize)
+  }
+
+  handleResize = () =&gt; {
+    console.log('窗口大小改变了')
+  }
+
+  // 组件将要卸载
+  componentWillUnmount() {
+    console.warn('组件生命周期钩子函数： componentWillUnmount')
+
+    // 清理定时器
+    // clearInterval(this.timerId)
+    window.removeEventListener('resize', this.handleResize)
+  }
+
+  render() {
+    return &lt;h1&gt;统计豆豆被打的次数：{this.props.count}&lt;/h1&gt;
+  }
+}
+</code></pre>
+<h2 id="render-props-模式的使用">render-props 模式的使用</h2>
+<ul>
+<li>
+<p>作用：实现<strong>状态逻辑复用</strong></p>
+</li>
+<li>
+<p>Mouse 组件的职责：</p>
+<ul>
+<li>1 提供了state</li>
+<li>2 提供了操作状态的方法</li>
+</ul>
+</li>
+<li>
+<p>注意：Mouse 组件仅仅负责状态逻辑复用，不会指定要渲染的内容。</p>
+</li>
+<li>
+<p>要渲染什么内容，就在复用 Mouse 组件的时候，通过 render 属性的返回值指定</p>
+</li>
+</ul>
+<pre><code class="language-js">// 复用Mouse组件，渲染p标签：
+&lt;Mouse render={mouse =&gt; &lt;p&gt;&lt;/p&gt;} /&gt;
+
+// 复用Mouse组件，渲染img标签：
+&lt;Mouse render={mouse =&gt; &lt;img src=... /&gt;} /&gt;
+</code></pre>
+<ul>
+<li>但是，render 属性的返回值要生效，必须得在 Mouse 组件中，来处理才可以</li>
+</ul>
+<pre><code class="language-js">class Mouse extends React.Component {
+  // ...
+
+  render() {
+    // 调用 render 这个属性，通过它的返回值，来拿到要渲染的内容
+    return this.props.render(this.state)
+  }
+}
+</code></pre>
+<ul>
+<li>推荐：使用 children 代替 render 属性</li>
+</ul>
+<pre><code class="language-js">&lt;Mouse&gt;
+  {
+    mouse =&gt; &lt;p&gt;{mouse.x} - {mouse.y}&lt;/p&gt;
+  }
+&lt;/Mouse&gt;
+
+// 组件中：
+render() {
+  return this.props.children(this.state)
+}
+</code></pre>
+<h2 id="高阶组件">高阶组件</h2>
+<ul>
+<li>作用：实现<strong>状态逻辑复用</strong></li>
+<li>使用包装模式，也就是：使用一个组件（A）来包装另外一个组件，这样，另外一个组件中，就可以通过 props 来拿到组件A提供的状态</li>
+<li>高阶组件实际上是一个函数，比如：<code>withMouse</code></li>
+</ul>
+<pre><code class="language-js">// 参数Cat：就是被包装的组件
+// 返回值CatWithMouse：就是增强后的组件。处理后，CatWithMouse中既有结构又有鼠标位置了
+const CatWithMouse = withMouse(Cat)
+
+const withMouse = (WrappedComponent) =&gt; {
+  class Mouse extends React.Component {
+    // 实现状态 和 操作状态的方法
+
+    render() {
+      return &lt;WrappedComponent {...this.state} {...this.props} /&gt;
+    }
+  }
+
+  return Mouse
+}
+
+&lt;CatWithMouse name=&quot;jack&quot; /&gt;
+</code></pre>
+<h2 id="简化受控组件的使用">简化受控组件的使用</h2>
+<ul>
+<li>1 在 state 中添加表单元素的状态</li>
+<li>2 将 state 设置为每个表单元素的 value 值</li>
+<li>3 给 表单元素 绑定 change 事件</li>
+<li>4 创建 handleChange 事件处理程序，用来统一处理表单项的值</li>
+<li>5 <strong>给每一个表单元素添加 name 属性，name 属性的值为：当前对应的状态名称</strong></li>
+<li>6 在 handleChange 这个统一的事件处理程序中，通过 e.target.name 来获取到当前要更新的状态名称</li>
+<li>7 使用 ES6 中的属性名表达式，来更新状态即可</li>
+<li>注意：因为 checkbox 复选框，操作的是 checked 属性（也就是是否选中），所以，需要对 checkbox 进行特殊的处理。</li>
+</ul>
+<pre><code class="language-js">import React from 'react'
+
+export default class CommentForm extends React.Component {
+  // 1 提供状态
+  state = {
+    // 评论人
+    name: '',
+    // 评论内容：
+    content: '',
+    // city
+    city: ''
+  }
+  
+  handleChange = e =&gt; {
+    const target = e.target
+    // 针对于表单元素进行处理：
+    const value = target.type === 'checkbox' ? target.checked : target.value
+
+    // name 就是要更新的状态名称
+    const name = target.name
+
+    // http://es6.ruanyifeng.com/#docs/object#%E5%B1%9E%E6%80%A7%E5%90%8D%E8%A1%A8%E8%BE%BE%E5%BC%8F
+    this.setState({
+      [name]: value
+    })
+  }
+
+  // 发表评论：
+  addComment = () =&gt; {
+    const { name, content, city } = this.state
+    console.log(name, content, city)
+  }
+
+  render() {
+    const { name, content, city } = this.state
+
+    return (
+      &lt;div&gt;
+        {/* 给每一个表单项添加 name 属性，值为：当前表单项对应的状态 */}
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;评论人&quot;
+          value={name}
+          name=&quot;name&quot;
+          onChange={this.handleChange}
+        /&gt;
+        &lt;br /&gt;
+        &lt;textarea
+          cols=&quot;30&quot;
+          rows=&quot;10&quot;
+          placeholder=&quot;评论内容&quot;
+          value={content}
+          name=&quot;content&quot;
+          onChange={this.handleChange}
+        /&gt;
+        &lt;br /&gt;
+        &lt;select name=&quot;city&quot; value={city} onChange={this.handleChange}&gt;
+          &lt;option value=&quot;1&quot;&gt;北京&lt;/option&gt;
+          &lt;option value=&quot;2&quot;&gt;上海&lt;/option&gt;
+          &lt;option value=&quot;3&quot;&gt;航头&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;br /&gt;
+        &lt;input
+          type=&quot;checkbox&quot;
+          name=&quot;isChecked&quot;
+          checked={isChecked}
+          onChange={this.handleChange}
+        /&gt;
+        &lt;button onClick={this.addComment}&gt;发表评论&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+</code></pre>
+<h2 id="setstate-的说明">setState 的说明</h2>
+<ul>
+<li>
+<p>注意：<code>setState({})</code> 方法是异步更新数据的！如果同时调用 setState() 方法多次，后面的 setState() 不要依赖于前面的 setState() 结果。</p>
+</li>
+<li>
+<p>不管同时调用多少次 setState()，都只会触发一次重新渲染</p>
+</li>
+<li>
+<p>推荐使用：<code>setState((state, props) =&gt; {})</code></p>
+<ul>
+<li>通过该语法形式，就可以做到：后面的setState()可以依赖于上面setState()的值</li>
+</ul>
+</li>
+<li>
+<p>setState() 方法由两个参数：</p>
+<ul>
+<li>1 第一个参数用来更新状态</li>
+<li>2 第二个参数是一个回调函数，表示组件状态更新后，立即出发的操作（知道）</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">// 修改状态：
+// setState() 是异步更新数据的
+handleClick = () =&gt; {
+  console.log('setState前的状态：', this.state.count)
+
+  // 回调函数的参数：
+  // 1 state 表示最新的状态
+  // 2 props 表示最新的 props
+  // 通过回调函数的返回值，来更新状态
+  this.setState((state, props) =&gt; {
+    return {
+      count: state.count + 2
+    }
+  }, () =&gt; {})
+
+  console.log('setState后的状态：', this.state.count)
+}
+</code></pre>
+<h2 id="jsx-语法的转化过程">JSX 语法的转化过程</h2>
+<ul>
+<li>JSX -&gt; React.createElement() -&gt; JS对象（用来告诉 React 最终要渲染在页面中的内容）</li>
+</ul>
+<h2 id="react-组件更新机制">React 组件更新机制</h2>
+<ul>
+<li>特点：只要父组件更新了，那么，父组件自己以及它的所有子组件（后代组件），全部会被更新。</li>
+</ul>
+<h2 id="组件性能优化">组件性能优化</h2>
+<h3 id="1-减轻state">1 减轻state</h3>
+<ul>
+<li>只把更组件渲染内容相关的数据放在 state 中
+<ul>
+<li>1 count（计数器）</li>
+<li>2 list（评论列表数据）</li>
+<li>3 loading（是否加载中，它会控制组件要渲染的内容）</li>
+</ul>
+</li>
+<li>注意：不要把跟组件渲染无关的数据，放在 state 中，而把这些数据直接放在 this 中即可</li>
+</ul>
+<h3 id="2-shouldcomponentupdate">2 shouldComponentUpdate</h3>
+<ul>
+<li>
+<p>使用场景：阻止不必要的更新</p>
+</li>
+<li>
+<p>作用：通过返回值来决定是否重新渲染组件</p>
+<ul>
+<li>如果返回true，就会更新组件；</li>
+<li>如果返回false，就不会更新组件</li>
+</ul>
+</li>
+<li>
+<p>参数表示最新的 props 和 state</p>
+</li>
+<li>
+<p>可以通过 this.props 和 this.state 来获取到上一次（更新前的）的值</p>
+</li>
+</ul>
+<pre><code class="language-js">// 第一个参数：表示最新的props值
+// 第二个参数：表示最新的state值
+shouldComponentUpdate(nextProps, nextState) {
+  if (nextProps.count % 2 === 0) {
+    // 此时为 偶数
+    return false
+  }
+  return true
+}
+</code></pre>
+<h3 id="3-使用纯组件">3 使用纯组件</h3>
+<ul>
+<li>用法：只要将 React.Component 替换为 React.PureComponent 即可</li>
+<li>原理：内部会自动实现 shouldComponentUpdate 钩子函数，会分别对比 更新前后的 props 和 state，只要有一个发生变化了，就会更新组件；换句话说，也就是：如果 props 或 state，都没有改变，此时，组件就不会更新了。</li>
+</ul>
+<pre><code class="language-js">class Child2 extends React.PureComponent {
+  render() {
+    console.log('Child2 组件重新渲染了')
+    return &lt;h1&gt;随机数：{this.props.number}&lt;/h1&gt;
+  }
+}
+</code></pre>
+<h3 id="纯组件内部的原理">纯组件内部的原理</h3>
+<ul>
+<li>原理：内部进行的是浅对比（shallow compare）</li>
+<li>对于值类型，直接修改即可，没有坑</li>
+<li>但是，对于引用类型来说：（只比较对象的地址）
+<ul>
+<li>1 如果直接修改当前对象中属性的值，那么，在更新状态的时候，即便数据变化了，组件也不会被重新渲染</li>
+<li>2 应该创建新的引用类型值，再更新状态</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">// 1 不要这么做：
+// 在 PureComponent 中，不会让组件重新渲染
+const { obj } = this.state
+const newObj = obj
+newObj.number = number
+
+this.setState({
+  obj: newObj
+})
+</code></pre>
+<pre><code class="language-js">// 2 正确做法：
+const { obj } = this.state
+// 注意：此处创建了一个新的对象 newObj
+const newObj = { ...obj }
+newObj.number = number
+
+this.setState({
+  obj: newObj
+})
+</code></pre>
+<h2 id="更新组件的原则">更新组件的原则</h2>
+<ul>
+<li><strong>不要直接修改当前状态的值（引用类型），而是创建一个新的对象或数组</strong></li>
+</ul>
+<pre><code class="language-js">// 推荐修改数组值的方式：
+this.setState({
+  list: [...this.state.list, { ..省略对象结构 }]
+})
+// ES5：
+// const newList = list.concat([ ... ])
+
+// 推荐修改对象值的方式：
+this.setState({
+  obj: {...this.state.obj, number: ...}
+})
+// ES5：
+// Object.assign(目标对象, 原来的状态对象, 新的状态对象)
+// 当前例子中：const newObj = Object.assign({}, this.state.obj, { number: 9 })
+</code></pre>
+<h2 id="虚拟dom-和-diff算法">虚拟DOM 和 Diff算法</h2>
+<ul>
+<li>
+<p>React 中一个组件的更新方式：只要调用 setState() 当前这个组件就会被更新。也就是会调用 render() 方法。</p>
+<ul>
+<li>但是：不是 render() 方法被调用，整个组件的内容，就会被全部更新！！！</li>
+</ul>
+</li>
+<li>
+<p>实际上，React 内部会实现：<strong>部分更新</strong>，也就是，哪个地方需要更新，只会把这个地方对应的DOM重新渲染</p>
+</li>
+</ul>
+<h3 id="diff-算法的说明-1">Diff 算法的说明 - 1</h3>
+<ul>
+<li>如果两棵树的根元素类型不同，React 会销毁旧树，创建新树</li>
+</ul>
+<pre><code class="language-js">// 旧树
+&lt;div&gt;
+  &lt;Counter /&gt;
+&lt;/div&gt;
+
+// 新树
+&lt;span&gt;
+  &lt;Counter /&gt;
+&lt;/span&gt;
+
+执行过程：destory Counter -&gt; insert Counter
+</code></pre>
+<h3 id="diff-算法的说明-2">Diff 算法的说明 - 2</h3>
+<ul>
+<li>对于类型相同的 React DOM 元素，React 会对比两者的属性是否相同，只更新不同的属性</li>
+<li>当处理完这个 DOM 节点，React 就会递归处理子节点。</li>
+</ul>
+<pre><code class="language-html">// 旧
+&lt;div className=&quot;before&quot; title=&quot;stuff&quot;&gt;&lt;/div&gt;
+// 新
+&lt;div className=&quot;after&quot; title=&quot;stuff&quot;&gt;&lt;/div&gt;
+只更新：className 属性
+
+// 旧
+&lt;div style={{color: 'red', fontWeight: 'bold'}}&gt;&lt;/div&gt;
+// 新
+&lt;div style={{color: 'green', fontWeight: 'bold'}}&gt;&lt;/div&gt;
+只更新：color属性
+</code></pre>
+<h3 id="diff-算法的说明-3">Diff 算法的说明 - 3</h3>
+<ul>
+<li>1 当在子节点的后面添加一个节点，这时候两棵树的转化工作执行的很好</li>
+</ul>
+<pre><code class="language-js">// 旧
+&lt;ul&gt;
+  &lt;li&gt;first&lt;/li&gt;
+  &lt;li&gt;second&lt;/li&gt;
+&lt;/ul&gt;
+
+// 新
+&lt;ul&gt;
+  &lt;li&gt;first&lt;/li&gt;
+  &lt;li&gt;second&lt;/li&gt;
+  &lt;li&gt;third&lt;/li&gt;
+&lt;/ul&gt;
+
+执行过程：
+React会匹配新旧两个&lt;li&gt;first&lt;/li&gt;，匹配两个&lt;li&gt;second&lt;/li&gt;，然后添加 &lt;li&gt;third&lt;/li&gt; tree
+</code></pre>
+<ul>
+<li>2 但是如果你在开始位置插入一个元素，那么问题就来了：</li>
+</ul>
+<pre><code class="language-js">// 旧
+&lt;ul&gt;
+  &lt;li&gt;1&lt;/li&gt;
+  &lt;li&gt;2&lt;/li&gt;
+&lt;/ul&gt;
+
+// 新
+&lt;ul&gt;
+  &lt;li&gt;3&lt;/li&gt;
+  &lt;li&gt;1&lt;/li&gt;
+  &lt;li&gt;2&lt;/li&gt;
+&lt;/ul&gt;
+
+执行过程：
+React将改变每一个子节点，而非保持 &lt;li&gt;Duke&lt;/li&gt; 和 &lt;li&gt;Villanova&lt;/li&gt; 不变
+</code></pre>
+<h3 id="key-属性">key 属性</h3>
+<blockquote>
+<p>为了解决以上问题，React 提供了一个 key 属性。当子节点带有 key 属性，React 会通过 key 来匹配原始树和后来的树。</p>
+</blockquote>
+<pre><code class="language-js">// 旧
+&lt;ul&gt;
+  &lt;li key=&quot;2015&quot;&gt;1&lt;/li&gt;
+  &lt;li key=&quot;2016&quot;&gt;2&lt;/li&gt;
+&lt;/ul&gt;
+
+// 新
+&lt;ul&gt;
+  &lt;li key=&quot;2014&quot;&gt;3&lt;/li&gt;
+  &lt;li key=&quot;2015&quot;&gt;1&lt;/li&gt;
+  &lt;li key=&quot;2016&quot;&gt;2&lt;/li&gt;
+&lt;/ul&gt;
+
+执行过程：
+现在 React 知道带有key '2014' 的元素是新的，对于 '2015' 和 '2016' 仅仅移动位置即可
+</code></pre>
+<ul>
+<li>说明：key 属性在 React 内部使用，但不会传递给你的组件</li>
+<li>推荐：在遍历数据时，推荐在组件中使用 key 属性：<code>&lt;li key={item.id}&gt;{item.name}&lt;/li&gt;</code></li>
+<li>注意：<strong>key 只需要保持与他的兄弟节点唯一即可，不需要全局唯一</strong></li>
+<li>注意：<strong>尽可能的减少数组 index 作为 key，数组中插入元素的等操作时，会使得效率底下</strong></li>
+</ul>
+<h2 id="组件的极简模型">组件的极简模型</h2>
+<ul>
+<li><code>(state, props) =&gt; UI</code></li>
+</ul>
+<h2 id="路由的基本使用">路由的基本使用</h2>
+<ul>
+<li>React路由中的一切都是组件，所以，如何使用 React的组件，就如何使用 React路由。</li>
+<li>1 安装：<code>yarn add react-router-dom</code></li>
+<li>2 导入路由中的三个组件：<code>Router</code> / <code>Route</code> / <code>Link</code></li>
+<li>3 使用 Router 组件包裹整个应用</li>
+<li>4 使用 Link 组件配置路由的入口
+<ul>
+<li>通过 to 属性来指定 pathname（也就是浏览器地址栏中的地址）</li>
+</ul>
+</li>
+<li>5 使用 Route 组件配置路由出口
+<ul>
+<li>path 属性：指定路由规则</li>
+<li>component 属性：指定该路由规则匹配时要展示的组件</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
+// 创建First组件
+const First = () =&gt; &lt;p&gt;这是 First 组件的内容&lt;/p&gt;
+const Home = () =&gt; &lt;div style={{ color: 'red' }}&gt;这是 Home 组件&lt;/div&gt;
+
+class App extends React.Component {
+  render() {
+    return (
+      // 3 使用 Router 组件包裹整个应用
+      &lt;Router&gt;
+        &lt;div&gt;
+          &lt;h1&gt;使用 react 路由&lt;/h1&gt;
+          {/* 4 配置路由的入口（也就是一个导航菜单） */}
+          &lt;Link to=&quot;/first&quot;&gt;页面一&lt;/Link&gt;
+          &lt;br /&gt;
+          &lt;Link to=&quot;/home&quot;&gt;首页&lt;/Link&gt;
+
+          {/* 5 配置路由的出口（配置路由规则和要展示的组件） */}
+          &lt;Route path=&quot;/first&quot; component={First} /&gt;
+
+          {/* 再创建另一外一个路由： */}
+          &lt;Route path=&quot;/home&quot; component={Home} /&gt;
+        &lt;/div&gt;
+      &lt;/Router&gt;
+    )
+  }
+}
+</code></pre>
+<h2 id="react-路由使用的说明">React 路由使用的说明</h2>
+<ul>
+<li>Router 组件：整个应用使用<strong>一次</strong>即可！也就是用 Router 包裹整个应用</li>
+<li>React 路由有两种模式：
+<ul>
+<li>1 使用哈希值实现（hash）： HashRouter</li>
+<li>2 使用 H5 中的 history API： BrowserRouter（推荐）</li>
+</ul>
+</li>
+<li>Link 组件：用来设置导航菜单
+<ul>
+<li>这个组件最终会被渲染成一个 a 标签</li>
+<li>to 属性：用来指定浏览器地址栏中的 哈希值 或者 pathname</li>
+</ul>
+</li>
+<li>Route 组件：用来设置路由规则
+<ul>
+<li>path 属性：配置路由规则</li>
+<li>component 属性：指定要展示的组件</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">// H5 中的 history API
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
+// 使用 哈希值（浏览器地址栏中的 #/） 来实现路由：
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
+</code></pre>
+<h2 id="编程式导航">编程式导航</h2>
+<ul>
+<li>
+<p>编程式导航：可以通过 JS 代码的方式，来实现路由跳转</p>
+</li>
+<li>
+<p>组件中通过 <code>props</code> 来获取到路由信息</p>
+<ul>
+<li>对于函数组件来说就是通过 参数props 来获取</li>
+<li>对于类组件来说，就是通过 this.props 来获取</li>
+</ul>
+</li>
+<li>
+<p><code>push(path)</code>：跳转到参数中指定的路由地址</p>
+</li>
+<li>
+<p><code>go(n)</code>：前进（1）或后退（-1）</p>
+</li>
+</ul>
+<pre><code class="language-js">const First = props =&gt; {
+  const handleClick = () =&gt; {
+    // push 方法用来实现路由的跳转
+    // 参数：表示要跳转到的路由的路径
+    props.history.push('/login')
+  }
+
+  return (
+    &lt;p&gt;
+      这是 First 组件的内容
+      &lt;button onClick={handleClick}&gt;跳转到登录页面&lt;/button&gt;
+    &lt;/p&gt;
+  )
+}
+</code></pre>
+<h2 id="默认路由">默认路由</h2>
+<ul>
+<li>默认路由地址为：<code>/</code></li>
+<li>默认路由，在进入页面时，就会被匹配</li>
+</ul>
+<pre><code class="language-js">const Home = () =&gt; &lt;p&gt;这是首页，进入页面时，就会展示该组件内容&lt;/p&gt;
+&lt;Route path=&quot;/&quot; component={Home} /&gt;
+</code></pre>
+<h2 id="路由匹配规则">路由匹配规则</h2>
+<ul>
+<li>默认情况下，路由是<strong>模糊匹配</strong>的</li>
+<li>也就是说：只要 pathname 是以 path 开头，那么， 这个路由规则就会匹配成功
+<ul>
+<li>比如：pathname 是 '/first'，path 是 '/'，此时，pathname 是以 / 开头的，所以，此时，这个路由规则就被匹配了，也就是 会展示该规则对应的组件</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-js">&lt;Route path=&quot;/&quot; component={Home} /&gt;
+</code></pre>
+<h2 id="精确匹配">精确匹配</h2>
+<ul>
+<li>给 Route 添加 <code>exact</code> 属性，就会让当前路由规则变为精确匹配</li>
+<li>此时，只有当 pathname 和 path 完全匹配时，才会展示该组件。</li>
+</ul>
+<pre><code class="language-js">// 精确匹配：
+// pathname 是 '/first'，path 是 '/'，此时，就不会匹配了
+// 只有当 pathname 是 '/' 并且 path 也是 '/' ，此时才会匹配
+&lt;Route exact path=&quot;/&quot; component={Home} /&gt;
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#react-%E6%98%AF%E4%BB%80%E4%B9%88">react 是什么</a></li>
+<li><a href="#react-%E7%9A%84%E7%89%B9%E7%82%B9">react 的特点</a></li>
+<li><a href="#react-%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">React 的基本使用</a></li>
+<li><a href="#reactcreateelement-%E6%96%B9%E6%B3%95%E7%9A%84%E8%AF%B4%E6%98%8E">React.createElement() 方法的说明</a></li>
+<li><a href="#react-%E8%84%9A%E6%89%8B%E6%9E%B6%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%AD%A5%E9%AA%A4">React 脚手架初始化项目的步骤</a></li>
+<li><a href="#%E5%9C%A8%E8%84%9A%E6%89%8B%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8react">在脚手架中使用react</a></li>
+<li><a href="#jsx">JSX</a></li>
+<li><a href="#jsx-%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">JSX 的基本使用</a></li>
+<li><a href="#jsx-%E8%AF%AD%E6%B3%95%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9">JSX 语法的注意点</a></li>
+<li><a href="#%E5%9C%A8-jsx-%E4%B8%AD%E4%BD%BF%E7%94%A8-js-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%95%B0%E6%8D%AE">在 JSX 中使用 JS 表达式（数据）</a></li>
+<li><a href="#react-%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93">React 的条件渲染</a></li>
+<li><a href="#react-%E4%B8%AD%E7%9A%84%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93">React 中的列表渲染</a></li>
+<li><a href="#react-%E4%B8%AD%E7%BB%99-jsx-%E6%B7%BB%E5%8A%A0%E6%A0%B7%E5%BC%8F">React 中给 JSX 添加样式</a></li>
+<li><a href="#%E6%A1%88%E4%BE%8B">案例</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6">函数组件</a></li>
+<li><a href="#es6%E4%B8%AD%E7%9A%84class">ES6中的class</a></li>
+<li><a href="#%E7%B1%BB%E7%BB%84%E4%BB%B6">类组件</a></li>
+<li><a href="#%E5%B0%86%E7%BB%84%E4%BB%B6%E6%8A%BD%E7%A6%BB%E5%88%B0%E7%8B%AC%E7%AB%8B%E7%9A%84js%E6%96%87%E4%BB%B6%E4%B8%AD">将组件抽离到独立的JS文件中</a></li>
+<li><a href="#%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6">绑定事件</a></li>
+<li><a href="#%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1">事件对象</a></li>
+<li><a href="#%E6%9C%89%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6%E5%92%8C%E6%97%A0%E7%8A%B6%E6%80%81%E7%BB%84%E4%BB%B6">有状态组件和无状态组件</a></li>
+<li><a href="#class%E7%BB%84%E4%BB%B6%E4%B8%AD%E7%9A%84%E7%8A%B6%E6%80%81">class组件中的状态</a></li>
+<li><a href="#setstate">setState</a></li>
+<li><a href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F%E4%B8%ADthis%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98">事件处理程序中this指向问题</a></li>
+<li><a href="#%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6">受控组件</a></li>
+<li><a href="#%E9%9D%9E%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6">非受控组件</a></li>
+<li><a href="#props%E7%9A%84%E4%BD%BF%E7%94%A8">props的使用</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E9%80%9A%E8%AE%AF">组件通讯</a>
+<ul>
+<li><a href="#%E7%88%B6%E5%88%B0%E5%AD%90">父到子</a></li>
+<li><a href="#%E5%AD%90%E5%88%B0%E7%88%B6">子到父</a></li>
+<li><a href="#%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6">兄弟组件</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AF%84%E8%AE%BA%E5%88%97%E8%A1%A8%E6%A1%88%E4%BE%8B">评论列表案例</a></li>
+<li><a href="#context">Context</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84-children-%E5%B1%9E%E6%80%A7">组件的 children 属性</a></li>
+<li><a href="#props-%E6%A0%A1%E9%AA%8C">props 校验</a></li>
+<li><a href="#props-%E9%BB%98%E8%AE%A4%E5%80%BC">props 默认值</a></li>
+<li><a href="#class%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">class组件生命周期</a>
+<ul>
+<li><a href="#1-%E6%8C%82%E8%BD%BD%E9%98%B6%E6%AE%B5">1 挂载阶段</a></li>
+<li><a href="#2-%E6%9B%B4%E6%96%B0%E9%98%B6%E6%AE%B5">2 更新阶段</a></li>
+<li><a href="#3-%E5%8D%B8%E8%BD%BD%E9%98%B6%E6%AE%B5">3 卸载阶段</a></li>
+</ul>
+</li>
+<li><a href="#render-props-%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%BD%BF%E7%94%A8">render-props 模式的使用</a></li>
+<li><a href="#%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6">高阶组件</a></li>
+<li><a href="#%E7%AE%80%E5%8C%96%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8">简化受控组件的使用</a></li>
+<li><a href="#setstate-%E7%9A%84%E8%AF%B4%E6%98%8E">setState 的说明</a></li>
+<li><a href="#jsx-%E8%AF%AD%E6%B3%95%E7%9A%84%E8%BD%AC%E5%8C%96%E8%BF%87%E7%A8%8B">JSX 语法的转化过程</a></li>
+<li><a href="#react-%E7%BB%84%E4%BB%B6%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6">React 组件更新机制</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">组件性能优化</a>
+<ul>
+<li><a href="#1-%E5%87%8F%E8%BD%BBstate">1 减轻state</a></li>
+<li><a href="#2-shouldcomponentupdate">2 shouldComponentUpdate</a></li>
+<li><a href="#3-%E4%BD%BF%E7%94%A8%E7%BA%AF%E7%BB%84%E4%BB%B6">3 使用纯组件</a></li>
+<li><a href="#%E7%BA%AF%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E7%9A%84%E5%8E%9F%E7%90%86">纯组件内部的原理</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8E%9F%E5%88%99">更新组件的原则</a></li>
+<li><a href="#%E8%99%9A%E6%8B%9Fdom-%E5%92%8C-diff%E7%AE%97%E6%B3%95">虚拟DOM 和 Diff算法</a>
+<ul>
+<li><a href="#diff-%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%B4%E6%98%8E-1">Diff 算法的说明 - 1</a></li>
+<li><a href="#diff-%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%B4%E6%98%8E-2">Diff 算法的说明 - 2</a></li>
+<li><a href="#diff-%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%B4%E6%98%8E-3">Diff 算法的说明 - 3</a></li>
+<li><a href="#key-%E5%B1%9E%E6%80%A7">key 属性</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%9E%81%E7%AE%80%E6%A8%A1%E5%9E%8B">组件的极简模型</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">路由的基本使用</a></li>
+<li><a href="#react-%E8%B7%AF%E7%94%B1%E4%BD%BF%E7%94%A8%E7%9A%84%E8%AF%B4%E6%98%8E">React 路由使用的说明</a></li>
+<li><a href="#%E7%BC%96%E7%A8%8B%E5%BC%8F%E5%AF%BC%E8%88%AA">编程式导航</a></li>
+<li><a href="#%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1">默认路由</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99">路由匹配规则</a></li>
+<li><a href="#%E7%B2%BE%E7%A1%AE%E5%8C%B9%E9%85%8D">精确匹配</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://lucas-y.github.io/post/vue/">
+              <h3 class="post-title">
+                vue基础
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  中庸之道
+  <a class="rss" href="https://lucas-y.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
