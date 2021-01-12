@@ -7,7 +7,7 @@
 <meta name="description" content="知行合一">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610423914926">
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610437456037">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -74,6 +74,61 @@
             <div class="post-content">
               <h2 id="暂时性死区">暂时性死区</h2>
 <p><a href="https://es6.ruanyifeng.com/#docs/let">暂时性死区</a></p>
+<h2 id="继承">继承</h2>
+<ul>
+<li>原型链继承（给原型对象添加的成员，实例对象可以继承到）</li>
+</ul>
+<ol>
+<li>直接给原型对象添加 Person.prototype.xx = yyy;<br>
+缺点：添加过多成员，以上写法重复，麻烦</li>
+</ol>
+<pre><code class="language-js">function Person() {}
+Person.prototype.color = &quot;lime&quot;;
+Person.prototype.sayHi = function () {
+    console.log(&quot;hi&quot;);
+}
+
+var p = new Person();
+console.log(p.color); // lime
+p.sayHi();
+</code></pre>
+<ol start="2">
+<li>原型替换  Person.prototype = {//...}<br>
+缺点：造成了constructor属性丢失了<br>
+解决：手动给新的原型对象补上</li>
+</ol>
+<pre><code class="language-js">function Person() {}
+Person.prototype = {
+    constructor: Person,
+    sayHi: function () {
+        console.log(&quot;hi&quot;);
+    },
+    show: function () {
+        console.log(&quot;show is ok&quot;);
+    },
+    // ...
+};
+var p = new Person();
+p.sayHi();
+p.show();
+</code></pre>
+<ul>
+<li>借用构造函数继承<pre><code class="language-js">  function Person(name, age, gender){
+      this.name = name;
+      this.age = age;
+      this.gender = gender;
+  }
+
+  function China(name, age, gender, skin){
+      Person.apply(this,[name,age,gender]);
+      this.skin = skin;           
+  }
+
+  var xm = new China(&quot;xiaoming&quot;, 20, &quot;male&quot;, &quot;黄&quot;);
+  console.log(xm);
+</code></pre>
+</li>
+</ul>
 
             </div>
           </article>
@@ -97,7 +152,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://lucas-y.github.io//images/avatar.png?v=1610423914926" class="no-responsive avatar">
+    <img src="https://lucas-y.github.io//images/avatar.png?v=1610437456037" class="no-responsive avatar">
     <div class="text-muted">知行合一</div>
     <div class="social-container">
       
@@ -159,7 +214,7 @@
     </div>
     <div class="row">
       
-        <a href="https://lucas-y.github.io/tag/MsOF8Lziw/" class="badge ">
+        <a href="https://lucas-y.github.io/tag/MsOF8Lziw/" class="badge warning">
           前端
         </a>
       
