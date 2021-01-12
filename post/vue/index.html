@@ -1,78 +1,90 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
-
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>vue基础 | 前端小白</title>
-<meta name="description" content="知行合一">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610437456037">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610439172981">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="vue基础 | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+    <meta name="description" content="vue 的基本概念
+vue官网
+vue是一个渐进式的 javascript 框架
+
+渐进式  =&gt;  逐渐增强, 学一点用一点, 利于上手
+框架:  一套完整的解决方案
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-
+特点: 需要按照框架的规则编写代码   好处: 大大的提升了..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-  
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://lucas-y.github.io/">前端小白</a></h3>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://lucas-y.github.io/">
+  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1610439172981" alt="">
+  </a>
+  <h1 class="site-title">
+    前端小白
+  </h1>
+  <p class="site-description">
+    知行合一
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://lucas-y.github.io/" class="menu">
+          首页
+        </a>
+      
+    
   </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
-        
-          <li>
-            
-              <a href="/archives" class="menu">
-                归档
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="https://lucas-y.github.io/" class="menu">
-                首页
-              </a>
-            
-          </li>
-        
-      </ul>
-    </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
   </div>
-</nav>
+</div>
 
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>vue基础</h1>
-            <p class="article-meta">
-              2020-12-25
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              vue基础
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-12-25
+              </span>
+              <span>
+                14 min read
+              </span>
               
-            </p>
+            </div>
             
-            <div class="post-content">
-              <h2 id="vue-的基本概念">vue 的基本概念</h2>
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="vue-的基本概念">vue 的基本概念</h2>
 <p><a href="https://cn.vuejs.org/">vue官网</a><br>
 <code>vue是一个渐进式的 javascript 框架</code></p>
 <ul>
@@ -500,116 +512,113 @@ Vue.filter(过滤器名字, 处理字符串的函数)<br>
 &lt;/script&gt;
 </code></pre>
 
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#vue-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">vue 的基本概念</a></li>
+<li><a href="#vue3-%E5%92%8C-vue2%E7%9A%84%E5%8C%BA%E5%88%AB">vue3 和 vue2的区别</a>
+<ul>
+<li><a href="#%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E">版本说明</a></li>
+<li><a href="#vue3-%E5%92%8C-vue2-%E7%9A%84%E5%AF%B9%E6%AF%94">vue3 和 vue2 的对比</a></li>
+</ul>
+</li>
+<li><a href="#mvvm%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">MVVM设计模式</a></li>
+<li><a href="#vue%E5%88%9D%E4%BD%93%E9%AA%8C">vue初体验</a></li>
+<li><a href="#vue%E4%BD%BF%E7%94%A8%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9">vue使用的注意点</a></li>
+<li><a href="#vue%E7%9A%84%E6%8F%92%E5%80%BC%E8%A1%A8%E8%BE%BE%E5%BC%8F">vue的插值表达式</a></li>
+<li><a href="#vue%E6%8C%87%E4%BB%A4">vue指令</a>
+<ul>
+<li><a href="#v-text-%E5%92%8C-v-html">v-text 和 v-html</a></li>
+<li><a href="#v-if-%E5%92%8C-v-show">v-if 和 v-show</a></li>
+<li><a href="#v-if-v-else-if-v-else">v-if v-else-if v-else</a></li>
+<li><a href="#v-on%E6%8C%87%E4%BB%A4">v-on指令</a></li>
+<li><a href="#v-bind%E6%8C%87%E4%BB%A4">v-bind指令</a></li>
+<li><a href="#v-for">v-for</a></li>
+<li><a href="#v-model">v-model</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BF%87%E6%BB%A4%E5%99%A8">过滤器</a>
+<ul>
+<li><a href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7">过滤器的兼容性</a></li>
+<li><a href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">过滤器的基本使用</a></li>
+<li><a href="#%E5%88%A9%E7%94%A8%E8%BF%87%E6%BB%A4%E5%99%A8%E5%A4%84%E7%90%86%E6%97%A5%E6%9C%9F">利用过滤器处理日期</a></li>
+<li><a href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%8F%82%E6%95%B0">过滤器的参数</a></li>
+<li><a href="#%E5%85%A8%E5%B1%80%E8%BF%87%E6%BB%A4%E5%99%A8-%E5%92%8C-%E5%B1%80%E9%83%A8%E8%BF%87%E6%BB%A4%E5%99%A8">全局过滤器 和 局部过滤器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
             </div>
           </article>
         </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                下一篇
-              </div>
-              <a href="https://lucas-y.github.io/post/demo/">
-                <h3 class="post-title">
-                  四象限工作法
-                </h3>
-              </a>
-            </div>
-          
-        </div>
-        
-      </div>
 
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://lucas-y.github.io//images/avatar.png?v=1610437456037" class="no-responsive avatar">
-    <div class="text-muted">知行合一</div>
-    <div class="social-container">
-      
         
-      
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://lucas-y.github.io/post/demo/">
+              <h3 class="post-title">
+                四象限工作法
+              </h3>
+            </a>
+          </div>
         
-      
+
         
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      最新文章
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://lucas-y.github.io/post/js-gao-ji/">js高级</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://lucas-y.github.io/post/react/">react</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://lucas-y.github.io/post/vue/">vue基础</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://lucas-y.github.io/post/demo/">四象限工作法</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://lucas-y.github.io/post/keypoints/">重要知识点</a>
-            </li>
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      标签列表
-    </div>
-    <div class="row">
-      
-        <a href="https://lucas-y.github.io/tag/MsOF8Lziw/" class="badge secondary">
-          前端
-        </a>
-      
-    </div>
-  </div>
-  <div class="paper">
-    中庸之道 | <a class="rss" href="https://lucas-y.github.io//atom.xml" target="_blank">RSS</a>
-  </div>
+
+        <div class="site-footer">
+  中庸之道
+  <a class="rss" href="https://lucas-y.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
 </div>
 
-
+      </div>
     </div>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad()
 
-<script type="application/javascript">
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
 
-AOS.init();
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
 
-hljs.initHighlightingOnLoad()
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
 
-</script>
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
 
-
-
-
+    </script>
   </body>
 </html>
