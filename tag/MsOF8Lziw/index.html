@@ -1,106 +1,126 @@
+<!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>前端 | 前端小白</title>
-<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610439172981">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610439407445">
 <link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="前端 | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-  <meta name="description" content="知行合一" />
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="知行合一">
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://lucas-y.github.io/">
-  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1610439172981" alt="">
-  </a>
-  <h1 class="site-title">
-    前端小白
-  </h1>
-  <p class="site-description">
-    知行合一
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="https://lucas-y.github.io/" class="menu">
-          首页
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
+    <div id="app" class="main">
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：# 前端
-            </h2> 
-        </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://lucas-y.github.io/post/keypoints/">
-        <h2 class="post-title">重要知识点</h2>
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://lucas-y.github.io/">
+        <img src="https://lucas-y.github.io//images/avatar.png?v=1610439407445" class="site-logo">
+        <h1 class="site-title">前端小白</h1>
       </a>
-      <div class="post-info">
-        <span>
-          2020-12-08
-        </span>
-        <span>
-          8 min read
-        </span>
-        
-          <a href="https://lucas-y.github.io/tag/MsOF8Lziw/" class="post-tag">
-            # 前端
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        
-      </div>
-    </article>
-  
-</div>
-
-        <div class="pagination-container">
-  
-  
-</div>
-
-        <div class="site-footer">
-  中庸之道
-  <a class="rss" href="https://lucas-y.github.io//atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
       </div>
     </div>
+    <div>
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="https://lucas-y.github.io/" class="site-nav">
+            首页
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      知行合一
+    </div>
+    <div class="site-footer">
+      中庸之道 | <a class="rss" href="https://lucas-y.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <h2 class="current-tag">标签: 前端</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://lucas-y.github.io/post/keypoints/">
+                  <h2 class="post-title">重要知识点</h2>
+                </a>
+                <div class="post-date">
+                  2020-12-08
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
+              </div>
+              
+            </article>
+          
+
+          <div class="pagination-container">
+  
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+
   </body>
 </html>
