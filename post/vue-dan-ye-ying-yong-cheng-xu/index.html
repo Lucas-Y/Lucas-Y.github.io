@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>四象限工作法 | 前端小白</title>
+<title>vue 单页应用程序 | 前端小白</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -18,8 +18,11 @@
 
 
 
-    <meta name="description" content="链接
-" />
+    <meta name="description" content="单页应用程序 SPA
+单页Web应用（single page web application，SPA） 只有一张Web页面的应用,  所有的功能在一个页面上实现
+
+location.href = 'login.html'
+多页面应用程序: ..." />
     <meta name="keywords" content="" />
   </head>
   <body>
@@ -79,20 +82,64 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">四象限工作法</h2>
-            <div class="post-date">2020-12-08</div>
+            <h2 class="post-title">vue 单页应用程序</h2>
+            <div class="post-date">2021-01-13</div>
             
             <div class="post-content" v-pre>
-              <p><a href="https://www.jianshu.com/p/30b2ab0dc20e">链接</a></p>
+              <h2 id="单页应用程序-spa">单页应用程序 SPA</h2>
+<p><strong>单页Web应用（single page web application，SPA）</strong> <strong>只有一张Web页面的应用,  所有的功能在一个页面上实现</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://lucas-y.github.io//post-images/1610540930245.png" alt="" loading="lazy"></figure>
+<p>location.href = 'login.html'</p>
+<p>多页面应用程序: 京东   https://miaosha.jd.com/</p>
+<p>单页面应用程序: 网易云  https://music.163.com/   切换时, 不跳转页面</p>
+<h2 id="spa-项目优缺点">SPA 项目优缺点</h2>
+<p>SPA 单页面应用程序最显著的 3 个优点如下：</p>
+<ol>
+<li><strong>良好的交互体验</strong>
+<ul>
+<li><strong>单页应用的内容的改变,  不需要重新加载整个页面</strong></li>
+<li>获取数据也是通过 Ajax 异步获取</li>
+<li>没有页面之间的跳转 location.href ，不会出现“白屏现象”</li>
+</ul>
+</li>
+<li>良好的前后端工作分离模式
+<ul>
+<li>后端专注于提供 API 接口，更易实现 API 接口的复用</li>
+<li>前端专注于页面的渲染，更利于前端工程化的发展</li>
+</ul>
+</li>
+<li>减轻服务器的压力
+<ul>
+<li>服务器只提供数据，不负责页面的合成与逻辑的处理，压力更小</li>
+<li>每次请求, 仅仅是请求必须的内容, 效率很高,  css样式, 基本的js在第一次加载页面后, 就已经加载完了</li>
+</ul>
+</li>
+</ol>
+<p>缺点:</p>
+<ul>
+<li><strong>首屏加载会相对较慢</strong>, 因为一上来加载了所有的资源 (后面讲)
+<ul>
+<li>配置异步组件, 按需加载</li>
+<li>CDN加速 (花钱加速)</li>
+<li>文件压缩  (减少体积)</li>
+</ul>
+</li>
+<li><strong>不利于 SEO</strong> 搜索引擎优化
+<ul>
+<li>花钱推广</li>
+<li>SSR 服务器端渲染   (稍微好一点)</li>
+</ul>
+</li>
+</ul>
 
             </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://lucas-y.github.io/post/keypoints/">
+                <a href="https://lucas-y.github.io/post/js-gao-ji/">
                   <h3 class="post-title">
-                    重要知识点
+                    js高级
                   </h3>
                 </a>
               </div>
