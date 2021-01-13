@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>单页应用程序-组件化 | 前端小白</title>
-<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610541981364">
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610547344504">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="单页应用程序-组件化 | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
@@ -26,7 +26,7 @@ location.href = 'login.html'
       <div class="main-content">
         <div class="site-header">
   <a href="https://lucas-y.github.io/">
-  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1610541981364" alt="">
+  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1610547344504" alt="">
   </a>
   <h1 class="site-title">
     前端小白
@@ -74,7 +74,7 @@ location.href = 'login.html'
                 2021-01-13
               </span>
               <span>
-                3 min read
+                19 min read
               </span>
               
             </div>
@@ -160,6 +160,575 @@ yarn dev
 <li>index.html 是 SPA 单页面应用程序中唯一的HTML 页面</li>
 <li>package.json 是项目的包管理配置文件</li>
 </ul>
+<h3 id="src-目录介绍">src 目录介绍</h3>
+<p>在 src  <strong>项目源代码目录</strong> 之下，包含了如下内容：</p>
+<figure data-type="image" tabindex="5"><img src="https://lucas-y.github.io//post-images/1610545125652.png" alt="" loading="lazy"></figure>
+<ul>
+<li>assets 目录用来存放项目中所有的静态资源文件（css、fonts等）</li>
+<li>components 目录用来存放项目中所有的自定义组件</li>
+<li>App.vue 是项目的根组件</li>
+<li>index.css 是项目的全局样式文件</li>
+<li>main.js 是整个项目的打包入口文件</li>
+</ul>
+<h2 id="vite-项目运行的流程">vite 项目运行的流程</h2>
+<p>在工程化的vite项目中，vue 默认做的事情很单纯：<strong>通过 main.js 把 App.vue 渲染到 index.html 的指定区域中</strong>。</p>
+<p>(安装vetur插件,  <code>.vue 文件</code>高亮)</p>
+<p>其中：</p>
+<ul>
+<li>App.vue 用来编写待渲染的模板结构</li>
+<li>index.html 中需要预留一个 el 区域</li>
+<li>main.js 把 App.vue 渲染到了 index.html 所预留的区域中</li>
+</ul>
+<pre><code class="language-jsx">import { createApp } from 'vue'
+import App from './App.vue'
+import './index.css'
+
+// 将 App.vue 的内容, 渲染到 index.html中
+// 1. 在 App.vue 中编写待渲染的结构
+// 2. index.html 中预留一个 el 区域
+// 3. main.js 将App.vue渲染到index.html的el区域
+
+// 调用createApp()函数, 就是在创建一个单页应用实例, 通过.mount方法, 渲染到el区域中
+const app = createApp(App)
+app.mount('#app')
+</code></pre>
+<h2 id="梳理-vite-项目运行的流程">梳理 vite 项目运行的流程</h2>
+<p>1 清空src目录, 新建 main.js 和 App.vue 文件</p>
+<p>2 修改 App.vue 的默认内容，并书写如下的模板结构</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;h1&gt;我是App根级别组件&lt;/h1&gt;
+&lt;/template&gt;
+</code></pre>
+<p>3 打开 index.html 页面，确认预留了 el 区域</p>
+<pre><code class="language-jsx">&lt;!-- vue所管理的视图范围 --&gt;
+&lt;div id=&quot;box&quot;&gt;
+  &lt;!-- 这里不写任何内容, 而是通过 App.vue 组件渲染 --&gt;
+&lt;/div&gt;
+&lt;script type=&quot;module&quot; src=&quot;/src/main.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>4 按照 vue3 的标准用法, 将 App.vue 模板内容渲染到 index.html 页面的 el 区域中</p>
+<pre><code class="language-jsx">// 1. 从 vue 中按需导入 createApp 函数
+//    createApp 函数的作用: 可以创建 vue 的单页应用实例
+import { createApp } from 'vue'
+
+// 2. 导入待渲染的 App 组件
+import App from './App.vue'
+
+// 3. 调用 createApp () 函数, 创建 单页应用程序实例
+const app = createApp(App)
+
+// 4. 调用 实例的 .mount 方法, 指定vue要控制的视图区域
+app.mount('#box')
+</code></pre>
+<p>注意: template 仅仅是一个包裹容器, 不会生成任何实质性的结构</p>
+<h1 id="组件化开发">组件化开发</h1>
+<h2 id="什么是组件化开发">什么是组件化开发</h2>
+<p><strong>组件化开发</strong> 指的是：根据封装的思想，把页面上 <code>可重用的部分</code> 封装为 <code>组件</code>，从而方便项目的 开发 和 维护。</p>
+<p><strong>一个页面， 可以拆分成一个个组件，一个组件就是一个整体, 每个组件可以有自己独立的 结构 样式 和 行为</strong></p>
+<p>例如：http://www.ibootstrap.cn/ 所展示的效果，就契合了组件化开发的思想。</p>
+<p>用户可以通过拖拽组件的方式，快速生成一个页面的布局结构。</p>
+<p>前端组件化开发的好处主要体现在以下两方面：</p>
+<ul>
+<li>
+<p>提高了前端代码的<strong>复用性和灵活性</strong></p>
+</li>
+<li>
+<p>提升了开发效率和后期的<strong>可维护性</strong></p>
+</li>
+</ul>
+<p>vue 是一个完全支持组件化开发的框架。vue 中规定组件的后缀名是 .vue。</p>
+<p>之前接触到的 App.vue 文件本质上就是一个 vue 的组件。</p>
+<h2 id="单文件组件的三大组成部分">单文件组件的三大组成部分</h2>
+<p>每个 .vue 组件都由 3 部分构成，分别是：</p>
+<ul>
+<li>template -&gt; 组件的模板结构</li>
+<li>script -&gt; 组件的 JavaScript 行为</li>
+<li>style -&gt; 组件的样式</li>
+</ul>
+<p>其中，<strong>每个组件中必须包含 template 模板结构</strong>，而 script 行为和 style 样式是可选的组成部分。</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;h1&gt;我是App根级别组件&lt;/h1&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+// 在script中, 需要默认导出一个组件的配置对象
+export default {
+  
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+h1 {
+  color: red;
+}
+&lt;/style&gt;
+</code></pre>
+<p>该组件可以在其他文件中导入, <strong>注意导入的是整个整体</strong></p>
+<pre><code class="language-jsx">// 导入 App 组件 (结构 样式 行为)
+import App from './App.vue'
+</code></pre>
+<h2 id="组件的-template-说明">组件的 template 说明</h2>
+<p>每个组件对应的 <code>模板结构</code>，需要定义到 <code>&lt;template&gt;</code> 节点中。</p>
+<p>注意：</p>
+<ol>
+<li>
+<p><code>&lt;template&gt;</code> 是 vue 提供的容器标签，只起到包裹性质的作用，它不会被渲染为真正的 DOM 元素。</p>
+</li>
+<li>
+<p>在 template 定义根节点 (了解)</p>
+<p>在 vue 3.x 的版本中，<code>&lt;template&gt;</code> 节点内的 DOM 结构支持多个根节点。</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;h1&gt;我是App根级别组件&lt;/h1&gt;
+  &lt;h1&gt;我是另外一个根节点&lt;/h1&gt;
+&lt;/template&gt;
+</code></pre>
+<p>但是，在 vue 2.x 的版本中，<code>&lt;template&gt;</code>节点内的 DOM 结构仅支持单个根节点，不支持多个根节点</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;h1&gt;我是App根级别组件&lt;/h1&gt;
+&lt;/template&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="组件的-script-说明">组件的 script 说明</h2>
+<p>组件内的 <code>&lt;script&gt;</code>节点是可选的，开发者可以在 <code>&lt;script&gt;</code>节点中封装组件的 JavaScript 业务逻辑。</p>
+<pre><code class="language-html">&lt;script&gt;
+// 在script中, 需要默认导出一个组件的配置对象
+export default {
+  
+}
+&lt;/script&gt;
+</code></pre>
+<p><strong>1 script 中的 <code>name</code> 节点</strong></p>
+<p>可以通过 name 节点为当前组件定义一个名称：</p>
+<pre><code class="language-jsx">export default {
+  name: 'MyApp'
+}
+</code></pre>
+<p>在使用 vue-devtools 进行项目调试的时候，自定义的组件名称可以清晰的区分每个组件：</p>
+<figure data-type="image" tabindex="6"><img src="https://lucas-y.github.io//post-images/1610547044968.png" alt="" loading="lazy"></figure>
+<p><strong>2 scripts 中的 <code>data</code> 节点</strong></p>
+<p>vue 组件渲染期间需要用到的数据，可以定义在data 节点中：</p>
+<pre><code class="language-jsx">export default {
+  name: 'MyApp',
+  data () {
+    return {
+      username: '嘎嘎'
+    }
+  }
+}
+</code></pre>
+<p>vue中规定: <strong>组件中的 data 必须是函数,</strong> 不能直接指向一个数据对象。</p>
+<p>因此在组件中定义 data 数据节点时，下面的方式是错误的：</p>
+<pre><code class="language-jsx">data: {
+  count: 0  // 错误, 不能让 data 指向一个数据对象
+}
+</code></pre>
+<p>会导致多个组件实例共用同一份数据的问题，请参考官方给出的示例：<a href="https://cn.vuejs.org/v2/guide/components.html#data-%E5%BF%85%E9%A1%BB%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0">官网地址</a></p>
+<p><strong>3 script 中的 <code>methods</code> 节点</strong></p>
+<p>组件中的处理函数，要声明到 methods 节点中，示例代码如下:</p>
+<pre><code class="language-jsx">export default {
+  name: 'MyApp',
+  data () {
+    return {
+      username: '嘎嘎'
+    }
+  },
+  methods: {
+    fn () {
+      console.log('123')
+    }
+  }
+}
+</code></pre>
+<h2 id="组件的-style-说明">组件的 style 说明</h2>
+<h3 id="基本说明">基本说明</h3>
+<p>组件内的 <code>&lt;style&gt;</code> 节点是可选的，开发者可以在 <code>&lt;style&gt;</code>节点中编写样式美化当前组件的 UI 结构</p>
+<p>其中 <code>&lt;style&gt;</code>标签上的 lang=&quot;css&quot; 属性是可选的，它表示所使用的样式语言。</p>
+<p>默认只支持普通的 css 语法，可选值还有 less、sass/scss 、 stylus等。</p>
+<pre><code class="language-css">&lt;style lang=&quot;css&quot;&gt;
+h1 {
+  color: blue;
+}
+&lt;/style&gt;
+</code></pre>
+<h3 id="让-style-中支持-less-语法">让 style 中支持 less 语法</h3>
+<p>如果希望使用 less 语法编写组件的 style 样式，可以按照如下两个步骤进行配置：</p>
+<ul>
+<li>运行 yarn add less -D 命令安装依赖包，从而提供 less 语法的编译支持</li>
+<li>在 <code>&lt;style&gt;</code> 标签上添加 <code>lang=&quot;less&quot;</code>属性，即可使用 less 语法编写组件的样式</li>
+</ul>
+<pre><code class="language-less">&lt;style lang=&quot;less&quot;&gt;
+@color: red;
+div {
+  color: @color;
+}
+&lt;/style&gt;
+</code></pre>
+<h2 id="组件的注册">组件的注册</h2>
+<p>刚才我们创建使用的是 App.vue 根组件, 这个比较特殊, 是最大的一个根组件</p>
+<p>而App.vue根组件内, 还可以写入一些小组件, 而这些组件, 要使用, 就需要先注册!</p>
+<figure data-type="image" tabindex="7"><img src="https://lucas-y.github.io//post-images/1610547112428.png" alt="" loading="lazy"></figure>
+<p><strong>注册组件有两种注册方式</strong>:  分为“全局注册”和“局部注册”两种</p>
+<ul>
+<li>被全局注册的组件，可以在任意的组件模板范围中使用          (每个组件都是一个vue实例)</li>
+<li>被局部注册的组件，只能在当前注册的组件模板范围内使用</li>
+</ul>
+<h3 id="全局组件">全局组件</h3>
+<p>全局注册: 被全局注册的组件，可以在任意的组件模板范围中使用</p>
+<p>1 新建 components 文件夹, 准备三个文件 <code>hm-header.vue</code>    <code>hm-main.vue</code>    <code>hm-footer.vue</code></p>
+<pre><code class="language-less">&lt;template&gt;
+  &lt;div class=&quot;hm-header&quot;&gt;头部&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;less&quot;&gt;
+.hm-header {
+  height: 50px;
+  border: 3px solid #000;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+&lt;/style&gt;
+</code></pre>
+<p>2 在 <code>main.js</code> 中导入</p>
+<pre><code class="language-jsx">// .vue文件中, 提供了组件的配置项, 将来基于这个配置项, 可以注册组件, 就可以当成html标签使用
+import HmHeader from './components/hm-header.vue'
+</code></pre>
+<p>3 全局注册</p>
+<pre><code class="language-jsx">// 全局注册组件
+app.component('hm-header', HmHeader)
+</code></pre>
+<p>4 使用组件 =&gt;  注册好的组件, 可以当成 html 标签使用</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;hm-header&gt;&lt;/hm-header&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<figure data-type="image" tabindex="8"><img src="https://lucas-y.github.io//post-images/1610547150224.png" alt="" loading="lazy"></figure>
+<h3 id="局部注册">局部注册</h3>
+<p>局部注册: 被局部注册的组件，只能在当前注册的组件模板范围内使用</p>
+<p>1 在 App.vue 中导入</p>
+<pre><code class="language-jsx">import HmHeader from './components/hm-header.vue'
+import HmMain from './components/hm-main.vue'
+import HmFooter from './components/hm-footer.vue'
+</code></pre>
+<p>2 局部注册</p>
+<pre><code class="language-jsx">export default {
+  name: 'MyApp',
+  components: {
+    'hm-header': HmHeader,
+    'hm-main': HmMain,
+    'hm-footer': HmFooter
+  }
+}
+</code></pre>
+<p>3 使用局部注册的组件</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;hm-header&gt;&lt;/hm-header&gt;
+    &lt;hm-main&gt;&lt;/hm-main&gt;
+    &lt;hm-footer&gt;&lt;/hm-footer&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="组件名的大小写">组件名的大小写</h3>
+<p>在进行组件的注册时，定义组件名的方式有两种：</p>
+<ul>
+<li>
+<p>注册使用短横线命名法，例如 hm-header 和 hm-main</p>
+<pre><code class="language-js">app.component('hm-button', HmButton)
+</code></pre>
+<p>使用时 <code>&lt;hm-button&gt; &lt;/hm-button&gt;</code></p>
+</li>
+<li>
+<p>注册使用大驼峰命名法，例如 HmHeader 和 HmMain</p>
+<pre><code class="language-jsx">app.component('HmButton', HmButton)
+</code></pre>
+<p>使用时 <code>&lt;HmButton&gt; &lt;/HmButton&gt;</code> 和 <code>&lt;hm-button&gt; &lt;/hm-button&gt;</code>  都可以</p>
+</li>
+</ul>
+<p>推荐定义组件名时, 用大驼峰命名法, 更加方便</p>
+<p>全局注册</p>
+<pre><code class="language-jsx">app.component('HmButton', HmButton)
+</code></pre>
+<p>局部注册:</p>
+<pre><code class="language-jsx">components: {
+  HmHeader,
+  HmMain,
+  HmFooter
+}
+</code></pre>
+<p>使用时, 推荐遵循html5规范, 小写横杠隔开</p>
+<pre><code class="language-jsx">&lt;hm-header&gt;&lt;/hm-header&gt;
+&lt;hm-main&gt;&lt;/hm-main&gt;
+&lt;hm-footer&gt;&lt;/hm-footer&gt;
+</code></pre>
+<h3 id="通过-name-注册组件-了解">通过 name 注册组件 (了解)</h3>
+<p>在注册组件期间，除了可以直接提供组件的注册名称之外，还可以把组件的 name 属性作为注册后组件的名称</p>
+<p>组件内容:</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;button&gt;按钮组件&lt;/button&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  name: 'HmButton'
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;less&quot;&gt;
+button {
+  width: 80px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: pink;
+}
+&lt;/style&gt;
+</code></pre>
+<p>进行注册:</p>
+<pre><code class="language-jsx">import HmButton from './components/hm-button.vue'
+app.component(HmButton.name, HmButton)  // 等价于 app.component('HmButton', HmButton)
+</code></pre>
+<h2 id="组件的样式冲突-scoped">组件的样式冲突  <code>scoped</code></h2>
+<p>默认情况下，写在组件中的样式会<code>全局生效</code>，因此很容易造成多个组件之间的样式冲突问题。</p>
+<p>根本原因是：单页应用程序中，所有组件的结构，都是基于唯一的 index.html 页面进行呈现的,</p>
+<p>组件样式默认会作用到全局, 就会影响到整个 index.html 中的 dom 元素</p>
+<ul>
+<li>
+<p><code>全局样式</code>: 默认组件中的样式会作用到全局</p>
+</li>
+<li>
+<p><code>局部样式</code>: 可以给组件加上 scoped 属性, 可以让样式只作用于当前组件</p>
+</li>
+</ul>
+<pre><code class="language-jsx">&lt;style lang=&quot;less&quot; scoped&gt;
+div {
+  background-color: pink;
+}
+&lt;/style&gt;
+</code></pre>
+<p>原理:</p>
+<ol>
+<li>
+<p>添加scoped后, 会给当前组件中所有元素, 添加上一个自定义属性</p>
+<figure data-type="image" tabindex="9"><img src="https://lucas-y.github.io//post-images/1610547190490.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>添加scoped后,  每个style样式, 也会加上对应的属性选择器</p>
+<figure data-type="image" tabindex="10"><img src="https://lucas-y.github.io//post-images/1610547214600.png" alt="" loading="lazy"></figure>
+</li>
+</ol>
+<p>最终效果: 必须是当前组件的元素, 才会有这个自定义属性, 才会被这个样式作用到</p>
+<h1 id="组件通信入门">组件通信入门</h1>
+<p>每个组件都有自己的数据, 提供在data中, 每个组件的数据是独立的, 组件数据无法互相直接访问 (合理的)</p>
+<p>但是如果需要跨组件访问数据, 就需要用到组件通信</p>
+<p>组件通信的方式有很多: 现在先关注两种,  父传子  子传父</p>
+<h2 id="组件通信-父传子-props-传值">组件通信 - 父传子 props 传值</h2>
+<p>语法:</p>
+<ol>
+<li>父组件通过给子组件加属性传值</li>
+</ol>
+<pre><code class="language-jsx">&lt;jack price=&quot;100&quot; title=&quot;不错&quot; :info=&quot;msg&quot;&gt;&lt;/jack&gt;
+</code></pre>
+<ol start="2">
+<li>子组件中, 通过props属性接收</li>
+</ol>
+<pre><code class="language-js">props: ['price', 'title', 'info']
+</code></pre>
+<p><strong>需求: 封装一个商品组件 my-product</strong></p>
+<figure data-type="image" tabindex="11"><img src="https://lucas-y.github.io//post-images/1610547246213.png" alt="" loading="lazy"></figure>
+<p><code>my-product.vue</code></p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div class=&quot;my-product&quot;&gt;
+    &lt;h3&gt;标题: {{ title }}&lt;/h3&gt;
+    &lt;p&gt;价格: {{ price }}元&lt;/p&gt;
+    &lt;p&gt;{{ info }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: ['title', 'price', 'info']
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+.my-product {
+  width: 400px;
+  padding: 20px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  margin: 10px;
+}
+&lt;/style&gt;
+</code></pre>
+<p><code>app.vue</code></p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h3&gt;我是app组件的内容&lt;/h3&gt;
+    &lt;my-product price=&quot;100&quot; title=&quot;超级好吃的口水鸡&quot; :info=&quot;msg&quot;&gt;&lt;/my-product&gt;
+    &lt;my-product price=&quot;80&quot; title=&quot;超级难闻的榴莲&quot; :info=&quot;msg&quot;&gt;&lt;/my-product&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import MyProduct from './components/my-product.vue'
+export default {
+  data () {
+    return {
+      msg: '开业大酬宾, 全场八折'
+    }
+  },
+  components: {
+    MyProduct
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h2 id="v-for-遍历展示组件练习">v-for 遍历展示组件练习</h2>
+<p><strong>需求: 遍历展示商品列表</strong></p>
+<p>假定, 发送请求回来的商品数据,</p>
+<pre><code class="language-jsx">list: [
+  { id: 1, proname: '超级好吃的棒棒糖', proprice: 18.8 },
+  { id: 2, proname: '超级好吃的大鸡腿', proprice: 34.2 },
+  { id: 3, proname: '超级无敌的冰激凌', proprice: 14.2 }
+]
+</code></pre>
+<p>v-for 遍历展示</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h3&gt;我是app组件的内容&lt;/h3&gt;
+    &lt;my-product 
+      v-for=&quot;item in list&quot; :key=&quot;item.id&quot; 
+      :price=&quot;item.proprice&quot; 
+      :title=&quot;item.proname&quot; 
+      :info=&quot;msg&quot;&gt;
+    &lt;/my-product&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<figure data-type="image" tabindex="12"><img src="https://lucas-y.github.io//post-images/1610547282834.png" alt="" loading="lazy"></figure>
+<h2 id="区分-props-和-data">区分 props 和 data</h2>
+<p>组件中的数据来源, data  props</p>
+<p><strong>data 中的数据允许修改, props 中的数据不允许修改</strong>   遵循开发规范: 单向数据流</p>
+<h2 id="组件通信-子传父">组件通信 - 子传父</h2>
+<p><strong>需求: 砍价</strong></p>
+<figure data-type="image" tabindex="13"><img src="https://lucas-y.github.io//post-images/1610547328168.png" alt="" loading="lazy"></figure>
+<ol>
+<li>
+<p>子组件可以通过 this.$emit('事件名', 参数1, 参数2, ...) 触发事件的同时传参的</p>
+<pre><code class="language-jsx">this.$emit('say-price', 2)
+</code></pre>
+</li>
+<li>
+<p>父组件给子组件注册一个自定义事件</p>
+<pre><code class="language-jsx">&lt;my-product 
+  ...
+  @say-price=&quot;sayPrice&quot;&gt;
+&lt;/my-product&gt;
+</code></pre>
+<p>父组件并提供对应的函数接收参数</p>
+<pre><code class="language-jsx">methods: {
+  sayPrice (num) {
+    console.log(num)
+  }
+},
+</code></pre>
+</li>
+</ol>
+<hr>
+<p>问题: 改价需要知道, 是改的哪个id商品的价格 ? 子组件自己都不知道自己的 id ?</p>
+<p>思路:</p>
+<ol>
+<li>
+<p>先父传子, 将 id 传递给子组件</p>
+<pre><code class="language-jsx">&lt;my-product 
+  v-for=&quot;item in list&quot; 
+  :key=&quot;item.id&quot;
+  :price=&quot;item.proprice&quot;
+  :title=&quot;item.proname&quot;
+  
+  :id=&quot;item.id&quot;
+  
+  :info=&quot;msg&quot;
+  @say-price=&quot;sayPrice&quot;&gt;
+&lt;/my-product&gt;
+</code></pre>
+</li>
+<li>
+<p>子组件 props 接收 id</p>
+<pre><code class="language-jsx">props: ['title', 'price', 'info', 'id'],
+</code></pre>
+</li>
+<li>
+<p>子传父时带上 id</p>
+<pre><code class="language-jsx">this.$emit('say-price', this.id, 2)
+</code></pre>
+</li>
+<li>
+<p>父组件接收参数, 此时有两个参数了 id 和 num, 编写砍价逻辑</p>
+<pre><code class="language-jsx">sayPrice (id, num) {
+  // console.log(id, num)
+  const item = this.list.find(item =&gt; item.id === id)
+  let result = item.proprice - num
+  if (result &lt;= item.lowprice) {
+    result = item.lowprice
+    alert('老哥最低价了:' + result + '元')
+  }
+  item.proprice = result.toFixed(2)
+}
+</code></pre>
+</li>
+</ol>
+<h2 id="props-校验-了解">props 校验 (了解)</h2>
+<p><strong>props 是父传子, 传递给子组件的数据, 为了提高 子组件被使用时 的稳定性, 可以进行props校验</strong>, 验证传递的数据是否符合要求</p>
+<p>默认的数组形式, 不会进行校验, 如果希望校验, 需要提供对象形式的 props</p>
+<pre><code class="language-jsx">props: {
+	...
+}
+</code></pre>
+<p>props 提供了多种数据验证方案，例如：</p>
+<ul>
+<li>基础的类型检查  Number</li>
+<li>多个可能的类型 [String, Number]</li>
+<li>必填项校验   required: true</li>
+<li>默认值 default: 100</li>
+<li>自定义验证函数</li>
+</ul>
+<p>官网语法: <a href="https://cn.vuejs.org/v2/guide/components-props.html#Prop-%E9%AA%8C%E8%AF%81">地址</a></p>
+<pre><code class="language-js">{
+  props: {
+    // 基础的类型检查
+    propA: Number,
+    // 多个可能的类型
+    propB: [String, Number],
+    // 必填的字符串
+    propC: {
+      type: String,
+      required: true
+    },
+    // 带有默认值的数字
+    propD: {
+      type: Number,
+      default: 100
+    },
+    // -------------------------------------------------------------------------
+    // 自定义验证函数
+    propF: {
+      validator: function (value) {
+        // 这个值必须匹配下列字符串中的一个
+        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+      }
+    }
+  }
+}
+</code></pre>
 
               </div>
               <div class="toc-container">
@@ -177,8 +746,43 @@ yarn dev
 <li><a href="#%E6%A2%B3%E7%90%86%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84">梳理项目结构</a>
 <ul>
 <li><a href="#%E6%95%B4%E4%BD%93%E7%9B%AE%E5%BD%95">整体目录</a></li>
+<li><a href="#src-%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D">src 目录介绍</a></li>
 </ul>
 </li>
+<li><a href="#vite-%E9%A1%B9%E7%9B%AE%E8%BF%90%E8%A1%8C%E7%9A%84%E6%B5%81%E7%A8%8B">vite 项目运行的流程</a></li>
+<li><a href="#%E6%A2%B3%E7%90%86-vite-%E9%A1%B9%E7%9B%AE%E8%BF%90%E8%A1%8C%E7%9A%84%E6%B5%81%E7%A8%8B">梳理 vite 项目运行的流程</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91">组件化开发</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%84%E4%BB%B6%E5%8C%96%E5%BC%80%E5%8F%91">什么是组件化开发</a></li>
+<li><a href="#%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6%E7%9A%84%E4%B8%89%E5%A4%A7%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86">单文件组件的三大组成部分</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84-template-%E8%AF%B4%E6%98%8E">组件的 template 说明</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84-script-%E8%AF%B4%E6%98%8E">组件的 script 说明</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84-style-%E8%AF%B4%E6%98%8E">组件的 style 说明</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E8%AF%B4%E6%98%8E">基本说明</a></li>
+<li><a href="#%E8%AE%A9-style-%E4%B8%AD%E6%94%AF%E6%8C%81-less-%E8%AF%AD%E6%B3%95">让 style 中支持 less 语法</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B3%A8%E5%86%8C">组件的注册</a>
+<ul>
+<li><a href="#%E5%85%A8%E5%B1%80%E7%BB%84%E4%BB%B6">全局组件</a></li>
+<li><a href="#%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C">局部注册</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E5%90%8D%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%86%99">组件名的大小写</a></li>
+<li><a href="#%E9%80%9A%E8%BF%87-name-%E6%B3%A8%E5%86%8C%E7%BB%84%E4%BB%B6-%E4%BA%86%E8%A7%A3">通过 name 注册组件 (了解)</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%A0%B7%E5%BC%8F%E5%86%B2%E7%AA%81-scoped">组件的样式冲突  <code>scoped</code></a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E5%85%A5%E9%97%A8">组件通信入门</a>
+<ul>
+<li><a href="#%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1-%E7%88%B6%E4%BC%A0%E5%AD%90-props-%E4%BC%A0%E5%80%BC">组件通信 - 父传子 props 传值</a></li>
+<li><a href="#v-for-%E9%81%8D%E5%8E%86%E5%B1%95%E7%A4%BA%E7%BB%84%E4%BB%B6%E7%BB%83%E4%B9%A0">v-for 遍历展示组件练习</a></li>
+<li><a href="#%E5%8C%BA%E5%88%86-props-%E5%92%8C-data">区分 props 和 data</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1-%E5%AD%90%E4%BC%A0%E7%88%B6">组件通信 - 子传父</a></li>
+<li><a href="#props-%E6%A0%A1%E9%AA%8C-%E4%BA%86%E8%A7%A3">props 校验 (了解)</a></li>
 </ul>
 </li>
 </ul>
