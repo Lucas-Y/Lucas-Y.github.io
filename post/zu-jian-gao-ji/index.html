@@ -1,0 +1,986 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>组件高级 | 前端小白</title>
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610678132382">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="组件高级 | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="watch - 侦听器 (监视器)
+watch 侦听器允许开发者监视数据的变化，从而针对数据的变化做特定的操作。
+例如，监视用户名的变化并发起请求，判断用户名是否可用。
+基本语法
+开发者需要在 watch 节点下，定义自己的侦听器。
+&lt..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://lucas-y.github.io/">
+  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1610678132382" alt="">
+  </a>
+  <h1 class="site-title">
+    前端小白
+  </h1>
+  <p class="site-description">
+    知行合一
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://lucas-y.github.io/" class="menu">
+          首页
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              组件高级
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-15
+              </span>
+              <span>
+                23 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="watch-侦听器-监视器">watch - 侦听器 (监视器)</h1>
+<p>watch 侦听器允许开发者监视数据的变化，从而针对数据的变化做特定的操作。</p>
+<p>例如，监视用户名的变化并发起请求，判断用户名是否可用。</p>
+<h2 id="基本语法">基本语法</h2>
+<p>开发者需要在 watch 节点下，定义自己的侦听器。</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div class=&quot;watch-demo&quot;&gt;
+    用户名: &lt;input type=&quot;text&quot; v-model=&quot;username&quot;&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data () {
+    return {
+      username: ''
+    }
+  },
+  watch: {
+    // 监视 username 数据的变化
+    // 第一个参数 新值, 第二个参数 旧值
+    username (newValue, oldValue) {
+      console.log(newValue, oldValue)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h2 id="发送请求检测用户名是否存在">发送请求检测用户名是否存在</h2>
+<p>监听 username 值的变化，并使用 axios 发起 Ajax 请求，检测当前输入的用户名是否可用：</p>
+<p>axios 是一个用于发送 ajax 的工具包</p>
+<p>1 安装 axios</p>
+<pre><code class="language-txt">yarn add axios
+</code></pre>
+<p>2 导入 axios</p>
+<pre><code class="language-jsx">import axios from 'axios'
+</code></pre>
+<p>3 发送请求</p>
+<p>​    地址: https://www.escook.cn/api/finduser/:用户名  (get请求)</p>
+<pre><code class="language-jsx">watch: {
+  // 监视 username 数据的变化
+  // 第一个参数 新值, 第二个参数 旧值
+  async username (newValue, oldValue) {
+    const res = await axios.get(`https://www.escook.cn/api/finduser/${newValue}`)
+    console.log(res.data.message)
+  }
+}
+</code></pre>
+<h2 id="immediate-选项">immediate 选项</h2>
+<p>默认情况下，组件在初次加载完毕后不会调用 watch 侦听器。</p>
+<p>如果想让 watch 侦听器立即被调用，可以使用 immediate 选项。</p>
+<p>需要改写成 watch 的完整写法</p>
+<pre><code class="language-vue">&lt;script&gt;
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      username: 'abc'
+    }
+  },
+  watch: {
+    // 监视 username 数据的变化
+    // 第一个参数 新值, 第二个参数 旧值
+    // async username (newValue, oldValue) {
+    //   const res = await axios.get(`https://www.escook.cn/api/finduser/${newValue}`)
+    //   console.log(res.data.message)
+    // }
+    username: {
+      // // 组件第一次被渲染, 就会立即出发一次侦听器
+      immediate: true,
+      async handler (newValue, oldValue) {
+        const res = await axios.get(`https://www.escook.cn/api/finduser/${newValue}`)
+        console.log(res.data.message) 
+      }
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h2 id="deep-选项">deep 选项</h2>
+<p>如果 watch 侦听的是一个对象，默认监视的是对象地址,  如果对象中的属性值发生了变化，则无法被监听到。</p>
+<p>此时需要使用 deep 选项, 深度监视</p>
+<pre><code class="language-jsx">data () {
+  return {
+    obj: {
+      name: 'zs',
+      age: 18
+    }
+  }
+},
+watch: {
+  obj: {
+    immediate: true,
+    deep: true,
+    handler(newValue) {
+      console.log(newValue)
+    }
+  }
+}
+</code></pre>
+<h2 id="监听单个属性的变化">监听单个属性的变化</h2>
+<p>如果加上 deep, 默认监视的是对象, 全部属性的变化, 如果仅仅希望监视对象的某个属性的变化, 代码如下:</p>
+<pre><code class="language-jsx">data () {
+  return {
+    obj: {
+      name: 'zs',
+      age: 18
+    }
+  }
+},
+watch: {
+  'obj.name': {
+    immediate: true,
+    deep: true,
+    handler(newValue) {
+      console.log(newValue)
+    }
+  }
+}
+</code></pre>
+<h1 id="生命周期">生命周期</h1>
+<h2 id="研究生命周期的意义">研究生命周期的意义</h2>
+<p>生命周期 =&gt; 一个事物从出生 到 消亡的全部过程</p>
+<p>生命周期（Life Cycle）是指一个组件从<code>创建</code>-&gt; <code>运行</code> -&gt; <code>销毁</code>的整个阶段，强调的是一个时间段</p>
+<ul>
+<li>张三出生，表示这个人生命周期的开始</li>
+<li>张三离世，表示这个人生命周期的结束</li>
+<li>中间张三的一生，就是张三的生命周期</li>
+</ul>
+<p>我们可以把<code>每个 vue 组件运行的过程</code>，也概括为生命周期：</p>
+<ul>
+<li>vue 组件的初始化，表示生命周期的开始</li>
+<li>vue 组件的销毁，表示生命周期的结束</li>
+<li>vue 组件中间运行的过程，就是组件的生命周期</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="https://lucas-y.github.io//post-images/1610677589633.png" alt="" loading="lazy"></figure>
+<p>研究生命周期, 可以在不同阶段, 做一些事情, 影响当前实例(组件)</p>
+<h2 id="生命周期函数钩子函数">生命周期函数(钩子函数)</h2>
+<p><strong>生命周期函数：是由 vue 框架提供的内置函数，会伴随着组件的生命周期，自动按次序执行。</strong></p>
+<p>生命周期函数的作用：允许程序员在<code>特定的时间点</code>，执行某些特定的操作。</p>
+<p>例如，组件创建完毕后，可以在created 生命周期函数中发起Ajax 请求，从而初始化 data 数据。</p>
+<p>注意：<code>生命周期</code>强调的是时间段，<code>生命周期函数</code>强调的是时间点。  (比如: 人到六七岁要上小学,  六七岁出去演电影...)</p>
+<h2 id="组件生命周期分类">组件生命周期分类</h2>
+<p>vue 组件的生命周期函数，可以分为 3 大类：</p>
+<ul>
+<li>组件<code>初始化阶段</code>的生命周期函数</li>
+<li>组件<code>运行阶段</code>的生命周期函数</li>
+<li>组件<code>销毁阶段</code>的生命周期函数</li>
+</ul>
+<figure data-type="image" tabindex="2"><img src="https://lucas-y.github.io//post-images/1610677612422.png" alt="" loading="lazy"></figure>
+<p><code>小 tips</code>: vue2的销毁阶段 =&gt; beforeDestroy 和 destroyed 在 vue3 已被更名为 beforeUnmount 和 unmounted</p>
+<h2 id="生命周期图解">生命周期图解</h2>
+<p>可以参考 vue 官方文档给出的“生命周期图示”，进一步理解组件生命周期执行的过程：</p>
+<p>官网图解: <a href="https://www.vue3js.cn/docs/zh/guide/instance.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA">地址</a></p>
+<h2 id="分析组件的创建时机">分析组件的创建时机</h2>
+<p>每个组件, 都有着自己的生命周期, 当组件被当成标签形式使用, 将来要渲染到页面中时, 这个组件就会被创建</p>
+<pre><code class="language-jsx">&lt;jack&gt;&lt;/jack&gt;  // 创建一次
+
+&lt;jack&gt;&lt;/jack&gt;  // 创建一次
+
+&lt;jack&gt;&lt;/jack&gt;  // 创建一次
+</code></pre>
+<p>组件如果被使用三次, 那么这里有三个jack组件, 互相的生命周期互不影响</p>
+<p><code>小tips</code>: 分析了解, 父子组件生命周期的关系 (了解)</p>
+<figure data-type="image" tabindex="3"><img src="https://lucas-y.github.io//post-images/1610677643026.png" alt="" loading="lazy"></figure>
+<p><code>小tips</code>: 利用 v-if,  控制组件的显示隐藏, 分析组件的创建和销毁</p>
+<h1 id="mixin-混入">mixin 混入</h1>
+<h2 id="什么是-mixin-混入">什么是 mixin 混入</h2>
+<p>如果多个组件之间存在可以复用的功能，则可以把功能封装为 mixin，并混入到每个需要的组件中。</p>
+<figure data-type="image" tabindex="4"><img src="https://lucas-y.github.io//post-images/1610677686635.png" alt="" loading="lazy"></figure>
+<h2 id="定义-mixin">定义 mixin</h2>
+<p>mixin 本质上就是一个 .js 文件，里面定义了组件之间可复用的业务逻辑，示例代码如下:</p>
+<pre><code class="language-jsx">export default {
+  // 可以写组件的任意配置项, data methods, 钩子函数, ...
+  created () {
+    this.hello()
+  },
+  methods: {
+    hello () {
+      console.log('你好, 欢迎欢迎')
+    }
+  }
+}
+</code></pre>
+<h2 id="为组件混入-mixin">为组件混入 mixin</h2>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;组件1&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import hello from '../mixins/hello.js'
+export default {
+  mixins: [hello]
+}
+&lt;/script&gt;
+</code></pre>
+<h2 id="mixin的选项合并原则">mixin的选项合并原则</h2>
+<p>当组件和混入对象含有同名选项时，这些选项将以恰当的方式进行“合并”。</p>
+<p>最主要的 3 个合并规则如下：</p>
+<ul>
+<li>data 数据的合并</li>
+<li>生命周期函数的合并</li>
+<li>其它选项的合并</li>
+</ul>
+<p><strong>1 data 数据的合并</strong>:</p>
+<p>data数据项会进行合并, 如果 mixin 中的 data 数据项和组件中的 data 数据项名称冲突时，则以组件的数据项为准</p>
+<p><strong>2 生命周期函数的合并:</strong></p>
+<p>同名的生命周期函数将合并为一个数组(底层)，因此都会被调用。</p>
+<p>而且，mixin 的生命周期函数会优先于组件的生命周期函数被调用。   (created的时候, 执行两个函数 [mixin先, 组件内的后] )</p>
+<p><strong>3 其它选项的合并:</strong></p>
+<p>值为对象的选项，例如 methods、components，将被合并为同一个对象。</p>
+<p>两个对象键名冲突时，取组件对象的键值对（组件的优先级高）。</p>
+<h1 id="组件之间的数据共享组件通信">组件之间的数据共享(组件通信)</h1>
+<p>组件之间的数据, 是独立, 无法互相直接共享的, 需要通过一些语法, 实现组件数据通信</p>
+<p>在项目开发中，按照通信语法, 组件之间的关系分为如下 3 种：</p>
+<ul>
+<li>父子关系</li>
+<li>非父子关系 (常见解决兄弟关系)    通信用的语法是一样的</li>
+<li>后代关系</li>
+</ul>
+<figure data-type="image" tabindex="5"><img src="https://lucas-y.github.io//post-images/1610677728315.png" alt="" loading="lazy"></figure>
+<h2 id="父子组件的数据共享-重要">父子组件的数据共享 (重要)</h2>
+<p>父子组件之间的数据共享又分为:</p>
+<ul>
+<li>
+<p>父 -&gt; 子共享数据 (父传子)</p>
+<p>1 给子组件添加属性的方式传值</p>
+<p>2 子组件内, 利用 props 接收父组件传值</p>
+</li>
+<li>
+<p>子 -&gt; 父共享数据 (子传父)</p>
+<p>1 在子组件中, 通过触发事件, 传值, this.$emit(事件名, 参数1, 参数2, ...)</p>
+<p>2 在父组件中, 给子组件注册对应的事件, 接收参数</p>
+</li>
+</ul>
+<h2 id="兄弟组件非父子数据共享">兄弟组件(非父子)数据共享</h2>
+<h3 id="基本说明">基本说明</h3>
+<p>在 <code>vue2.x</code>中，兄弟组件之间数据共享的方案是EventBus</p>
+<p>在 <code>vue3.x</code>中 EventBus 方案被剔除了。使用 mitt 作为 EventBus 的替代方案。 (原理步骤, 基本一致)</p>
+<p>事件总线, 可以解决兄弟组件(非父子)组件的通信问题</p>
+<figure data-type="image" tabindex="6"><img src="https://lucas-y.github.io//post-images/1610677762818.png" alt="" loading="lazy"></figure>
+<p>买房卖房:</p>
+<p>三个人:  买房子的人,  卖房子的人,  中介(售楼小姐)</p>
+<p>现况:</p>
+<ol>
+<li>没有现房, B(买房子的人) 也不会一直傻乎乎在售楼处等, 会告诉售楼小姐, 他的需求   (<code>给事件总线 - 添加监听</code>)</li>
+<li>售楼小姐, 会有一个小本子, 记录着要买房的人, 以及买房的需求</li>
+<li>A (卖房子的人)  想卖房子,  会和售楼小姐说, 想要卖房 (发布了卖房子的消息)   (<code>给事件总线-触发事件, 发布消息</code>)</li>
+<li>一旦消息发布,  售楼小姐, 会立刻根据之前记录的情况, 通知到有记录的买房者</li>
+</ol>
+<h3 id="使用步骤">使用步骤</h3>
+<p>1 安装 mitt 包</p>
+<pre><code>yarn add mitt
+</code></pre>
+<p>2 在 <code>components</code> 新建 <code>eventBus.js</code>,   创建公共的 eventBus 对象, 并导出</p>
+<pre><code class="language-jsx">// 导入 mitt 模块
+import mitt from 'mitt'
+
+// 创建 mitt 实例对象
+const emitter = mitt()
+
+// 将 mitt 实例导出
+export default emitter
+</code></pre>
+<p>3 在数据发送方, 给 eventBus 触发事件, 传递参数  (参数只能传一个, 如果要传多个, 可以传对象)</p>
+<pre><code class="language-jsx">emmitter.emit('事件名', 参数)
+</code></pre>
+<p>4 在数据接收方, 给 eventBus  注册事件, 接收参数</p>
+<pre><code class="language-js">emmitter.on('事件名', (参数) =&gt; {
+	...
+})
+</code></pre>
+<h3 id="了解-vue2-中的-eventbus">了解 vue2 中的 eventBus</h3>
+<p>1 创建 eventBus (一个空的vue实例)</p>
+<pre><code class="language-jsx">import Vue from 'vue'
+const eventBus = new Vue()
+export default eventBus
+</code></pre>
+<p>2 在数据发送方, 给 eventBus 触发事件, 传递参数</p>
+<pre><code class="language-jsx">eventBus.$emit('事件名', 参数)
+</code></pre>
+<p>3 在数据接收方, 给 eventBus  注册事件, 接收参数</p>
+<pre><code class="language-js">eventBus.$on('事件名', (参数) =&gt; {
+	...
+})
+</code></pre>
+<h2 id="后代关系组件之间的共享数据">后代关系组件之间的共享数据</h2>
+<p>后代关系组件之间共享数据，指的是<code>父节点的组件向其子孙组件共享数据</code>。</p>
+<p>此时组件之间的嵌套关系比较复杂，可以使用 provide 和 inject 实现后代关系组件之间的数据共享。</p>
+<h3 id="父组件provide共享数据">父组件<code>provide</code>共享数据</h3>
+<p>利用 provide 函数, 在 return 的对象中, 就包含要向子组件共享的数据</p>
+<pre><code class="language-jsx">export default {
+  data () {
+    return {
+      flag: true,
+      color: 'red' // 定义父组件需要共享的数据
+    }
+  },
+  provide () { // 利用 provide 函数, 在 return 的对象中, 就包含要向子组件共享的数据
+    return {
+      color: this.color
+    }
+  },
+}
+</code></pre>
+<h3 id="子孙节点-inject-接收数据">子孙节点 <code>inject</code> 接收数据</h3>
+<p>子孙节点可以使用 inject 数组，接收父级节点向下共享的数据</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div class=&quot;sun&quot;&gt;我是孙组件 - {{ color }}&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  inject: ['color']
+}
+&lt;/script&gt;
+</code></pre>
+<h3 id="向子孙节点共享响应式的数据">向子孙节点共享响应式的数据</h3>
+<p>默认共享的数据, 如果是简单类型的, 就会是非响应式的数据</p>
+<p>如果希望是响应式的, 可以向子孙节点, 共享一个对象, 对象的属性修改时, 是响应式的!</p>
+<p><code>提供数据</code></p>
+<pre><code class="language-js">  data () {
+    return {
+      // color: 'red' // 定义父组件需要共享的数据
+      colorObj: {
+        color: 'red'
+      }
+    }
+  },
+  provide () { // 利用 provide 函数, 在 return 的对象中, 就包含要向子组件共享的数据
+    return {
+      colorObj: this.colorObj
+    }
+  },
+</code></pre>
+<p><code>获取数据</code></p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div class=&quot;sun&quot;&gt;我是孙组件 - {{ colorObj.color }}&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  inject: ['colorObj']
+}
+&lt;/script&gt;
+</code></pre>
+<h2 id="组件之间的数据共享-vuex">组件之间的数据共享 vuex</h2>
+<p>vuex 是组件之间的<code>数据共享方案</code>的 <code>最终奥义</code>。</p>
+<p>在企业级的 vue 项目开发中，vuex 可以让组件之间的数据共享变得高效、清晰、且易于维护。</p>
+<figure data-type="image" tabindex="7"><img src="https://lucas-y.github.io//post-images/1610677800877.png" alt="" loading="lazy"></figure>
+<h1 id="axios-介绍">axios 介绍</h1>
+<ol>
+<li>
+<p>axios 是什么 ?</p>
+<p>就是一个 发送  ajax  请求的工具</p>
+<p>axios 底层, 就是 原生 ajax, 只是它内部是通过 promise 封装的</p>
+</li>
+<li>
+<p>axios的基本使用</p>
+</li>
+</ol>
+<pre><code class="language-jsx">axios({
+  method: '请求方式', // get post
+  url: '请求地址',
+  data: {    // 拼接到请求体的参数,  post请求的参数
+    xxx: xxx,
+  },
+  params: {  // 拼接到请求行的参数, get请求的参数
+   	xxx: xxx 
+  }
+}).then(res =&gt; {
+  console.log(res.data) // 后台返回的结果
+}).catch(err =&gt; {
+  console.log(err)
+})
+
+
+axios.get(url).then(...)
+axios.get(url, {
+  params: {  xx: xxx  },
+  headers: {}
+})
+                                  
+axios.post(url, data).then(...)
+</code></pre>
+<h1 id="axios优化了解">axios优化(了解)</h1>
+<h2 id="处理基地址">处理基地址</h2>
+<pre><code class="language-jsx">// 配置请求根路径
+axios.defaults.baseURL = 'https://www.escook.cn'
+</code></pre>
+<h2 id="挂载到全局">挂载到全局</h2>
+<pre><code class="language-jsx">// 配置请求根路径
+axios.defaults.baseURL = 'https://www.escook.cn'
+// 将axios挂载为 app 的全局属性
+// 挂载后, 所有的组件实例, 都可以通过 this 访问到挂载的全局属性
+const app = createApp(App)
+app.config.globalProperties.$http = axios
+app.mount('#app')
+</code></pre>
+<h1 id="ref-和-refs">ref 和 $refs</h1>
+<p>利用 ref 和 $refs 可以用于获取 dom 元素, 或者组件实例</p>
+<p>每个 vue 的组件实例上，都包含一个$refs 对象，里面存储着对应的DOM 元素或组件的引用。</p>
+<p>1 给需要获取的 dom 元素或者组件, 添加 ref 属性</p>
+<pre><code class="language-jsx">&lt;div&gt;
+  &lt;div ref=&quot;box&quot;&gt;我是div盒子&lt;/div&gt;
+  &lt;jack ref=&quot;jack&quot;&gt;&lt;/jack&gt;
+  &lt;button @click=&quot;fn&quot;&gt;按钮&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p>2 通过 <code>this.$refs.xxx</code> 获取, 拿到组件可以调用组件的方法</p>
+<pre><code class="language-jsx">import Jack from './jack.vue'
+export default {
+  methods: {
+    fn () {
+      console.log(this.$refs.box)
+      console.log(this.$refs.jack)
+      this.$refs.jack.sayHi()
+    }
+  },
+  components: {
+    Jack
+  }
+}
+</code></pre>
+<h1 id="nexttick">$nextTick</h1>
+<p><strong>需求1: 点击按钮, 切换显示输入框</strong></p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 需求: 点击按钮, 切换显示输入框 --&gt;
+    &lt;input type=&quot;text&quot; v-if=&quot;isShowInput&quot;&gt;
+    &lt;button @click=&quot;fn&quot; v-else&gt;点此搜索&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data () {
+    return {
+      isShowInput: false
+    }
+  },
+  methods: {
+    fn () {
+      this.isShowInput = true
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<p><strong>需求2: 显示输入框的同时, 要获取焦点</strong></p>
+<p>当文本框展示出来之后，如果希望它立即获得焦点，则可以为其添加 ref 引用，并调用原生 DOM 对象的.focus() 方法即可。</p>
+<p>直接调用会报错, 因为 vue 是 异步dom更新的 (提升渲染效率),  <code>this.isShowInput = true</code> 执行完时, 实际的 dom 还没渲染出来</p>
+<pre><code class="language-jsx">&lt;input ref=&quot;inp&quot; type=&quot;text&quot; v-if=&quot;isShowInput&quot;&gt;
+
+fn () {
+  this.isShowInput = true
+  this.$refs.inp.focus()
+}
+</code></pre>
+<p>组件的 <code>$nextTick(callback)</code> 方法，会把 callback 回调推迟到下一个 DOM 更新周期之后执行。</p>
+<p>通俗的理解是：<strong>等组件的DOM 刷新之后，再执行 callback 回调函数</strong>。从而能保证 callback 函数可以操作到最新的 DOM 元素。</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;!-- 需求: 点击按钮, 切换显示输入框 --&gt;
+    &lt;input ref=&quot;inp&quot; type=&quot;text&quot; v-if=&quot;isShowInput&quot;&gt;
+    &lt;button @click=&quot;fn&quot; v-else&gt;点此搜索&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data () {
+    return {
+      isShowInput: false
+    }
+  },
+  methods: {
+    fn () {
+      this.isShowInput = true
+      this.$nextTick(() =&gt; {
+        this.$refs.inp.focus()
+      })
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h1 id="dynamic-动态组件">dynamic 动态组件</h1>
+<h2 id="动态组件的基本使用">动态组件的基本使用</h2>
+<p>什么是动态组件:   让多个组件使用同一个挂载点，并动态切换，这就是动态组件</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h3&gt;动态组件的演示&lt;/h3&gt;
+    &lt;!-- 动态组件 =&gt; 多个组件使用同一个挂载点, 并可以动态的切换展示 --&gt;
+    &lt;button @click=&quot;comName = 'my-swiper'&quot;&gt;swiper&lt;/button&gt;
+    &lt;button @click=&quot;comName = 'my-nav'&quot;&gt;nav&lt;/button&gt;
+    
+    &lt;!-- 
+      &lt;my-nav&gt;&lt;/my-nav&gt;
+      &lt;my-swiper&gt;&lt;/my-swiper&gt; 
+    --&gt;
+    &lt;component :is=&quot;comName&quot;&gt;&lt;/component&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import MyNav from './my-nav.vue'
+import MySwiper from './my-swiper.vue'
+export default {
+  data () {
+    return {
+      comName: 'my-nav'
+    }
+  },
+  components: {
+    MyNav,
+    MySwiper
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h2 id="使用-keep-alive-保持状态">使用 keep-alive 保持状态</h2>
+<p>默认情况下，切换动态组件时无法保持组件的状态。会将组件销毁, 将来显示时, 又会重新创建</p>
+<p>此时可以使用vue 内置的 <code>&lt;keep-alive&gt;</code> 组件保持动态组件的状态。</p>
+<p>使用 keep-alive 包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们</p>
+<pre><code class="language-jsx">&lt;keep-alive&gt;
+  &lt;component :is=&quot;comName&quot;&gt;&lt;/component&gt;
+&lt;/keep-alive&gt;
+</code></pre>
+<h1 id="插槽">插槽</h1>
+<p>插槽（Slot）是 vue 为组件的封装者提供的能力。</p>
+<p>允许开发者在封装组件时，把不确定的、希望由用户指定的部分定义为插槽。</p>
+<h2 id="默认插槽-slot">默认插槽 slot</h2>
+<p><strong>需求: 要在页面中显示一个对话框, 封装成一个组件</strong></p>
+<figure data-type="image" tabindex="8"><img src="https://lucas-y.github.io//post-images/1610678122099.png" alt="" loading="lazy"></figure>
+<p>通过父传子, 固然可以完成一定层面的组件的定制, 但是自定义性较差,</p>
+<p>如果希望能够自定义组件内部的一些结构 =&gt; 就需要用到插槽</p>
+<p><strong>插槽作用: 用于实现组件的内容分发, 通过 slot 标签, 可以接收到写在组件标签内的内容</strong></p>
+<p>基本示例:</p>
+<pre><code class="language-jsx">&lt;my-dialog&gt;
+  &lt;p&gt;请输入正确的手机号码&lt;/p&gt;
+&lt;/my-dialog&gt;
+</code></pre>
+<p><code>my-dialog.vue</code></p>
+<pre><code class="language-less">&lt;template&gt;
+  &lt;div class=&quot;my-dialog&quot;&gt;
+    &lt;div class=&quot;header&quot;&gt;
+      &lt;h3&gt;友情提示&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;content&quot;&gt;
+      &lt;slot&gt;&lt;/slot&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;
+      &lt;button&gt;关闭&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;less&quot; scoped&gt;
+.my-dialog {
+  width: 400px;
+  padding: 10px 20px;
+  border: 3px solid #000;
+  border-radius: 5px;
+  margin: 10px;
+}
+&lt;/style&gt;
+</code></pre>
+<h2 id="后备内容-默认值">后备内容 (默认值)</h2>
+<p>封装组件时，可以为预留的 <code>&lt;slot&gt;</code> 插槽提供后备内容（默认内容）。</p>
+<p>如果组件的使用者没有为插槽提供任何内容，则后备内容会生效。</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div class=&quot;my-dialog&quot;&gt;
+    &lt;div class=&quot;header&quot;&gt;
+      &lt;h3&gt;友情提示&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;content&quot;&gt;
+      &lt;slot&gt;这是后备内容&lt;/slot&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;footer&quot;&gt;
+      &lt;button&gt;关闭&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<h2 id="具名插槽">具名插槽</h2>
+<h3 id="插槽的分类">插槽的分类:</h3>
+<p><strong>1 默认插槽(匿名插槽)</strong></p>
+<p><code>&lt;slot&gt;&lt;/slot&gt;</code> 只要没有具体分发的内容, 都会给到默认插槽</p>
+<p><code>&lt;slot name=&quot;default&quot;&gt;&lt;/slot&gt;</code> 是默认插槽完整的写法 和 <code>&lt;slot&gt;&lt;/slot&gt;</code> 完全等价</p>
+<p><strong>2 具名插槽: 具有名字的插槽 (配置了名字),  可以实现定向分发</strong></p>
+<p>一旦配置了名字, 只会接收对应的内容, 不是分发给他的, 就不要</p>
+<h3 id="具名插槽的使用步骤">具名插槽的使用步骤</h3>
+<p>(1) 给插槽起名字</p>
+<pre><code class="language-jsx">&lt;div class=&quot;header&quot;&gt;
+  &lt;slot name=&quot;header&quot;&gt;&lt;/slot&gt;
+&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+  &lt;slot&gt;这是后备内容&lt;/slot&gt;
+&lt;/div&gt;
+&lt;div class=&quot;footer&quot;&gt;
+  &lt;slot name=&quot;footer&quot;&gt;&lt;/slot&gt;
+&lt;/div&gt;
+</code></pre>
+<p>(2) 需要使用 template 标签, 将内容包裹成一个整体</p>
+<p>(3) 通过 v-slot:插槽名, 指定具体分发给谁</p>
+<pre><code class="language-html">&lt;my-dialog&gt;
+  &lt;template v-slot:header&gt;
+    &lt;h3&gt;这是大标题&lt;/h3&gt;
+  &lt;/template&gt;
+
+  &lt;template v-slot:default&gt;
+    &lt;p&gt;这是内容&lt;/p&gt;
+  &lt;/template&gt;
+
+  &lt;template v-slot:footer&gt;
+    &lt;button&gt;确认&lt;/button&gt;
+    &lt;button&gt;取消&lt;/button&gt;
+  &lt;/template&gt;
+&lt;/my-dialog&gt;
+</code></pre>
+<h3 id="具名插槽的简写">具名插槽的简写</h3>
+<p>跟 v-on 和 v-bind 一样，v-slot 也有缩写，即把参数之前的所有内容 (v-slot:) 替换为字符 #。</p>
+<p>例如 v-slot:header 可以被简写为 #header</p>
+<pre><code class="language-jsx">&lt;my-dialog&gt;
+  &lt;template #header&gt;
+    &lt;h3&gt;这是大标题&lt;/h3&gt;
+  &lt;/template&gt;
+
+  &lt;template #default&gt;
+    &lt;p&gt;这是内容&lt;/p&gt;
+  &lt;/template&gt;
+
+  &lt;template #footer&gt;
+    &lt;button&gt;确认&lt;/button&gt;
+    &lt;button&gt;取消&lt;/button&gt;
+  &lt;/template&gt;
+&lt;/my-dialog&gt;
+</code></pre>
+<h2 id="作用域插槽">作用域插槽</h2>
+<p>作用域插槽: <strong>定义 slot 插槽的同时, 是可以传值的</strong>, 将来在分发内容时, 可以使用</p>
+<ol>
+<li>给 slot 标签, 以 添加属性的方式传值</li>
+</ol>
+<pre><code class="language-jsx">&lt;slot name=&quot;bottom&quot; :yes=&quot;yes&quot; :no=&quot;no&quot; money=&quot;100&quot;&gt;&lt;/slot&gt;
+</code></pre>
+<ol start="2">
+<li>所有添加的属性, 都会被收集到一个对象中</li>
+</ol>
+<pre><code class="language-js">{ yes: '确认', no: '取消', money: '100' }
+</code></pre>
+<ol start="3">
+<li>在template中, 通过  <code>v-slot:插槽名= &quot;obj&quot;</code> 接收</li>
+</ol>
+<pre><code class="language-jsx">&lt;template #bottom=&quot;obj&quot;&gt;
+  &lt;!-- {{ obj }} --&gt;
+  &lt;button&gt;{{ obj.yes }}&lt;/button&gt;
+  &lt;button&gt;{{ obj.no }}&lt;/button&gt;
+  &lt;button&gt;{{ obj.money }}&lt;/button&gt;
+&lt;/template&gt;
+</code></pre>
+<ol start="4">
+<li>可以使用解构赋值简化数据的接收</li>
+</ol>
+<pre><code class="language-jsx">&lt;template #bottom=&quot;{ yes, no, money }&quot;&gt;
+  &lt;button&gt;{{ yes }}&lt;/button&gt;
+  &lt;button&gt;{{ no }}&lt;/button&gt;
+  &lt;button&gt;{{ money }}&lt;/button&gt;
+&lt;/template&gt;
+</code></pre>
+<h1 id="自定义指令">自定义指令</h1>
+<h2 id="自定义指令说明">自定义指令说明</h2>
+<p>https://www.vue3js.cn/docs/zh/guide/custom-directive.html</p>
+<p>除了核心功能默认内置的指令 (<code>v-model</code> 和 <code>v-show</code>)，Vue 也允许注册自定义指令。 <code>v-pengpeng</code></p>
+<p>注意，代码复用和抽象的主要形式是组件。</p>
+<p>然而，有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令。</p>
+<h2 id="自定义指令-局部注册">自定义指令 - 局部注册</h2>
+<p>例如需求:  当页面加载时，让元素将获得焦点 , (autofocus 在 safari 浏览器有兼容性)</p>
+<pre><code class="language-less">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h3&gt;自定义指令&lt;/h3&gt;
+    &lt;input ref=&quot;inp&quot; type=&quot;text&quot; v-focus&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  mounted () {
+    // this.$refs.inp.focus()
+  },
+  directives: {
+    // 自定义一个局部指令
+    focus: {
+      // 当被绑定的元素被插入到 DOM 中时, 会自动触发  vue2中inserted
+      mounted (el) {
+        el.focus()
+      }
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h2 id="自定义指令-全局注册">自定义指令 - 全局注册</h2>
+<pre><code class="language-jsx">import { createApp } from 'vue'
+import App from './App.vue'
+const app = createApp(App)
+
+// 注册全局组件
+// app.component(组件名, 组件配置项)
+
+// 注册全局自定义指令
+app.directive('focus', {
+  mounted (el) {
+    el.focus()
+  }
+})
+
+app.mount('#app')
+</code></pre>
+<h2 id="自定义指令-指令的值">自定义指令 - 指令的值</h2>
+<p>在绑定指令时，可以通过“等号”的形式为指令绑定具体的参数值</p>
+<p>需求: v-color=&quot;color&quot; 给对应的颜色, 就能改对应的字体颜色</p>
+<pre><code class="language-jsx">&lt;div v-color=&quot;color&quot;&gt;我是内容&lt;/div&gt;
+</code></pre>
+<p>实现:</p>
+<pre><code class="language-jsx">directives: {
+  // 自定义一个局部指令
+  color: {
+    mounted (el, binding) {
+      el.style.color = binding.value
+    },
+    // updated指令的值改变时触发, binding.value指令的值修改触发
+    updated (el, binding) {
+      el.style.color = binding.value
+    }
+  }
+}
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#watch-%E4%BE%A6%E5%90%AC%E5%99%A8-%E7%9B%91%E8%A7%86%E5%99%A8">watch - 侦听器 (监视器)</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95">基本语法</a></li>
+<li><a href="#%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E6%A3%80%E6%B5%8B%E7%94%A8%E6%88%B7%E5%90%8D%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8">发送请求检测用户名是否存在</a></li>
+<li><a href="#immediate-%E9%80%89%E9%A1%B9">immediate 选项</a></li>
+<li><a href="#deep-%E9%80%89%E9%A1%B9">deep 选项</a></li>
+<li><a href="#%E7%9B%91%E5%90%AC%E5%8D%95%E4%B8%AA%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8F%98%E5%8C%96">监听单个属性的变化</a></li>
+</ul>
+</li>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">生命周期</a>
+<ul>
+<li><a href="#%E7%A0%94%E7%A9%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E6%84%8F%E4%B9%89">研究生命周期的意义</a></li>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0">生命周期函数(钩子函数)</a></li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%86%E7%B1%BB">组件生命周期分类</a></li>
+<li><a href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E8%A7%A3">生命周期图解</a></li>
+<li><a href="#%E5%88%86%E6%9E%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%9B%E5%BB%BA%E6%97%B6%E6%9C%BA">分析组件的创建时机</a></li>
+</ul>
+</li>
+<li><a href="#mixin-%E6%B7%B7%E5%85%A5">mixin 混入</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-mixin-%E6%B7%B7%E5%85%A5">什么是 mixin 混入</a></li>
+<li><a href="#%E5%AE%9A%E4%B9%89-mixin">定义 mixin</a></li>
+<li><a href="#%E4%B8%BA%E7%BB%84%E4%BB%B6%E6%B7%B7%E5%85%A5-mixin">为组件混入 mixin</a></li>
+<li><a href="#mixin%E7%9A%84%E9%80%89%E9%A1%B9%E5%90%88%E5%B9%B6%E5%8E%9F%E5%88%99">mixin的选项合并原则</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1">组件之间的数据共享(组件通信)</a>
+<ul>
+<li><a href="#%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB-%E9%87%8D%E8%A6%81">父子组件的数据共享 (重要)</a></li>
+<li><a href="#%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E9%9D%9E%E7%88%B6%E5%AD%90%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB">兄弟组件(非父子)数据共享</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E8%AF%B4%E6%98%8E">基本说明</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">使用步骤</a></li>
+<li><a href="#%E4%BA%86%E8%A7%A3-vue2-%E4%B8%AD%E7%9A%84-eventbus">了解 vue2 中的 eventBus</a></li>
+</ul>
+</li>
+<li><a href="#%E5%90%8E%E4%BB%A3%E5%85%B3%E7%B3%BB%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE">后代关系组件之间的共享数据</a>
+<ul>
+<li><a href="#%E7%88%B6%E7%BB%84%E4%BB%B6provide%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE">父组件<code>provide</code>共享数据</a></li>
+<li><a href="#%E5%AD%90%E5%AD%99%E8%8A%82%E7%82%B9-inject-%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE">子孙节点 <code>inject</code> 接收数据</a></li>
+<li><a href="#%E5%90%91%E5%AD%90%E5%AD%99%E8%8A%82%E7%82%B9%E5%85%B1%E4%BA%AB%E5%93%8D%E5%BA%94%E5%BC%8F%E7%9A%84%E6%95%B0%E6%8D%AE">向子孙节点共享响应式的数据</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BB%84%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E5%85%B1%E4%BA%AB-vuex">组件之间的数据共享 vuex</a></li>
+</ul>
+</li>
+<li><a href="#axios-%E4%BB%8B%E7%BB%8D">axios 介绍</a></li>
+<li><a href="#axios%E4%BC%98%E5%8C%96%E4%BA%86%E8%A7%A3">axios优化(了解)</a>
+<ul>
+<li><a href="#%E5%A4%84%E7%90%86%E5%9F%BA%E5%9C%B0%E5%9D%80">处理基地址</a></li>
+<li><a href="#%E6%8C%82%E8%BD%BD%E5%88%B0%E5%85%A8%E5%B1%80">挂载到全局</a></li>
+</ul>
+</li>
+<li><a href="#ref-%E5%92%8C-refs">ref 和 $refs</a></li>
+<li><a href="#nexttick">$nextTick</a></li>
+<li><a href="#dynamic-%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6">dynamic 动态组件</a>
+<ul>
+<li><a href="#%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">动态组件的基本使用</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-keep-alive-%E4%BF%9D%E6%8C%81%E7%8A%B6%E6%80%81">使用 keep-alive 保持状态</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8F%92%E6%A7%BD">插槽</a>
+<ul>
+<li><a href="#%E9%BB%98%E8%AE%A4%E6%8F%92%E6%A7%BD-slot">默认插槽 slot</a></li>
+<li><a href="#%E5%90%8E%E5%A4%87%E5%86%85%E5%AE%B9-%E9%BB%98%E8%AE%A4%E5%80%BC">后备内容 (默认值)</a></li>
+<li><a href="#%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BD">具名插槽</a>
+<ul>
+<li><a href="#%E6%8F%92%E6%A7%BD%E7%9A%84%E5%88%86%E7%B1%BB">插槽的分类:</a></li>
+<li><a href="#%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BD%E7%9A%84%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">具名插槽的使用步骤</a></li>
+<li><a href="#%E5%85%B7%E5%90%8D%E6%8F%92%E6%A7%BD%E7%9A%84%E7%AE%80%E5%86%99">具名插槽的简写</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD">作用域插槽</a></li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4">自定义指令</a>
+<ul>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%E8%AF%B4%E6%98%8E">自定义指令说明</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4-%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C">自定义指令 - 局部注册</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4-%E5%85%A8%E5%B1%80%E6%B3%A8%E5%86%8C">自定义指令 - 全局注册</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4-%E6%8C%87%E4%BB%A4%E7%9A%84%E5%80%BC">自定义指令 - 指令的值</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://lucas-y.github.io/post/vue-dan-ye-ying-yong-cheng-xu/">
+              <h3 class="post-title">
+                单页应用程序-组件化
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  中庸之道
+  <a class="rss" href="https://lucas-y.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
