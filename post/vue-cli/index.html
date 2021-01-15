@@ -1,0 +1,502 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>vue-cli | 前端小白</title>
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610681123569">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="vue-cli | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="脚手架 - vue-cli
+vue-cli 介绍
+
+vue-cli是官方提供的开发vue项目的脚手架工具。
+
+脚手架是为了保证各施工过程顺利进行而搭设的工作平台。
+
+vue-cli 可以快速提供一整套的 vue项目开发的 架子, 并且成为了..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://lucas-y.github.io/">
+  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1610681123569" alt="">
+  </a>
+  <h1 class="site-title">
+    前端小白
+  </h1>
+  <p class="site-description">
+    知行合一
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://lucas-y.github.io/" class="menu">
+          首页
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              vue-cli
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-15
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="脚手架-vue-cli">脚手架 - vue-cli</h1>
+<h2 id="vue-cli-介绍">vue-cli 介绍</h2>
+<blockquote>
+<h1 id="vue-cli是官方提供的开发vue项目的脚手架工具">vue-cli是官方提供的开发vue项目的脚手架工具。</h1>
+</blockquote>
+<p><strong>脚手架</strong>是为了保证各施工过程顺利进行而搭设的工作平台。</p>
+<figure data-type="image" tabindex="1"><img src="asset/1586936282638.png" alt="1586936282638" loading="lazy"></figure>
+<p>vue-cli 可以快速提供一整套的 <strong>vue项目开发</strong>的 架子, 并且成为了一套开发vue的标准  (底层就是webpack)</p>
+<p>提供了一系列工具</p>
+<ul>
+<li>例如:  babel  语法降级的   https://www.babeljs.cn/    webpack内部配置babel, 可以将高版本语法降级成低版本语法</li>
+<li>例如:  eslint   约束语法风格的 (代码风格)  https://eslint.bootcss.com/</li>
+<li>例如:  less 的语法转换, 将less转换成css, 供浏览器识别</li>
+<li>例如:  提供了一个开发服务器, 保存自动刷新浏览器</li>
+<li>....</li>
+</ul>
+<p>总结:</p>
+<ul>
+<li>vue-cli 是一个为开发项目提供便利的一个平台, 可以更方便的开发项目, 提高开发效率</li>
+</ul>
+<h2 id="vue-cli-安装">vue-cli 安装</h2>
+<p>全局安装</p>
+<pre><code>yarn global add @vue/cli
+或
+npm i @vue/cli -g
+</code></pre>
+<p>如果 npm 安装慢，使用淘宝镜像。</p>
+<pre><code>npm i @vue/cli -g --registry=https://registry.npm.taobao.org
+</code></pre>
+<p>查看版本号</p>
+<pre><code>vue --version
+</code></pre>
+<p>如果能够输出版本号，就说明已经成功安装了脚手架工具了。  (例如: <code>@vue/cli 4.5.9</code> )</p>
+<p>报错说明:</p>
+<figure data-type="image" tabindex="2"><img src="https://lucas-y.github.io//post-images/1610679000841.png" alt="" loading="lazy"></figure>
+<p>问题说明: 安装是安装好了, 但是 vue -V 找不到版本  =&gt;  没有配置环境变量 (自动配)</p>
+<p>自动配置没有配置上, 需要手动配置</p>
+<p>1 查找 yarn 全局安装的目录</p>
+<pre><code>yarn global bin
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="https://lucas-y.github.io//post-images/1610679017709.png" alt="" loading="lazy"></figure>
+<p>目录中, 有两个文件,  vue  vue.cmd</p>
+<figure data-type="image" tabindex="4"><img src="https://lucas-y.github.io//post-images/1610679050308.png" alt="" loading="lazy"></figure>
+<p>2 配置环境变量</p>
+<p>我的电脑  =&gt;  属性  =&gt;  高级系统设置  =&gt;  环境变量  =&gt;  系统环境变量  =&gt;  path   =&gt; 新建一个  =&gt; 粘贴路径即可</p>
+<h2 id="vue-cli-创建项目">vue-cli 创建项目</h2>
+<p>目标:</p>
+<ol>
+<li>用 vue-cli工具来创建vue项目。</li>
+<li>熟悉 vue项目 结构目录。</li>
+</ol>
+<h3 id="创建项目">创建项目</h3>
+<p>步骤:</p>
+<ol>
+<li>
+<p>打开命令行窗口, 执行命令</p>
+<pre><code>vue create 项目名称
+</code></pre>
+</li>
+<li>
+<p>选择创建方式, 选择最后的自定义创建</p>
+<pre><code class="language-cmd">Vue CLI v4.5.7
+? Please pick a preset: (Use arrow keys)
+  Default ([Vue 2] babel, eslint)
+  Default (Vue 3 Preview) ([Vue 3] babel, eslint)  
+&gt; Manually select features
+</code></pre>
+</li>
+<li>
+<p>选择需要的模块</p>
+<figure data-type="image" tabindex="5"><img src="https://lucas-y.github.io//post-images/1610679073644.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>选择vue版本, 2.x</p>
+<figure data-type="image" tabindex="6"><img src="https://lucas-y.github.io//post-images/1610679094148.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>是否采用路由 history 历史模式 (不采用, 这个模式, 需要后台配合)</p>
+<figure data-type="image" tabindex="7"><img src="https://lucas-y.github.io//post-images/1610679114543.png" alt="" loading="lazy"></figure>
+<pre><code>本质上: 没有跳转页面, 都通过地址栏, 记录跳转的信息
+区别: 1. 基于hash值的, 地址栏中, 有 # 号信息
+         https://www.baidu.com/#/
+         https://www.baidu.com/#/register
+
+      1. 用 history api 模式, 地址栏中, 没有  (后台配合一下)
+         https://www.baidu.com/  根路径
+         https://www.baidu.com/register  后台需要配置内容, 处理这个地址的访问的
+
+         将所有的页面路径, 都映射到首页, 才能真正访问到你写的单页应用
+</code></pre>
+</li>
+<li>
+<p>css预处理器, 选择 less</p>
+<figure data-type="image" tabindex="8"><img src="https://lucas-y.github.io//post-images/1610679133889.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>eslint规范, 选择标准化的无分号规范</p>
+<figure data-type="image" tabindex="9"><img src="https://lucas-y.github.io//post-images/1610679152434.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>选择是否进行eslint规范校验, 开启保存时校验, (这里直接回车即可)</p>
+<figure data-type="image" tabindex="10"><img src="https://lucas-y.github.io//post-images/1610679172505.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>相关的一些配置文件存放在哪, 配置到package.json中即可, 这样目录更简洁</p>
+<figure data-type="image" tabindex="11"><img src="https://lucas-y.github.io//post-images/1610679191679.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>是否保存刚才预设的步骤, 输入 n,   (不存了, 我们下次建项目, 还是再一个个选一下加强练习)</p>
+<figure data-type="image" tabindex="12"><img src="https://lucas-y.github.io//post-images/1610679219061.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>回车后, 会开始下载, 等待一会, 最后下载成功界面如下</p>
+<figure data-type="image" tabindex="13"><img src="https://lucas-y.github.io//post-images/1610679231786.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>启动项目 (<strong>先进入目录</strong>, 再在项目根目录运行 yarn serve)</p>
+<pre><code class="language-txt">cd 04-vue-demo
+
+yarn serve
+</code></pre>
+</li>
+</ol>
+<p>大工告成!! 去浏览器访问  http://localhost:8080</p>
+<figure data-type="image" tabindex="14"><img src="https://lucas-y.github.io//post-images/1610679255476.png" alt="" loading="lazy"></figure>
+<h3 id="熟悉目录结构">熟悉目录结构</h3>
+<p>利用 vue create 项目名, 会直接生成一套项目的目录</p>
+<figure data-type="image" tabindex="15"><img src="https://lucas-y.github.io//post-images/1610679286024.png" alt="" loading="lazy"></figure>
+<p>在开发时，我们需要把自己的代码写在<code>src</code>目录下。</p>
+<figure data-type="image" tabindex="16"><img src="https://lucas-y.github.io//post-images/1610679306585.png" alt="" loading="lazy"></figure>
+<p>目录说明: 为了将来更好的进行开发和维护, 并不会将所有的组件都全部放到 components 文件夹</p>
+<p>组件也可以做一个划分:  页面性质的组件 (展示, 路由切换)    通用组件性质的组件 (复用, 封装)</p>
+<ol>
+<li>
+<p>components: 一般存放的是通用的, 在多个页面中复用的组件</p>
+<p>例如:  按钮组件 my-button.vue,  表格组件 my-table.vue</p>
+</li>
+<li>
+<p>views: 一般存放的展示相关的页面性质的组件  (配合路由切换)</p>
+<p>比如:   login.vue   home.vue    register.vue   user.vue</p>
+</li>
+</ol>
+<p>我们可以将 src 目录清空, 从零开始理解</p>
+<figure data-type="image" tabindex="17"><img src="https://lucas-y.github.io//post-images/1610679334840.png" alt="" loading="lazy"></figure>
+<p>重新 yarn serve 启动项目</p>
+<h3 id="vueconfigjs-文件的作用">vue.config.js 文件的作用</h3>
+<p>vue-cli 是基于 webpack 的, 有着默认的 webpack 配置, 如果对默认的配置不满意, 可以进行修改</p>
+<p>需要在项目根目录, 新建 <code>vue.config.js</code> 文件,  去覆盖默认的webpack配置</p>
+<pre><code class="language-jsx">module.exports = {
+  devServer: {
+    open: true, // 自动打开浏览器
+    port: 8888  // 配置端口号
+  }
+}
+</code></pre>
+<h1 id="elint-格式化配置">elint 格式化配置</h1>
+<h2 id="基本格式化配置">基本格式化配置</h2>
+<p>对于不熟悉eslint规则的我们, 这个报错, 太影响学习效率了, 所以一般会借助 vscode 插件, 辅助我们熟悉eslint的规范</p>
+<p>我们可以配置保存时, 自动修复格式bug</p>
+<p>步骤:</p>
+<ol>
+<li>
+<p>vscode 安装 eslint 插件 (已安装)</p>
+<figure data-type="image" tabindex="18"><img src="https://lucas-y.github.io//post-images/1610679366248.png" alt="" loading="lazy"></figure>
+</li>
+<li>
+<p>将下面的配置代码粘贴到vscode配置文件中  (左下角齿轮 =&gt;  设置 =&gt; 右上角点开 )  (已配置)<br>
+<img src="https://lucas-y.github.io//post-images/1610679400472.png" alt="" loading="lazy"></p>
+<pre><code class="language-json">&quot;editor.codeActionsOnSave&quot;: {
+   &quot;source.fixAll.eslint&quot;: true
+}
+</code></pre>
+</li>
+</ol>
+<p><strong>配置成功效果图:</strong></p>
+<figure data-type="image" tabindex="19"><img src="https://lucas-y.github.io//post-images/1610679418901.png" alt="" loading="lazy"></figure>
+<p><strong>注意点:</strong></p>
+<p>1 关闭保存时自动格式化</p>
+<p>​	formOnSave: false</p>
+<p>2 需要将整个项目以根目录的方式, 单独在vscode中打开, 不然eslint插件, 就会不生效 (保存不会自动修复)</p>
+<figure data-type="image" tabindex="20"><img src="https://lucas-y.github.io//post-images/1610680908583.png" alt="" loading="lazy"></figure>
+<p>错误演示</p>
+<figure data-type="image" tabindex="21"><img src="https://lucas-y.github.io//post-images/1610680935143.png" alt="" loading="lazy"></figure>
+<h2 id="eslint-不生效补充说明">eslint 不生效补充说明</h2>
+<p>一上来弹个框记得选允许</p>
+<figure data-type="image" tabindex="22"><img src="https://lucas-y.github.io//post-images/1610680971261.png" alt="" loading="lazy"></figure>
+<p>如果没有选, 就会在页面的最上面代码上, 显示个波浪线</p>
+<figure data-type="image" tabindex="23"><img src="https://lucas-y.github.io//post-images/1610681006692.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="24"><img src="https://lucas-y.github.io//post-images/1610681023217.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="25"><img src="https://lucas-y.github.io//post-images/1610681043192.png" alt="" loading="lazy"></figure>
+<h2 id="eslint-修改配置的说明">eslint 修改配置的说明</h2>
+<p>我们是选择, 将配置, 配置到了 package.json 中, 所以如果你要改eslint配置, 是去 package.json 中去改</p>
+<figure data-type="image" tabindex="26"><img src="https://lucas-y.github.io//post-images/1610681069408.png" alt="" loading="lazy"></figure>
+<h2 id="配置演示">配置演示</h2>
+<p>如果声明了一个变量, 未使用, 就会报错</p>
+<figure data-type="image" tabindex="27"><img src="https://lucas-y.github.io//post-images/1610681093123.png" alt="" loading="lazy"></figure>
+<p>这个配置, 我不想要, 我不希望报错 (你在定制你自己的eslint规则了)</p>
+<p>https://eslint.bootcss.com/docs/rules/</p>
+<ul>
+<li>&quot;off&quot; or 0 - 关闭规则</li>
+<li>&quot;warn&quot; or 1 - 将规则视为一个警告（不会影响退出码）,只警告，不会退出程序</li>
+<li>&quot;error&quot; or 2 - 将规则视为一个错误 (退出码为1)，报错并退出程序</li>
+</ul>
+<p>自定义eslint规则</p>
+<figure data-type="image" tabindex="28"><img src="https://lucas-y.github.io//post-images/1610681114471.png" alt="" loading="lazy"></figure>
+<h1 id="vue2工程化环境开发">Vue2工程化环境开发</h1>
+<h2 id="使用-appvue-渲染-indexhtml">使用 App.vue 渲染 index.html</h2>
+<p>1 新建 App.vue</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;我是app组件&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+
+}
+&lt;/script&gt;
+
+&lt;style&gt;
+
+&lt;/style&gt;
+</code></pre>
+<p>2 改写 main.js</p>
+<pre><code class="language-js">// 需求: 使用 App.vue 渲染 index.html
+// vue3的写法
+// import { createApp } from 'vue'
+// import App from './App.vue'
+// const app = createApp(App)
+// app.mount('#app')
+
+// vue2的写法
+import Vue from 'vue'
+import App from './App.vue'
+
+new Vue({
+  render: (createElement) =&gt; {
+    return createElement(App)
+  }
+}).$mount('#app')
+</code></pre>
+<h2 id="体验-vue-router-3x-vue2">体验 vue-router 3.x (vue2)</h2>
+<p>1 vue-router4.x (vue3)语法回顾</p>
+<pre><code class="language-jsx">// 1 导入包
+import { createRouter, createWebHashHistory } from 'vue-router'
+
+// 2 创建路由模块
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes: []
+})
+
+// 3 导出路由
+export default router
+
+
+// ---------------------------------------------------------------
+// main.js
+app.use(router)
+</code></pre>
+<p>2 体验vue-router3.x</p>
+<ul>
+<li>准备 router-link 导航链接</li>
+<li>准备 router-view 路由出口</li>
+<li>准备 router 模块, 配置路由规则</li>
+</ul>
+<p>1 <code>App.vue</code> 准备导航链接, 路由出口</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;!-- 导航链接 --&gt;
+    &lt;router-link to=&quot;/home&quot;&gt;首页&lt;/router-link&gt; &amp;nbsp;
+    &lt;router-link to=&quot;/list&quot;&gt;列表页&lt;/router-link&gt; &amp;nbsp;
+    &lt;router-link to=&quot;/product&quot;&gt;商品页&lt;/router-link&gt; &amp;nbsp;
+
+    &lt;!-- 路由出口 --&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<p>2 新建组件, 在<code>router/index.js</code> 路由模块创建路由</p>
+<pre><code class="language-jsx">// 导包
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+import Home from '../views/home.vue'
+import List from '../views/list.vue'
+import Product from '../views/product.vue'
+
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+  routes: [
+    { path: '/home', component: Home },
+    { path: '/list', component: List },
+    { path: '/product', component: Product }
+  ]
+})
+
+export default router
+</code></pre>
+<p>3 挂载到 vue 实例上</p>
+<pre><code class="language-jsx">// vue2的写法
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+
+new Vue({
+  render: h =&gt; h(App),
+  router
+}).$mount('#app')
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E8%84%9A%E6%89%8B%E6%9E%B6-vue-cli">脚手架 - vue-cli</a>
+<ul>
+<li><a href="#vue-cli-%E4%BB%8B%E7%BB%8D">vue-cli 介绍</a></li>
+</ul>
+</li>
+<li><a href="#vue-cli%E6%98%AF%E5%AE%98%E6%96%B9%E6%8F%90%E4%BE%9B%E7%9A%84%E5%BC%80%E5%8F%91vue%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6%E5%B7%A5%E5%85%B7">vue-cli是官方提供的开发vue项目的脚手架工具。</a>
+<ul>
+<li><a href="#vue-cli-%E5%AE%89%E8%A3%85">vue-cli 安装</a></li>
+<li><a href="#vue-cli-%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE">vue-cli 创建项目</a>
+<ul>
+<li><a href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE">创建项目</a></li>
+<li><a href="#%E7%86%9F%E6%82%89%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">熟悉目录结构</a></li>
+<li><a href="#vueconfigjs-%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8">vue.config.js 文件的作用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#elint-%E6%A0%BC%E5%BC%8F%E5%8C%96%E9%85%8D%E7%BD%AE">elint 格式化配置</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F%E5%8C%96%E9%85%8D%E7%BD%AE">基本格式化配置</a></li>
+<li><a href="#eslint-%E4%B8%8D%E7%94%9F%E6%95%88%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E">eslint 不生效补充说明</a></li>
+<li><a href="#eslint-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E7%9A%84%E8%AF%B4%E6%98%8E">eslint 修改配置的说明</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%BC%94%E7%A4%BA">配置演示</a></li>
+</ul>
+</li>
+<li><a href="#vue2%E5%B7%A5%E7%A8%8B%E5%8C%96%E7%8E%AF%E5%A2%83%E5%BC%80%E5%8F%91">Vue2工程化环境开发</a>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8-appvue-%E6%B8%B2%E6%9F%93-indexhtml">使用 App.vue 渲染 index.html</a></li>
+<li><a href="#%E4%BD%93%E9%AA%8C-vue-router-3x-vue2">体验 vue-router 3.x (vue2)</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://lucas-y.github.io/post/vuerouter/">
+              <h3 class="post-title">
+                vueRouter
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  中庸之道
+  <a class="rss" href="https://lucas-y.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
