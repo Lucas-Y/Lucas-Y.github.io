@@ -1,0 +1,598 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>vueRouter | 前端小白</title>
+<link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1610678541650">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="vueRouter | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="前端路由
+SPA  和 前端路由
+SPA: 单页应用程序，一个web网站就一个页面,  所有组件的展示与切换都在这唯一的一个页面内完成。
+此时，不同组件之间的切换 需要通过 前端路由 来实现。
+前端路由:  Hash 地址 与 组件 之间的..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://lucas-y.github.io/">
+  <img class="avatar" src="https://lucas-y.github.io//images/avatar.png?v=1610678541650" alt="">
+  </a>
+  <h1 class="site-title">
+    前端小白
+  </h1>
+  <p class="site-description">
+    知行合一
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="https://lucas-y.github.io/" class="menu">
+          首页
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              vueRouter
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-01-15
+              </span>
+              <span>
+                12 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="前端路由">前端路由</h1>
+<h2 id="spa-和-前端路由">SPA  和 前端路由</h2>
+<p>SPA: 单页应用程序，一个web网站就一个页面,  所有组件的展示与切换都在这唯一的一个页面内完成。</p>
+<p>此时，<code>不同组件之间的切换</code> 需要通过 <code>前端路由</code> 来实现。</p>
+<p>前端路由:  <code>Hash 地址</code> 与 <code>组件</code> 之间的 <code>对应关系</code> 。</p>
+<figure data-type="image" tabindex="1"><img src="https://lucas-y.github.io//post-images/1610678516051.png" alt="" loading="lazy"></figure>
+<h2 id="前端路由-工作模式原理-手写">前端路由 - 工作模式原理 (手写)</h2>
+<p>基本思路:</p>
+<ol>
+<li>用户点击了页面上的路由链接</li>
+<li>导致了 URL 地址栏中的 Hash 值发生了变化</li>
+<li>前端路由监听了到 Hash 地址的变化</li>
+<li>前端路由把当前 Hash 地址对应的组件渲染都浏览器中</li>
+</ol>
+<p>实现简单的前端路由:</p>
+<ol>
+<li>导入并注册 <code>my-home.vue</code>  <code>my-movie</code>  <code>my-about</code> 三个组件</li>
+</ol>
+<pre><code class="language-html">&lt;script&gt;
+import MyAbout from './components/my-about.vue'
+import MyHome from './components/my-home.vue'
+import MyMovie from './components/my-movie.vue'
+export default {
+  components: {
+    MyHome,
+    MyAbout,
+    MyMovie
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<ol start="2">
+<li>通过 comName 动态组件, 控制要显示的组件</li>
+</ol>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;App组件&lt;/h1&gt;
+    &lt;component :is=&quot;comName&quot;&gt;&lt;/component&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import MyAbout from './components/my-about.vue'
+import MyHome from './components/my-home.vue'
+import MyMovie from './components/my-movie.vue'
+export default {
+  data () {
+    return {
+      comName: 'my-home'
+    }
+  },
+  components: {
+    MyHome,
+    MyAbout,
+    MyMovie
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<ol start="3">
+<li>声明三个导航链接, 点击时修改地址栏的 hash 值</li>
+</ol>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;App组件&lt;/h1&gt;
+    &lt;a href=&quot;#/home&quot;&gt;首页&lt;/a&gt;&amp;nbsp;
+    &lt;a href=&quot;#/movie&quot;&gt;电影&lt;/a&gt;&amp;nbsp;
+    &lt;a href=&quot;#/about&quot;&gt;关于&lt;/a&gt;&amp;nbsp;
+    &lt;component :is=&quot;comName&quot;&gt;&lt;/component&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<ol start="4">
+<li>在 created 中, 监视地址栏 hash 时的变化, 一旦变化, 动态切换展示的组件</li>
+</ol>
+<pre><code class="language-jsx">created () {
+  window.onhashchange = () =&gt; {
+    console.log(location.hash)
+    switch(location.hash) {
+      case '#/home':
+        this.comName = 'my-home'
+        break
+      case '#/movie':
+        this.comName = 'my-movie'
+        break
+      case '#/about':
+        this.comName = 'my-about'
+        break
+    }
+  }
+},
+</code></pre>
+<h1 id="vue-router">vue-router</h1>
+<p>vue-router 是 vue.js 官方给出的路由解决方案。它能够轻松的管理 SPA 项目中组件的切换。</p>
+<h2 id="vue-router-的版本说明">vue-router 的版本说明</h2>
+<p>vue-router 目前有 <code>3.x</code> 的版本和 <code>4.x</code> 的版本。其中：</p>
+<ol>
+<li><code>vue-router 3.x</code>只能结合 <code>vue2</code>进行使用</li>
+<li><code>vue-router 4.x</code> 只能结合 <code>vue3</code>进行使用</li>
+</ol>
+<p>vue-router 3.x 的官方文档地址：https://router.vuejs.org/zh/</p>
+<p>vue-router 4.x 的官方文档地址：https://next.router.vuejs.org/</p>
+<h2 id="vue-router-4x-的使用步骤">vue-router 4.x 的使用步骤</h2>
+<ol>
+<li>在项目中安装 vue-router</li>
+</ol>
+<pre><code class="language-txt">yarn add vue-router@next
+</code></pre>
+<ol start="2">
+<li>
+<p>定义路由组件</p>
+<p>在项目中定义 my-home.vue、my-movie.vue、my-about.vue三个组件，</p>
+<p>将来要使用vue-router 来控制它们的展示与切换</p>
+</li>
+<li>
+<p>声明链接 和 路由出口</p>
+</li>
+</ol>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;h1&gt;App组件&lt;/h1&gt;
+    &lt;!-- 路由链接 --&gt;
+    &lt;router-link to=&quot;/home&quot;&gt;首页&lt;/router-link&gt;&amp;nbsp;
+    &lt;router-link to=&quot;/movie&quot;&gt;电影&lt;/router-link&gt;&amp;nbsp;
+    &lt;router-link to=&quot;/about&quot;&gt;关于&lt;/router-link&gt;
+
+    &lt;!-- 路由出口 --&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<ol start="4">
+<li>创建路由模块, 新建 router/index.js,  创建路由实例对象并导出</li>
+</ol>
+<pre><code class="language-jsx">// 1. 从vue-router中按需导入另两个方法
+//    createRouter 用于创建路由的实例对象
+//    createWebHashHistory 用于指定路由的工作模式 (hash 模式)
+
+import { createRouter, createWebHashHistory } from 'vue-router'
+
+import MyHome from '../components/my-home.vue'
+import MyMovie from '../components/my-movie.vue'
+import MyAbout from '../components/my-about.vue'
+
+
+// 2. 创建路由实例对象
+const router = createRouter({
+  // 指定路由工作模式, hash模式
+  history: createWebHashHistory(),
+  // 指定路由规则
+  routes: [
+    // path 是 hash 地址, component 是要展示的组件
+    { path: '/home', component: MyHome },
+    { path: '/movie', component: MyMovie },
+    { path: '/about', component: MyAbout }
+  ]
+})
+
+// 3. 导出router实例
+export default router
+</code></pre>
+<ol start="5">
+<li>在main.js 中导入并挂载路由模块</li>
+</ol>
+<pre><code class="language-jsx">import { createApp } from 'vue'
+import App from './App.vue'
+
+import router from './router'
+
+const app = createApp(App)
+
+// 挂载路由模块, 使用app.use方法来挂载第三方的插件模块
+app.use(router)
+
+app.mount('#app')
+</code></pre>
+<h2 id="路由重定向">路由重定向</h2>
+<p>路由重定向指的是：用户在访问地址 A 的时候，强制用户跳转到地址 C ，从而展示特定的组件页面。</p>
+<p>通过路由规则的 redirect 属性，指定一个新的路由地址，可以很方便地设置路由的重定向：</p>
+<pre><code class="language-jsx">const router = createRouter({
+  // 指定路由工作模式
+  history: createWebHashHistory(),
+  // 指定路由规则
+  routes: [
+    // path 是 hash 地址, component 是要展示的组件
+    { path: '/', redirect: '/home' },
+    { path: '/home', component: MyHome },
+    { path: '/movie', component: MyMovie },
+    { path: '/about', component: MyAbout }
+  ]
+})
+</code></pre>
+<h2 id="路由高亮">路由高亮</h2>
+<p>可以通过如下的两种方式，将激活的路由链接进行高亮显示：</p>
+<ol>
+<li>使用默认的高亮 class 类</li>
+<li>自定义路由高亮的 class 类</li>
+</ol>
+<h3 id="默认的高亮-class-类">默认的高亮 class 类</h3>
+<p>被激活的路由链接，默认会添加一个叫做 <code>router-link-active</code>(模糊匹配) 和 <code>router-link-exact-active</code> (精确匹配) 的类名。</p>
+<p>开发者可以使用此类名选择器，为激活的路由链接设置高亮的样式：</p>
+<pre><code class="language-less">&lt;style lang=&quot;less&quot; scoped&gt;
+// .router-link-active {
+//   color: red;
+// }
+
+.router-link-exact-active {
+  color: blue
+}
+&lt;/style&gt;
+</code></pre>
+<h3 id="自定义路由高亮的类名">自定义路由高亮的类名</h3>
+<p>在创建路由的实例对象时，开发者可以基于 <code>linkActiveClass</code> 或者 <code>linkExactActiveClass</code> 属性，</p>
+<p>自定义路由链接被激活时所应用的类名</p>
+<pre><code class="language-jsx">// 2. 创建路由实例对象
+const router = createRouter({
+  // 指定路由工作模式
+  history: createWebHashHistory(),
+  
+  // 指定被激活链接的类名
+  linkActiveClass: 'active',
+  linkExactActiveClass: 'exact-active',
+  
+  // 指定路由规则
+  routes: [
+    // path 是 hash 地址, component 是要展示的组件
+    { path: '/', redirect: '/home' },
+    { path: '/home', component: MyHome },
+    { path: '/movie', component: MyMovie },
+    { path: '/about', component: MyAbout }
+  ]
+})
+</code></pre>
+<h2 id="嵌套子路由">嵌套子路由</h2>
+<p>一级路由下, 还可以嵌套二级路由  (一级导航下, 还可以有二级导航)</p>
+<figure data-type="image" tabindex="2"><img src="https://lucas-y.github.io//post-images/1610678537013.png" alt="" loading="lazy"></figure>
+<p>1 声明子路由的导航链接 和 子路由的出口</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div class=&quot;my-about&quot;&gt;
+    &lt;h3&gt;我的关于&lt;/h3&gt;
+    &lt;router-link to=&quot;/about/tab1&quot;&gt;tab1&lt;/router-link&gt; &amp;nbsp;
+    &lt;router-link to=&quot;/about/tab2&quot;&gt;tab2&lt;/router-link&gt; &amp;nbsp;
+    &lt;!-- 声明嵌套路由的路由出口 --&gt;
+    &lt;router-view&gt;&lt;/router-view&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<p>2 创建组件, 配置路由规则</p>
+<pre><code class="language-jsx">import MyTab1 from '../components/my-tab1.vue'
+import MyTab2 from '../components/my-tab2.vue'
+
+// 2. 创建路由实例对象
+const router = createRouter({
+  // 指定路由工作模式, hash模式
+  history: createWebHashHistory(),
+  // 指定路由规则
+  routes: [
+    { path: '/', redirect: '/home' },
+    { path: '/home', component: MyHome },
+    { path: '/movie', component: MyMovie },
+    { 
+      path: '/about', 
+      component: MyAbout,
+      children: [
+        { path: 'tab1', component: MyTab1 },
+        { path: 'tab2', component: MyTab2 },
+      ] 
+    }
+  ]
+})
+</code></pre>
+<h2 id="动态路由匹配">动态路由匹配</h2>
+<h3 id="基本使用">基本使用</h3>
+<p>动态路由指的是：把 Hash 地址中可变的部分定义为参数项，从而提高路由规则的复用性。</p>
+<p>在 vue-router 中使用英文的冒号（:）来定义路由的参数项。</p>
+<p>思考: 有三个路由链接:</p>
+<pre><code class="language-jsx">&lt;router-link to=&quot;/movie/1&quot;&gt;电影1&lt;/router-link&gt; &amp;nbsp;
+&lt;router-link to=&quot;/movie/2&quot;&gt;电影2&lt;/router-link&gt; &amp;nbsp;
+&lt;router-link to=&quot;/movie/3&quot;&gt;电影3&lt;/router-link&gt; &amp;nbsp;
+</code></pre>
+<p>配置对应的规则</p>
+<pre><code class="language-js">{ path: '/movie/1', component: MyMovie },
+{ path: '/movie/2', component: MyMovie },
+{ path: '/movie/3', component: MyMovie },
+</code></pre>
+<p>动态路由匹配</p>
+<pre><code class="language-jsx">{ path: '/movie/:id', component: MyMovie },
+</code></pre>
+<h3 id="动态路由匹配的参数">动态路由匹配的参数</h3>
+<p>通过动态路由匹配的方式渲染出来的组件中，可以使用<code>$route.params</code> 对象访问到动态匹配的参数值</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;div class=&quot;my-movie&quot;&gt;
+    &lt;h3&gt;我的电影 - {{ $route.params.id }}&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="使用-props-接收路由参数了解">使用 props 接收路由参数(了解)</h3>
+<p>为了简化路由参数的获取形式，vue-router 允许在路由规则中开启props 传参。</p>
+<pre><code class="language-jsx">{ path: '/movie/:id', component: MyMovie, props: true }
+</code></pre>
+<p>通过 props 即可拿到路由参数</p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div class=&quot;my-movie&quot;&gt;
+    &lt;h3&gt;我的电影 - {{ $route.params.id }}&lt;/h3&gt;
+    &lt;h3&gt;我的电影 - {{ id }}&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: ['id'],
+  created () {
+    console.log(this.$route.params.id)
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h2 id="编程式导航">编程式导航</h2>
+<h3 id="编程式导航的基本理解">编程式导航的基本理解</h3>
+<p>编程式导航: <code>通过 js 的方式</code>, 调用 api 实现导航跳转的方式, 叫做 <code>编程式导航</code></p>
+<p>声明式导航:  通过 <code>点击 router-link 链接</code> 实现导航跳转的方式, 叫做 <code>声明式导航</code></p>
+<p>类比:</p>
+<ul>
+<li>普通网页中点击 <code>&lt;a&gt;</code> 链接属于声明式导航</li>
+<li>普通网页中调用 <code>location.href</code>跳转到新页面的方式，属于编程式导航</li>
+</ul>
+<h3 id="编程式导航的语法">编程式导航的语法</h3>
+<p>vue-router 提供了许多编程式导航的 API，其中最常用的两个 API</p>
+<ol>
+<li>this.$router.push('地址')  跳转地址</li>
+<li>this.$router.go(-1)   实现导航地址的后退 (返回上一页)</li>
+</ol>
+<p><code>my-home.vue</code></p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div class=&quot;my-home&quot;&gt;
+    &lt;h3&gt;我的首页&lt;/h3&gt;
+    &lt;button @click=&quot;fn&quot;&gt;去movie3&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  methods: {
+    fn () {
+      this.$router.push('/movie/3')
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<p><code>my-movie.vue</code></p>
+<pre><code class="language-jsx">&lt;template&gt;
+  &lt;div class=&quot;my-movie&quot;&gt;
+    &lt;h3&gt;我的电影 - {{ $route.params.id }}&lt;/h3&gt;
+    &lt;h3&gt;我的电影 - {{ id }}&lt;/h3&gt;
+    &lt;button @click=&quot;handleBack&quot;&gt;返回&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  props: ['id'],
+  created () {
+    console.log(this.$route.params.id)
+  },
+  methods: {
+    handleBack () {
+      this.$router.go(-1)
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<h2 id="命名路由">命名路由</h2>
+<p>通过 name 属性, 可以给路由规则起个名字, 将来可以直接更方便的,  通过 name 进行 push 跳转</p>
+<p>注意: 命名路由的 <code>name值不能重复, 必须保证唯一性</code></p>
+<pre><code class="language-jsx">{ path: '/movie/:id', component: MyMovie, props: true, name: 'movie' },
+{ 
+  path: '/about', 
+  component: MyAbout,
+  children: [
+    { path: '', redirect: '/about/tab1' },
+    { path: 'tab1', component: MyTab1, name: 'tab1' },
+    { path: 'tab2', component: MyTab2, name: 'tab2' },
+  ] 
+}
+</code></pre>
+<p>跳转写法</p>
+<pre><code class="language-jsx">// this.$router.push({
+//   name: 'tab1'
+// })
+// this.$router.push({
+//   name: 'tab2'
+// })
+
+this.$router.push({
+  name: 'movie',
+  params: {
+    id: 3
+  }
+})
+</code></pre>
+<p><strong>tips</strong>: 声明式导航中, 也可以使用命名路由,  但是 to 要指定成对象, 需要 v-bind:to 来进行设置</p>
+<pre><code class="language-jsx">&lt;router-link :to=&quot;{ name: 'movie', params: { id: 2 } }&quot;&gt;去movie2&lt;/router-link&gt;
+&lt;router-link :to=&quot;{ name: 'tab1' }&quot;&gt;去tab1&lt;/router-link&gt;
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1">前端路由</a>
+<ul>
+<li><a href="#spa-%E5%92%8C-%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1">SPA  和 前端路由</a></li>
+<li><a href="#%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1-%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F%E5%8E%9F%E7%90%86-%E6%89%8B%E5%86%99">前端路由 - 工作模式原理 (手写)</a></li>
+</ul>
+</li>
+<li><a href="#vue-router">vue-router</a>
+<ul>
+<li><a href="#vue-router-%E7%9A%84%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E">vue-router 的版本说明</a></li>
+<li><a href="#vue-router-4x-%E7%9A%84%E4%BD%BF%E7%94%A8%E6%AD%A5%E9%AA%A4">vue-router 4.x 的使用步骤</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E9%87%8D%E5%AE%9A%E5%90%91">路由重定向</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E9%AB%98%E4%BA%AE">路由高亮</a>
+<ul>
+<li><a href="#%E9%BB%98%E8%AE%A4%E7%9A%84%E9%AB%98%E4%BA%AE-class-%E7%B1%BB">默认的高亮 class 类</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B7%AF%E7%94%B1%E9%AB%98%E4%BA%AE%E7%9A%84%E7%B1%BB%E5%90%8D">自定义路由高亮的类名</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B5%8C%E5%A5%97%E5%AD%90%E8%B7%AF%E7%94%B1">嵌套子路由</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8D">动态路由匹配</a>
+<ul>
+<li><a href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">基本使用</a></li>
+<li><a href="#%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%8C%B9%E9%85%8D%E7%9A%84%E5%8F%82%E6%95%B0">动态路由匹配的参数</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8-props-%E6%8E%A5%E6%94%B6%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E4%BA%86%E8%A7%A3">使用 props 接收路由参数(了解)</a></li>
+</ul>
+</li>
+<li><a href="#%E7%BC%96%E7%A8%8B%E5%BC%8F%E5%AF%BC%E8%88%AA">编程式导航</a>
+<ul>
+<li><a href="#%E7%BC%96%E7%A8%8B%E5%BC%8F%E5%AF%BC%E8%88%AA%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3">编程式导航的基本理解</a></li>
+<li><a href="#%E7%BC%96%E7%A8%8B%E5%BC%8F%E5%AF%BC%E8%88%AA%E7%9A%84%E8%AF%AD%E6%B3%95">编程式导航的语法</a></li>
+</ul>
+</li>
+<li><a href="#%E5%91%BD%E5%90%8D%E8%B7%AF%E7%94%B1">命名路由</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://lucas-y.github.io/post/zu-jian-gao-ji/">
+              <h3 class="post-title">
+                组件高级
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  中庸之道
+  <a class="rss" href="https://lucas-y.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
