@@ -2,28 +2,17 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>js高级 | 前端小白</title>
+<title>require引入的图片和直接引入的图片到底有什么区别？ | 前端小白</title>
 <link rel="shortcut icon" href="https://lucas-y.github.io//favicon.ico?v=1612357115199">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://lucas-y.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="js高级 | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
+<link rel="alternate" type="application/atom+xml" title="require引入的图片和直接引入的图片到底有什么区别？ | 前端小白 - Atom Feed" href="https://lucas-y.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-暂时性死区
-暂时性死区
-继承
-
-原型链继承（给原型对象添加的成员，实例对象可以继承到）
-
-
-直接给原型对象添加 Person.prototype.xx = yyy;
-缺点：添加过多成员，以上写法重复，麻烦
-
-function Person..." />
-    <meta name="keywords" content="前端" />
+    <meta name="description" content="require 是 node 中的一个方法，他的作用是 “用于引入模块、 JSON、或本地文件”。 也就是说如果我们使用 require 来引入一个图片文件的话，那么 require 返回的就是用于引入的图片（npm 运行之后图片的编译路径..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -73,122 +62,28 @@ function Person..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              js高级
+              require引入的图片和直接引入的图片到底有什么区别？
             </h2>
             <div class="post-info">
               <span>
-                2021-01-12
+                2021-02-03
               </span>
               <span>
                 2 min read
               </span>
               
-                <a href="https://lucas-y.github.io/tag/MsOF8Lziw/" class="post-tag">
-                  # 前端
-                </a>
-              
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <!-- more -->
-<h2 id="暂时性死区">暂时性死区</h2>
-<p><a href="https://es6.ruanyifeng.com/#docs/let">暂时性死区</a></p>
-<h2 id="继承">继承</h2>
-<ul>
-<li>原型链继承（给原型对象添加的成员，实例对象可以继承到）</li>
-</ul>
-<ol>
-<li>直接给原型对象添加 Person.prototype.xx = yyy;<br>
-缺点：添加过多成员，以上写法重复，麻烦</li>
-</ol>
-<pre><code class="language-js">function Person() {}
-Person.prototype.color = &quot;lime&quot;;
-Person.prototype.sayHi = function () {
-    console.log(&quot;hi&quot;);
-}
-
-var p = new Person();
-console.log(p.color); // lime
-p.sayHi();
-</code></pre>
-<ol start="2">
-<li>原型替换  Person.prototype = {//...}<br>
-缺点：造成了constructor属性丢失了<br>
-解决：手动给新的原型对象补上</li>
-</ol>
-<pre><code class="language-js">function Person() {}
-Person.prototype = {
-    constructor: Person,
-    sayHi: function () {
-        console.log(&quot;hi&quot;);
-    },
-    show: function () {
-        console.log(&quot;show is ok&quot;);
-    },
-    // ...
-};
-var p = new Person();
-p.sayHi();
-p.show();
-</code></pre>
-<ul>
-<li>
-<p>借用构造函数继承</p>
-<pre><code class="language-js">  function Person(name, age, gender){
-      this.name = name;
-      this.age = age;
-      this.gender = gender;
-  }
-
-  function China(name, age, gender, skin){
-      Person.apply(this,[name,age,gender]);
-      this.skin = skin;           
-  }
-
-  var xm = new China(&quot;xiaoming&quot;, 20, &quot;male&quot;, &quot;黄&quot;);
-  console.log(xm);
-</code></pre>
-</li>
-<li>
-<p>组合继承<br>
-<code>既可以保证每个实例都有它自己的属性，又能做到对一些属性和方法的复用</code></p>
-</li>
-</ul>
-<pre><code class="language-js">function Person(name, age, gender){
-    this.name = name;
-    this.age = age;
-    this.gender = gender;
-}
-Person.prototype.sayHi = function () {
-    console.log(&quot;hello 我是&quot; + this.name);
-}
-
-function China(name, age, gender, skin){
-    // 借用构造函数继承
-    Person.apply(this,[name,age,gender]);
-    this.skin = skin;           
-}
-China.prototype = new Person();
-China.prototype.constructor = China;
-
-var xm = new China(&quot;xiaoming&quot;, 20, &quot;male&quot;, &quot;黄&quot;);
-xm.sayHi()
-</code></pre>
-<h2 id="前端模块化">前端模块化</h2>
+                <p>require 是 node 中的一个方法，他的作用是 “用于引入模块、 JSON、或本地文件”。 也就是说如果我们使用 require 来引入一个图片文件的话，那么 require 返回的就是用于引入的图片（npm 运行之后图片的编译路径）。 而如果使用字符串的话，那么则是一个 string 类型的固定字符串路径。</p>
+<p>我们知道，src 中引入的图片应该为图片的本身路径（相对路径或者绝对路径），而 vue 项目通过 webpack 的 devServer 运行之后，默认的 vue-cli 配置下，图片会被打包成 name.hash 的图片名，在这种情况下，如果我们使用固定的 字符串路径则无法找到该图片，所以需要使用 require 方法来返回 图片的编译路径。</p>
+<p>简单的说，使用require定义之后，你就可以动态使用了，不用require你就只能写死的。不用的话， :src=&quot;’…/img/image.jpg’&quot; 会被解析为字符串</p>
+<p>require 方法介绍： http://nodejs.cn/api/modules.html#modules_require_id</p>
 
               </div>
               <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA">暂时性死区</a></li>
-<li><a href="#%E7%BB%A7%E6%89%BF">继承</a></li>
-<li><a href="#%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96">前端模块化</a></li>
-</ul>
-</li>
-</ul>
-
+                
               </div>
             </div>
           </article>
@@ -197,9 +92,9 @@ xm.sayHi()
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://lucas-y.github.io/post/react/">
+            <a href="https://lucas-y.github.io/post/qian-duan-mo-kuai-hua/">
               <h3 class="post-title">
-                react
+                前端模块化
               </h3>
             </a>
           </div>
